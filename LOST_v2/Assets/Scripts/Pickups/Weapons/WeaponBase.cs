@@ -34,10 +34,10 @@ public class WeaponBase : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        ammoText = GameObject.Find("Ammo Counter").GetComponent<Text>();
-        if (ammoText.text == "New Text") {
-            ammoText.text = "No Weapon";
-        }
+        //ammoText = GameObject.Find("Ammo Counter").GetComponent<Text>();
+        //if (ammoText.text == "New Text") {
+        //    ammoText.text = "No Weapon";
+        //}
 	}
 	
 	// Update is called once per frame

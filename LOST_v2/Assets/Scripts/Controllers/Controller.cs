@@ -6,9 +6,11 @@ public class Controller : MonoBehaviour
 {
 
     public Pawn pawn;
-    public KeyCode lockOn;
+    public KeyCode lockOnKey = KeyCode.Q;
+
     public float rotateSpeed = 10;
     public float movementSpeed = 5;
+    public float jumpHeight = 10;
     public GameObject opponent;
     public float lockOnDrain = 1;
     public float lockOnRecharge = 0.5f;
@@ -19,6 +21,7 @@ public class Controller : MonoBehaviour
     private float previousX;
     private float previousY;
     private float lockOnTimer;
+    private bool grounded;
 
     // Use this for initialization
     void Start()
@@ -26,7 +29,10 @@ public class Controller : MonoBehaviour
         pawn = GetComponent<Pawn>();
         pawn.controller = this;
         player = gameObject.transform;
-        Camera.main.GetComponent<CameraFollowPlayer>().targetTf = player;
+        if (Camera.main.GetComponent<CameraFollowPlayer>().targetTf == null)
+        {
+            Camera.main.GetComponent<CameraFollowPlayer>().targetTf = player;
+        }
         GameManager.instance.playerOne = this;
 
         lockOnTimer = lockOnTime;
@@ -44,14 +50,16 @@ public class Controller : MonoBehaviour
         {
             return;     // DO NOTHING
         }
-        if (Input.GetKeyDown(lockOn))
+
+        if (Input.GetButtonDown("LockOn"))
         {
             isLockedOn = !isLockedOn;
         }
 
         Rotation();
         Movement();
-        if (Input.GetMouseButtonDown(0))
+
+        if (Input.GetButtonDown("Attack"))
         {
             if (pawn.specialWeapon != null)
             {
@@ -63,10 +71,66 @@ public class Controller : MonoBehaviour
                 Debug.Log("Base weapon");
                 pawn.baseWepScript.OnShoot();
             }
-            else if (pawn.meleeWeapon != null)
+
+            Debug.Log("Main attack");
+        }
+        else if (Input.GetAxis("Attack") != 0)
+        {
+            if (pawn.specialWeapon != null)
+            {
+                Debug.Log("Special weapon");
+                pawn.specialWepScript.OnShoot();
+            }
+            else if (pawn.baseWeapon != null)
+            {
+                Debug.Log("Base weapon");
+                pawn.baseWepScript.OnShoot();
+            }
+
+            Debug.Log("Main attack");
+        }
+        else if (Input.GetButtonDown("Melee"))
+        {
+            if (pawn.meleeWeapon != null)
             {
                 Debug.Log("Melee weapon");
                 pawn.meleeWepScript.OnShoot();
+            }
+
+            Debug.Log("Melee attack");
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (grounded)
+        {
+            Debug.DrawRay(player.position, player.up * -1.5f, Color.blue, 0.5f);
+
+            RaycastHit raycastData;
+            Physics.Raycast(player.position, player.up * -1, out raycastData, 1.5f);
+
+            if (Input.GetButtonDown("Jump"))
+            {
+                grounded = false;
+                pawn.Jump();
+            }
+            if (raycastData.collider == null)
+            {
+                grounded = false;
+                pawn.anim.SetBool("OnGround", false);
+            }
+        }
+        else
+        {
+            Debug.DrawRay(player.position, player.up * -1.5f, Color.red, 0.5f);
+
+            RaycastHit raycastData;
+            Physics.Raycast(player.position, player.up * -1, out raycastData, 1.5f);
+            if (raycastData.collider != null)
+            {
+                grounded = true;
+                pawn.anim.SetBool("OnGround", true);
             }
         }
     }

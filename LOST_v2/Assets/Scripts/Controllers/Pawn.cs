@@ -106,6 +106,13 @@ public class Pawn : MonoBehaviour {
         }
     }
 
+    public void Jump()
+    {
+        gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * controller.jumpHeight * 50);
+        Debug.Log("Jump");
+        anim.SetBool("OnGround", false);
+    }
+
     public void OnEquip(GameObject newWeapon)
     {
         if (newWeapon.GetComponent<WeaponBase>().equipped == false)
