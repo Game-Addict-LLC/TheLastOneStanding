@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Controller : MonoBehaviour
 {
+    public string playerID = "P1";
 
     public Pawn pawn;
+    public Health health;
     public KeyCode lockOnKey = KeyCode.Q;
 
     public float rotateSpeed = 10;
@@ -23,18 +25,29 @@ public class Controller : MonoBehaviour
     private float lockOnTimer;
     private bool grounded;
 
+    public float abilityTimer = 5;
+
     // Use this for initialization
     void Start()
     {
         pawn = GetComponent<Pawn>();
         pawn.controller = this;
         player = gameObject.transform;
+        health = GetComponent<Health>();
+
         if (Camera.main.GetComponent<CameraFollowPlayer>().targetTf == null)
         {
             Camera.main.GetComponent<CameraFollowPlayer>().targetTf = player;
         }
-        GameManager.instance.playerOne = this;
 
+        if (playerID == "P1")
+        {
+            GameManager.instance.playerOne = this;
+        }
+        else if (playerID == "P2")
+        {
+            GameManager.instance.playerTwo = this;
+        }
         lockOnTimer = lockOnTime;
     }
 
@@ -51,7 +64,7 @@ public class Controller : MonoBehaviour
             return;     // DO NOTHING
         }
 
-        if (Input.GetButtonDown("LockOn"))
+        if (Input.GetButtonDown(playerID + "LockOn"))
         {
             isLockedOn = !isLockedOn;
         }
@@ -59,50 +72,6 @@ public class Controller : MonoBehaviour
         Rotation();
         Movement();
 
-        if (Input.GetButtonDown("Attack"))
-        {
-            if (pawn.specialWeapon != null)
-            {
-                Debug.Log("Special weapon");
-                pawn.specialWepScript.OnShoot();
-            }
-            else if (pawn.baseWeapon != null)
-            {
-                Debug.Log("Base weapon");
-                pawn.baseWepScript.OnShoot();
-            }
-
-            Debug.Log("Main attack");
-        }
-        else if (Input.GetAxis("Attack") != 0)
-        {
-            if (pawn.specialWeapon != null)
-            {
-                Debug.Log("Special weapon");
-                pawn.specialWepScript.OnShoot();
-            }
-            else if (pawn.baseWeapon != null)
-            {
-                Debug.Log("Base weapon");
-                pawn.baseWepScript.OnShoot();
-            }
-
-            Debug.Log("Main attack");
-        }
-        else if (Input.GetButtonDown("Melee"))
-        {
-            if (pawn.meleeWeapon != null)
-            {
-                Debug.Log("Melee weapon");
-                pawn.meleeWepScript.OnShoot();
-            }
-
-            Debug.Log("Melee attack");
-        }
-    }
-
-    private void FixedUpdate()
-    {
         if (grounded)
         {
             Debug.DrawRay(player.position, player.up * -1.5f, Color.blue, 0.5f);
@@ -110,7 +79,7 @@ public class Controller : MonoBehaviour
             RaycastHit raycastData;
             Physics.Raycast(player.position, player.up * -1, out raycastData, 1.5f);
 
-            if (Input.GetButtonDown("Jump"))
+            if (Input.GetButtonDown(playerID + "Jump"))
             {
                 grounded = false;
                 pawn.Jump();
@@ -133,15 +102,56 @@ public class Controller : MonoBehaviour
                 pawn.anim.SetBool("OnGround", true);
             }
         }
+
+        if (Input.GetButtonDown(playerID + "Attack"))
+        {
+            if (pawn.specialWeapon != null)
+            {
+                Debug.Log("Special weapon");
+                pawn.specialWepScript.OnShoot();
+            }
+            else if (pawn.baseWeapon != null)
+            {
+                Debug.Log("Base weapon");
+                pawn.baseWepScript.OnShoot();
+            }
+
+            Debug.Log("Main attack");
+        }
+        else if (Input.GetAxis(playerID + "Attack") != 0)
+        {
+            if (pawn.specialWeapon != null)
+            {
+                Debug.Log("Special weapon");
+                pawn.specialWepScript.OnShoot();
+            }
+            else if (pawn.baseWeapon != null)
+            {
+                Debug.Log("Base weapon");
+                pawn.baseWepScript.OnShoot();
+            }
+
+            Debug.Log("Main attack");
+        }
+        else if (Input.GetButtonDown(playerID + "Melee"))
+        {
+            if (pawn.meleeWeapon != null)
+            {
+                Debug.Log("Melee weapon");
+                pawn.meleeWepScript.OnShoot();
+            }
+
+            Debug.Log("Melee attack");
+        }
     }
 
     void Rotation()
     {
         if (!isLockedOn)
         {
-            if (Mathf.Abs(Input.GetAxis("Horizontal")) > previousX || Mathf.Abs(Input.GetAxis("Vertical")) > previousY)
+            if (Mathf.Abs(Input.GetAxis(playerID + "Horizontal")) > previousX || Mathf.Abs(Input.GetAxis(playerID + "Vertical")) > previousY)
             {
-                float targetAngle = Mathf.Atan2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) * Mathf.Rad2Deg;
+                float targetAngle = Mathf.Atan2(Input.GetAxis(playerID + "Horizontal"), Input.GetAxis(playerID + "Vertical")) * Mathf.Rad2Deg;
                 Quaternion targetQuat = Quaternion.Euler(0, targetAngle, 0);
                 player.rotation = Quaternion.RotateTowards(player.rotation, targetQuat, Time.deltaTime * rotateSpeed * 60);
                 //player.LookAt(new Vector3(Input.GetAxis("Horizontal") + player.position.x, player.position.y, Input.GetAxis("Vertical") + player.position.z));
@@ -161,8 +171,8 @@ public class Controller : MonoBehaviour
             lockOnTimer -= Time.deltaTime * lockOnDrain;
         }
 
-        previousX = Input.GetAxis("Horizontal");
-        previousY = Input.GetAxis("Vertical");
+        previousX = Input.GetAxis(playerID + "Horizontal");
+        previousY = Input.GetAxis(playerID + "Vertical");
         lockOnTimer = Mathf.Clamp(lockOnTimer, 0, lockOnTime);
 
         if (lockOnTimer <= 0)
@@ -174,7 +184,7 @@ public class Controller : MonoBehaviour
     void Movement()
     {
         //Move
-        Vector3 moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        Vector3 moveDirection = new Vector3(Input.GetAxis(playerID + "Horizontal"), 0, Input.GetAxis(playerID + "Vertical"));
         moveDirection = Vector3.ClampMagnitude(moveDirection, 1.0f);
 
         pawn.Move(moveDirection);

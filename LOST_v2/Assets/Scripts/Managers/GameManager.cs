@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour {
     public Controller playerTwo;
     public GameObject pauseMenu;
 
+    public CombatUIManager combatUI;
+
     public float musicVolume = 1;
     public float sfxVolume = 1;
 

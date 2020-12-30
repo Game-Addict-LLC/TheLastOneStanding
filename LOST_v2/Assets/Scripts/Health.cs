@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour {
 
-    [SerializeField] private float health;
-
+    [HideInInspector] public float currentHealth;
     public float maxHealth;
     public Text healthText;
     public Image healthBar;
@@ -14,32 +13,9 @@ public class Health : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        health = maxHealth;
+        currentHealth = maxHealth;
 
-        if (gameObject.layer == 9)
-        {
-            healthText = GameObject.Find("Health Text").GetComponent<Text>();
-            foreach (Image child in GameObject.Find("Screen Canvas").GetComponentsInChildren<Image>())
-            {
-                if (child.gameObject.name == "Health Bar")
-                {
-                    healthBar = child;
-                }
-            }
-        }
-
-        if (healthBar == null)
-        {
-            foreach (Image child in gameObject.GetComponentsInChildren<Image>())
-            {
-                if (child.gameObject.name == "Health Bar")
-                {
-                    healthBar = child;
-                }
-            }
-        }
-
-        displayHealth();
+        GameManager.instance.combatUI.UpdateHealthUI();
     }
 	
 	// Update is called once per frame
@@ -49,12 +25,15 @@ public class Health : MonoBehaviour {
 
     public void TakeDamage(float amount)
     {
-        health -= amount;
-        health = Mathf.Clamp(health, 0, maxHealth);
+        currentHealth -= amount;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 
-        displayHealth();
-
-        if (health <= 0)
+        if (gameObject.layer == 9)
+        {
+            GameManager.instance.combatUI.UpdateHealthUI();
+        }
+        
+        if (currentHealth <= 0)
         {
             if (gameObject.GetComponent<EnemyController>())
             {
@@ -81,12 +60,12 @@ public class Health : MonoBehaviour {
 
     public void Heal(float amount, bool overHeal = false)
     {
-        health += amount;
+        currentHealth += amount;
 
         if (!overHeal) //allows overhealing only if intentional
         {
             //locks health to max health if not set to over heal
-            health = Mathf.Clamp(health, 0, maxHealth);
+            currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         }
 
         if (healthText != null)
@@ -99,12 +78,12 @@ public class Health : MonoBehaviour {
     {
         if (healthText != null)
         {
-            healthText.text = Mathf.Ceil(health / maxHealth * 100) + "%";
+            healthText.text = Mathf.Ceil(currentHealth / maxHealth * 100) + "%";
         }
 
         if (healthBar != null)
         {
-            healthBar.fillAmount = health / maxHealth;
+            healthBar.fillAmount = currentHealth / maxHealth;
         }
     }
 }
