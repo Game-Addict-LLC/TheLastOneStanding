@@ -3665,7 +3665,7 @@ PrefabInstance:
     - target: {fileID: 6319995676717323122, guid: c7837fce3b86f1d4888c8fd372778017,
         type: 3}
       propertyPath: lockOnDrain
-      value: 0.1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6319995676717323122, guid: c7837fce3b86f1d4888c8fd372778017,
         type: 3}

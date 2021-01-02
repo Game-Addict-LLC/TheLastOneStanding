@@ -5,23 +5,33 @@ using UnityEngine.UI;
 
 public class CombatUIManager : MonoBehaviour
 {
+    [SerializeField] private GameObject p1Icon;
+    [SerializeField] private GameObject p1AbilityUI;
     [SerializeField] private GameObject p1Health;
     [SerializeField] private GameObject p1Ammo;
     [SerializeField] private GameObject p1WeaponBar;
     [SerializeField] private GameObject p1WeaponUI;
-    [SerializeField] private GameObject p1AbilityUI;
-    [SerializeField] private GameObject p1Icon;
+    [SerializeField] private GameObject p1LockOnBar;
+    [SerializeField] private GameObject p1WinUI;
 
+    [SerializeField] private GameObject p2Icon;
+    [SerializeField] private GameObject p2AbilityUI;
     [SerializeField] private GameObject p2Health;
     [SerializeField] private GameObject p2Ammo;
     [SerializeField] private GameObject p2WeaponBar;
     [SerializeField] private GameObject p2WeaponUI;
-    [SerializeField] private GameObject p2AbilityUI;
-    [SerializeField] private GameObject p2Icon;
+    [SerializeField] private GameObject p2LockOnBar;
+    [SerializeField] private GameObject p2WinUI;
 
     [SerializeField] private GameObject timerUI;
 
-    [SerializeField] private Gradient gradient;
+    [SerializeField] private Gradient healthGradient;
+
+    [HideInInspector] public int p1Wins = 0;
+    [HideInInspector] public int p2Wins = 0;
+
+    private Coroutine p1Coroutine;
+    private Coroutine p2Coroutine;
 
     // Start is called before the first frame update
     void Start()
@@ -29,8 +39,7 @@ public class CombatUIManager : MonoBehaviour
         GameManager.instance.combatUI = this;
 
         InitializeUI();
-
-        UseAbility("P1");
+        UpdateWins();
     }
 
     // Update is called once per frame
@@ -44,12 +53,12 @@ public class CombatUIManager : MonoBehaviour
         StartCoroutine(gameTimer(300));
 
         p1Health.GetComponent<Image>().fillAmount = 1;
-        p1Icon.GetComponent<Image>().color = gradient.Evaluate(1);
+        p1Icon.GetComponent<Image>().color = healthGradient.Evaluate(1);
         p1AbilityUI.SetActive(false);
         p1WeaponUI.SetActive(false);
 
         p2Health.GetComponent<Image>().fillAmount = 1;
-        p2Icon.GetComponent<Image>().color = gradient.Evaluate(1);
+        p2Icon.GetComponent<Image>().color = healthGradient.Evaluate(1);
         p2AbilityUI.SetActive(false);
         p2WeaponUI.SetActive(false);
     }
@@ -57,22 +66,95 @@ public class CombatUIManager : MonoBehaviour
     public void UpdateHealthUI()
     {
         p1Health.GetComponent<Image>().fillAmount = GameManager.instance.playerOne.health.currentHealth / GameManager.instance.playerOne.health.maxHealth;
-        p1Icon.GetComponent<Image>().color = gradient.Evaluate(GameManager.instance.playerOne.health.currentHealth / GameManager.instance.playerOne.health.maxHealth);
+        p1Icon.GetComponent<Image>().color = healthGradient.Evaluate(GameManager.instance.playerOne.health.currentHealth / GameManager.instance.playerOne.health.maxHealth);
 
         p2Health.GetComponent<Image>().fillAmount = GameManager.instance.playerTwo.health.currentHealth / GameManager.instance.playerTwo.health.maxHealth;
-        p2Icon.GetComponent<Image>().color = gradient.Evaluate(GameManager.instance.playerTwo.health.currentHealth / GameManager.instance.playerTwo.health.maxHealth);
+        p2Icon.GetComponent<Image>().color = healthGradient.Evaluate(GameManager.instance.playerTwo.health.currentHealth / GameManager.instance.playerTwo.health.maxHealth);
     }
 
-    public void UseAbility(string playerID)
+    public void UseAbility(Controller controller)
     {
-        if (playerID == "P1")
+        if (controller.playerID == "P1")
         {
-            StartCoroutine(abilityTimer(p1AbilityUI.GetComponent<Image>(), GameManager.instance.playerOne.abilityTimer));
+            StartCoroutine(abilityTimer(p1AbilityUI.GetComponent<Image>(), GameManager.instance.playerOne.abilityResetTime));
         }
-        else if (playerID == "P1")
+        else if (controller.playerID == "P2")
         {
-            StartCoroutine(abilityTimer(p2AbilityUI.GetComponent<Image>(), GameManager.instance.playerTwo.abilityTimer));
+            StartCoroutine(abilityTimer(p2AbilityUI.GetComponent<Image>(), GameManager.instance.playerTwo.abilityResetTime));
         }
+        else
+        {
+            Debug.Log("Invalid player ID: " + controller.playerID);
+        }
+    }
+
+    public void ActivateLockOn(Controller controller)
+    {
+        if (controller.playerID == "P1")
+        {
+            if (p1Coroutine != null)
+            {
+                StopCoroutine(p1Coroutine);
+            }
+
+            p1Coroutine = StartCoroutine(lockOnDrain(p1LockOnBar.GetComponent<Image>(), controller.lockOnDrain, controller.lockOnTime));
+        }
+        else if (controller.playerID == "P2")
+        {
+            if (p2Coroutine != null)
+            {
+                StopCoroutine(p2Coroutine);
+            }
+
+            p2Coroutine = StartCoroutine(lockOnDrain(p2LockOnBar.GetComponent<Image>(), controller.lockOnDrain, controller.lockOnTime));
+        }
+        else
+        {
+            Debug.Log("Invalid player ID: " + controller.playerID);
+        }
+    }
+
+    public void DisableLockOn(Controller controller)
+    {
+        string playerID = controller.playerID;
+        float rechargeSpeed = controller.lockOnRecharge;
+        float cooldownTime = controller.lockOnCooldown;
+
+        if (controller.playerID == "P1")
+        {
+            if (p1Coroutine != null)
+            {
+                StopCoroutine(p1Coroutine);
+            }
+
+            StartCoroutine(lockOnDisable(p1LockOnBar.GetComponent<Image>(), controller.lockOnCooldown));
+            p1Coroutine = StartCoroutine(lockOnCharge(p1LockOnBar.GetComponent<Image>(), controller.lockOnRecharge, controller.lockOnTime));
+        }
+        else if (controller.playerID == "P2")
+        {
+            if (p2Coroutine != null)
+            {
+                StopCoroutine(p2Coroutine);
+            }
+
+            StartCoroutine(lockOnDisable(p2LockOnBar.GetComponent<Image>(), controller.lockOnCooldown));
+            p2Coroutine = StartCoroutine(lockOnCharge(p2LockOnBar.GetComponent<Image>(), controller.lockOnRecharge, controller.lockOnTime));
+        }
+        else
+        {
+            Debug.Log("Invalid player ID: " + controller.playerID);
+        }
+    }
+
+    public void UpdateWins()
+    {
+        p1WinUI.GetComponent<Image>().fillAmount = p1Wins / 2;
+        p2WinUI.GetComponent<Image>().fillAmount = p2Wins / 2;
+    }
+
+    public void EndGame()
+    {
+        //TODO: END GAME
     }
 
     IEnumerator abilityTimer(Image targetImage, float timerLength)
@@ -102,7 +184,7 @@ public class CombatUIManager : MonoBehaviour
             yield return null;
         }
 
-        //TODO: END GAME
+        EndGame();
     }
 
     IEnumerator weaponTimer(Image targetImage, float timerLength)
@@ -118,8 +200,47 @@ public class CombatUIManager : MonoBehaviour
             yield return null;
         }
 
-        yield return null;
-
         targetImage.GetComponentInParent<GameObject>().SetActive(false);
+    }
+
+    IEnumerator lockOnDrain(Image targetImage, float drainSpeed, float totalLockOnTime)
+    {
+        while (true)
+        {
+            targetImage.fillAmount -= (drainSpeed / totalLockOnTime * Time.deltaTime);
+
+            if (targetImage.fillAmount <= 0)
+            {
+                break;
+            }
+
+            yield return null;
+        }
+    }
+
+    IEnumerator lockOnCharge(Image targetImage, float rechargeSpeed, float totalLockOnTime)
+    {
+        while (true)
+        {
+            targetImage.fillAmount += (rechargeSpeed / totalLockOnTime * Time.deltaTime);
+
+            if (targetImage.fillAmount >= 1)
+            {
+                break;
+            }
+
+            yield return null;
+        }
+    }
+
+    IEnumerator lockOnDisable(Image targetImage, float lockOnCooldown)
+    {
+        Color tempColor = targetImage.color;
+
+        targetImage.color = Color.Lerp(targetImage.color, Color.grey, 0.75f);
+
+        yield return new WaitForSeconds(lockOnCooldown);
+
+        targetImage.color = tempColor;
     }
 }

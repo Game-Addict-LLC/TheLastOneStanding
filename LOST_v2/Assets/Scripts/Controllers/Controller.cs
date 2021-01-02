@@ -13,19 +13,24 @@ public class Controller : MonoBehaviour
     public float rotateSpeed = 10;
     public float movementSpeed = 5;
     public float jumpHeight = 10;
+
     public GameObject opponent;
+
     public float lockOnDrain = 1;
     public float lockOnRecharge = 0.5f;
     public float lockOnTime = 5;
+    public float lockOnCooldown = 3;
     [HideInInspector] public bool isLockedOn = false;
+
+    public float abilityResetTime = 5;
 
     private Transform player;
     private float previousX;
     private float previousY;
     private float lockOnTimer;
+    private float abilityTimer;
+    private bool ableToLockOn = true;
     private bool grounded;
-
-    public float abilityTimer = 5;
 
     // Use this for initialization
     void Start()
@@ -64,9 +69,20 @@ public class Controller : MonoBehaviour
             return;     // DO NOTHING
         }
 
-        if (Input.GetButtonDown(playerID + "LockOn"))
+        if (Input.GetButtonDown(playerID + "LockOn") && ableToLockOn == true)
         {
             isLockedOn = !isLockedOn;
+
+            if (isLockedOn)
+            {
+                GameManager.instance.combatUI.ActivateLockOn(this);
+            }
+            else
+            {
+                StartCoroutine(lockOnDisable());
+
+                GameManager.instance.combatUI.DisableLockOn(this);
+            }
         }
 
         Rotation();
@@ -143,6 +159,19 @@ public class Controller : MonoBehaviour
 
             Debug.Log("Melee attack");
         }
+
+        if (abilityTimer <= 0)
+        {
+            if (Input.GetButtonDown(playerID + "Ability"))
+            {
+                abilityTimer = abilityResetTime;
+                GameManager.instance.combatUI.UseAbility(this);
+            }
+        }
+        else
+        {
+            abilityTimer -= Time.deltaTime;
+        }
     }
 
     void Rotation()
@@ -169,16 +198,19 @@ public class Controller : MonoBehaviour
             }
 
             lockOnTimer -= Time.deltaTime * lockOnDrain;
+
+            if (lockOnTimer <= 0)
+            {
+                isLockedOn = false;
+                lockOnTimer = 0;
+                GameManager.instance.combatUI.DisableLockOn(this);
+                StartCoroutine(lockOnDisable());
+            }
         }
 
         previousX = Input.GetAxis(playerID + "Horizontal");
         previousY = Input.GetAxis(playerID + "Vertical");
         lockOnTimer = Mathf.Clamp(lockOnTimer, 0, lockOnTime);
-
-        if (lockOnTimer <= 0)
-        {
-            isLockedOn = false;
-        }
     }  
 
     void Movement()
@@ -188,5 +220,12 @@ public class Controller : MonoBehaviour
         moveDirection = Vector3.ClampMagnitude(moveDirection, 1.0f);
 
         pawn.Move(moveDirection);
+    }
+
+    IEnumerator lockOnDisable()
+    {
+        ableToLockOn = false;
+        yield return new WaitForSeconds(lockOnCooldown);
+        ableToLockOn = true;
     }
 }
