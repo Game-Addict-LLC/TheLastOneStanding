@@ -128,7 +128,7 @@ public class Controller : MonoBehaviour
             }
             else if (pawn.baseWeapon != null)
             {
-                Debug.Log("Base weapon");
+                Debug.Log(pawn.baseWepScript);
                 pawn.baseWepScript.OnShoot();
             }
 
@@ -143,7 +143,7 @@ public class Controller : MonoBehaviour
             }
             else if (pawn.baseWeapon != null)
             {
-                Debug.Log("Base weapon");
+                Debug.Log(pawn.baseWepScript);
                 pawn.baseWepScript.OnShoot();
             }
 

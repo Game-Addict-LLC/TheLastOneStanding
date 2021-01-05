@@ -49,6 +49,9 @@ public class WeaponBase : MonoBehaviour {
     {
         pawn.rightPoint = rightHandTf;
         pawn.leftPoint = leftHandTf;
+
+        pawn.baseWepScript = this;
+
         UpdateAmmoText();
     }
 

@@ -77,6 +77,8 @@ public class Pawn : MonoBehaviour {
                 baseWepScript.equipped = true;
                 anim.SetInteger("CurrentWep", (int)baseWepScript.weaponType);
             }
+
+            Debug.Log(baseWepScript);
         }
     }
 
