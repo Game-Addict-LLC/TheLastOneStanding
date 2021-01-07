@@ -43,8 +43,11 @@ public class Health : MonoBehaviour {
                 }
             }
 
-            AudioSource.PlayClipAtPoint(deathSound, transform.position);
-
+            if (deathSound)
+            {
+                AudioSource.PlayClipAtPoint(deathSound, transform.position);
+            }
+            
             if (gameObject.GetComponent<EnemyController>())
             {
                 if (gameObject.GetComponent<EnemyController>().parentSpawner != null)
@@ -54,7 +57,7 @@ public class Health : MonoBehaviour {
                 }
             }
 
-            Destroy(gameObject);
+            OnDeath();
         }
     }
 
@@ -70,11 +73,11 @@ public class Health : MonoBehaviour {
 
         if (healthText != null)
         {
-            displayHealth();
+            DisplayHealth();
         }
     }
 
-    public void displayHealth()
+    public void DisplayHealth()
     {
         if (healthText != null)
         {
@@ -85,5 +88,10 @@ public class Health : MonoBehaviour {
         {
             healthBar.fillAmount = currentHealth / maxHealth;
         }
+    }
+
+    private void OnDeath()
+    {
+        Destroy(gameObject);
     }
 }

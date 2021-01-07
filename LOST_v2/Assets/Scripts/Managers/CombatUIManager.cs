@@ -65,11 +65,15 @@ public class CombatUIManager : MonoBehaviour
 
     public void UpdateHealthUI()
     {
+
         p1Health.GetComponent<Image>().fillAmount = GameManager.instance.playerOne.health.currentHealth / GameManager.instance.playerOne.health.maxHealth;
         p1Icon.GetComponent<Image>().color = healthGradient.Evaluate(GameManager.instance.playerOne.health.currentHealth / GameManager.instance.playerOne.health.maxHealth);
 
-        p2Health.GetComponent<Image>().fillAmount = GameManager.instance.playerTwo.health.currentHealth / GameManager.instance.playerTwo.health.maxHealth;
-        p2Icon.GetComponent<Image>().color = healthGradient.Evaluate(GameManager.instance.playerTwo.health.currentHealth / GameManager.instance.playerTwo.health.maxHealth);
+        if (GameManager.instance.playerTwo != null)
+        {
+            p2Health.GetComponent<Image>().fillAmount = GameManager.instance.playerTwo.health.currentHealth / GameManager.instance.playerTwo.health.maxHealth;
+            p2Icon.GetComponent<Image>().color = healthGradient.Evaluate(GameManager.instance.playerTwo.health.currentHealth / GameManager.instance.playerTwo.health.maxHealth);
+        }
     }
 
     public void UseAbility(Controller controller)

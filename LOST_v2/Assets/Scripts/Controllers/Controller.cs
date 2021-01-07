@@ -8,7 +8,6 @@ public class Controller : MonoBehaviour
 
     public Pawn pawn;
     public Health health;
-    public KeyCode lockOnKey = KeyCode.Q;
 
     public float rotateSpeed = 10;
     public float movementSpeed = 5;

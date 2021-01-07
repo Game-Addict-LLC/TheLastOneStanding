@@ -1,14 +1,8 @@
 fileFormatVersion: 2
-guid: d5bc83b2c879f0e41b87cdd499331e3a
+guid: aab07bced9ec7364b9d1d8b613e04e0f
 ModelImporter:
   serializedVersion: 19300
-  internalIDToNameTable:
-  - first:
-      74: -445483484564741274
-    second: rigAction.001
-  - first:
-      74: 1444733745673076434
-    second: rig|rigAction.001
+  internalIDToNameTable: []
   externalObjects: {}
   materials:
     materialImportMode: 1

@@ -12,7 +12,7 @@ GameObject:
   m_Layer: 9
   m_Name: WeaponPoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 614763744}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0.4}
+  m_LocalPosition: {x: 0.16000015, y: 0, z: 0.25000006}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6379072549526726257}
@@ -369,7 +369,7 @@ GameObject:
   - component: {fileID: 3230739703174562863}
   m_Layer: 9
   m_Name: P1_Character
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -475,10 +475,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dc66aa59ebe2fd4dbaa23183f908f6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerID: P2
+  playerID: P1
   pawn: {fileID: 3230739703174562863}
   health: {fileID: 0}
-  lockOnKey: 113
   rotateSpeed: 10
   movementSpeed: 5
   jumpHeight: 5
@@ -522,7 +521,8 @@ MonoBehaviour:
   tf: {fileID: 0}
   pawnCollider: {fileID: 0}
   controller: {fileID: 0}
-  baseWeapon: {fileID: 100000, guid: e2a89fa2150b9bc4092fa64a42e12f1a, type: 3}
+  baseWeapon: {fileID: 4975510985499460117, guid: c5516f1a582bad047a308ef2965992d7,
+    type: 3}
   baseWepScript: {fileID: 0}
   specialWeapon: {fileID: 0}
   specialWepScript: {fileID: 0}
@@ -606,9 +606,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6379072550932554842}
-  m_Layer: 23
+  m_Layer: 9
   m_Name: Player_1_Cain
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

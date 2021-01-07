@@ -75,7 +75,6 @@ public class Pawn : MonoBehaviour {
                 baseWepScript = tempWeapon.GetComponent<WeaponBase>();
                 baseWepScript.OnEquip(this);
                 baseWepScript.equipped = true;
-                anim.SetInteger("CurrentWep", (int)baseWepScript.weaponType);
             }
 
             Debug.Log(baseWepScript);
@@ -117,12 +116,13 @@ public class Pawn : MonoBehaviour {
 
     public void OnEquip(GameObject newWeapon)
     {
+        Debug.Log(LayerMask.LayerToName(gameObject.layer));
+
         if (newWeapon.GetComponent<WeaponBase>().equipped == false)
         {
             Destroy(specialWeapon);
             rightPoint = null;
             leftPoint = null;
-            anim.SetInteger("CurrentWep", 0);
             specialWeapon = newWeapon;
             specialWeapon.layer = gameObject.layer;
             specialWeapon.transform.parent = weaponPoint;
@@ -131,41 +131,79 @@ public class Pawn : MonoBehaviour {
             specialWepScript = specialWeapon.GetComponent<WeaponBase>();
             specialWepScript.OnEquip(this);
             specialWepScript.equipped = true;
-            anim.SetInteger("CurrentWep", (int)specialWepScript.weaponType);
         }
     }
 
     public void OnAnimatorIK(int layerIndex)
     {
-        if (!specialWepScript)
+        /*
+        if (!specialWepScript && !baseWepScript)
         {
             return; //do nothing
         }
-        if (specialWepScript.rightHandTf)
-        {
-            anim.SetIKPosition(AvatarIKGoal.RightHand, rightPoint.position);
-            anim.SetIKPositionWeight(AvatarIKGoal.RightHand, 1f);
-            anim.SetIKRotation(AvatarIKGoal.RightHand, rightPoint.rotation);
-            anim.SetIKRotationWeight(AvatarIKGoal.RightHand, 1f);
 
-            anim.SetIKPosition(AvatarIKGoal.LeftHand, leftPoint.position);
-            anim.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1f);
-            anim.SetIKRotation(AvatarIKGoal.LeftHand, leftPoint.rotation);
-            anim.SetIKRotationWeight(AvatarIKGoal.LeftHand, 1f);
-        }
-        else
+        if (specialWepScript != null)
         {
-            anim.SetIKPositionWeight(AvatarIKGoal.RightHand, 0f);
-            anim.SetIKRotationWeight(AvatarIKGoal.RightHand, 0f);
+            if (specialWepScript.rightHandTf)
+            {
+                anim.SetIKPosition(AvatarIKGoal.RightHand, rightPoint.position);
+                anim.SetIKPositionWeight(AvatarIKGoal.RightHand, 1f);
+                anim.SetIKRotation(AvatarIKGoal.RightHand, rightPoint.rotation);
+                anim.SetIKRotationWeight(AvatarIKGoal.RightHand, 1f);
+            }
+            else
+            {
+                anim.SetIKPositionWeight(AvatarIKGoal.RightHand, 0f);
+                anim.SetIKRotationWeight(AvatarIKGoal.RightHand, 0f);
+            }
 
-            anim.SetIKPositionWeight(AvatarIKGoal.LeftHand, 0f);
-            anim.SetIKRotationWeight(AvatarIKGoal.LeftHand, 0f);
+            if (specialWepScript.leftHandTf)
+            {
+                anim.SetIKPosition(AvatarIKGoal.LeftHand, leftPoint.position);
+                anim.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1f);
+                anim.SetIKRotation(AvatarIKGoal.LeftHand, leftPoint.rotation);
+                anim.SetIKRotationWeight(AvatarIKGoal.LeftHand, 1f);
+            }
+            else
+            {
+                anim.SetIKPositionWeight(AvatarIKGoal.LeftHand, 0f);
+                anim.SetIKRotationWeight(AvatarIKGoal.LeftHand, 0f);
+            }
         }
+        else if (baseWepScript != null)
+        {
+            if (baseWepScript.rightHandTf)
+            {
+                anim.SetIKPosition(AvatarIKGoal.RightHand, rightPoint.position);
+                anim.SetIKPositionWeight(AvatarIKGoal.RightHand, 1f);
+                anim.SetIKRotation(AvatarIKGoal.RightHand, rightPoint.rotation);
+                anim.SetIKRotationWeight(AvatarIKGoal.RightHand, 1f);
+            }
+            else
+            {
+                anim.SetIKPositionWeight(AvatarIKGoal.RightHand, 0f);
+                anim.SetIKRotationWeight(AvatarIKGoal.RightHand, 0f);
+            }
+
+            if (baseWepScript.leftHandTf)
+            {
+                anim.SetIKPosition(AvatarIKGoal.LeftHand, leftPoint.position);
+                anim.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1f);
+                anim.SetIKRotation(AvatarIKGoal.LeftHand, leftPoint.rotation);
+                anim.SetIKRotationWeight(AvatarIKGoal.LeftHand, 1f);
+            }
+            else
+            {
+                anim.SetIKPositionWeight(AvatarIKGoal.LeftHand, 0f);
+                anim.SetIKRotationWeight(AvatarIKGoal.LeftHand, 0f);
+            }
+        }
+        */
     }
 
     public void OnCollisionEnter(Collision collider)
     {
-        if (collider.gameObject.tag == "Weapon" && gameObject.layer == 9) {
+        if (collider.gameObject.tag == "Weapon" && LayerMask.LayerToName(gameObject.layer).Contains("Player")) {
             OnEquip(collider.gameObject);
         }
     }

@@ -5,12 +5,11 @@ using UnityEngine;
 public class BulletScript : MonoBehaviour {
 
     public float speed;
-    public float damage;
+    [HideInInspector] public float damage;
 
 	// Use this for initialization
 	void Start () {
         GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * speed, ForceMode.VelocityChange);
-
     }
 	
 	// Update is called once per frame
@@ -21,11 +20,14 @@ public class BulletScript : MonoBehaviour {
     void OnCollisionEnter(Collision collider)
     {
         GameObject tempObject = collider.gameObject;
-        if (tempObject.GetComponent<Health>() != null)
+        if (tempObject.layer != gameObject.layer)
         {
-            tempObject.GetComponent<Health>().TakeDamage(damage);
-        }
+            if (tempObject.GetComponent<Health>() != null)
+            {
+                tempObject.GetComponent<Health>().TakeDamage(damage);
+            }
 
-        Destroy(gameObject);
+            Destroy(gameObject);
+        }
     }
 }
