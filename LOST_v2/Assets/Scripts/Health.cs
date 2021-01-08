@@ -7,8 +7,6 @@ public class Health : MonoBehaviour {
 
     [HideInInspector] public float currentHealth;
     public float maxHealth;
-    public Text healthText;
-    public Image healthBar;
     public AudioClip deathSound;
 
 	// Use this for initialization
@@ -23,7 +21,7 @@ public class Health : MonoBehaviour {
 		
 	}
 
-    public void TakeDamage(float amount)
+    public virtual void TakeDamage(float amount)
     {
         currentHealth -= amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
@@ -61,7 +59,7 @@ public class Health : MonoBehaviour {
         }
     }
 
-    public void Heal(float amount, bool overHeal = false)
+    public virtual void Heal(float amount, bool overHeal = false)
     {
         currentHealth += amount;
 
@@ -70,28 +68,15 @@ public class Health : MonoBehaviour {
             //locks health to max health if not set to over heal
             currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         }
-
-        if (healthText != null)
-        {
-            DisplayHealth();
-        }
     }
 
-    public void DisplayHealth()
-    {
-        if (healthText != null)
-        {
-            healthText.text = Mathf.Ceil(currentHealth / maxHealth * 100) + "%";
-        }
-
-        if (healthBar != null)
-        {
-            healthBar.fillAmount = currentHealth / maxHealth;
-        }
-    }
-
-    private void OnDeath()
+    public virtual void OnDeath()
     {
         Destroy(gameObject);
+    }
+
+    public virtual void OnDeath(float delay)
+    {
+        Destroy(gameObject, delay);
     }
 }

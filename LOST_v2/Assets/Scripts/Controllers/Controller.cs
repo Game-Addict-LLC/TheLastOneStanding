@@ -30,6 +30,7 @@ public class Controller : MonoBehaviour
     private float abilityTimer;
     private bool ableToLockOn = true;
     private bool grounded;
+    [HideInInspector] public bool buttonReset = false;
 
     // Use this for initialization
     void Start()
@@ -118,12 +119,13 @@ public class Controller : MonoBehaviour
             }
         }
 
-        if (Input.GetButtonDown(playerID + "Attack"))
+        if (Input.GetButtonDown(playerID + "Attack") && buttonReset == false)
         {
             if (pawn.specialWeapon != null)
             {
                 Debug.Log("Special weapon");
                 pawn.specialWepScript.OnShoot();
+                buttonReset = true;
             }
             else if (pawn.baseWeapon != null)
             {
@@ -133,12 +135,13 @@ public class Controller : MonoBehaviour
 
             Debug.Log("Main attack");
         }
-        else if (Input.GetAxis(playerID + "Attack") != 0)
+        else if (Input.GetAxis(playerID + "Attack") != 0 && buttonReset == false)
         {
             if (pawn.specialWeapon != null)
             {
                 Debug.Log("Special weapon");
                 pawn.specialWepScript.OnShoot();
+                buttonReset = true;
             }
             else if (pawn.baseWeapon != null)
             {
@@ -157,6 +160,10 @@ public class Controller : MonoBehaviour
             }
 
             Debug.Log("Melee attack");
+        }
+        else if (Input.GetAxis(playerID + "Attack") == 0 && buttonReset == true)
+        {
+            buttonReset = false;
         }
 
         if (abilityTimer <= 0)

@@ -46,7 +46,7 @@ public class WeaponBase : MonoBehaviour {
 		
 	}
 
-    public void OnEquip(Pawn pawn)
+    public virtual void OnEquip(Pawn pawn)
     {
         pawn.rightPoint = rightHandTf;
         pawn.leftPoint = leftHandTf;
@@ -63,7 +63,7 @@ public class WeaponBase : MonoBehaviour {
         }
     }
 
-    public void OnShoot()
+    public virtual void OnShoot()
     {
         if (Time.time >= timer)
         {
@@ -117,7 +117,7 @@ public class WeaponBase : MonoBehaviour {
         }
     }
 
-    public void UpdateAmmoText()
+    public virtual void UpdateAmmoText()
     {
         if (ammoText && gameObject.layer == 9)
         {

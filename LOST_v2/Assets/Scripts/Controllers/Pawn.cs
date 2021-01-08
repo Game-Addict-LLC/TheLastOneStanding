@@ -116,10 +116,9 @@ public class Pawn : MonoBehaviour {
 
     public void OnEquip(GameObject newWeapon)
     {
-        Debug.Log(LayerMask.LayerToName(gameObject.layer));
-
         if (newWeapon.GetComponent<WeaponBase>().equipped == false)
         {
+            controller.buttonReset = true;
             Destroy(specialWeapon);
             rightPoint = null;
             leftPoint = null;
