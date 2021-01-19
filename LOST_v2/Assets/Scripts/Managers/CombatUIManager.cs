@@ -33,6 +33,8 @@ public class CombatUIManager : MonoBehaviour
     private Coroutine p1Coroutine;
     private Coroutine p2Coroutine;
 
+    private Coroutine mainTimer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -50,14 +52,18 @@ public class CombatUIManager : MonoBehaviour
 
     public void InitializeUI()
     {
-        StartCoroutine(gameTimer(300));
+        mainTimer = StartCoroutine(gameTimer(180));
 
         p1Health.GetComponent<Image>().fillAmount = 1;
+        p1LockOnBar.GetComponent<Image>().fillAmount = 1;
+        p1LockOnBar.GetComponent<Image>().color = Color.green;
         p1Icon.GetComponent<Image>().color = healthGradient.Evaluate(1);
         p1AbilityUI.SetActive(false);
         p1WeaponUI.SetActive(false);
 
         p2Health.GetComponent<Image>().fillAmount = 1;
+        p2LockOnBar.GetComponent<Image>().fillAmount = 1;
+        p2LockOnBar.GetComponent<Image>().color = Color.green;
         p2Icon.GetComponent<Image>().color = healthGradient.Evaluate(1);
         p2AbilityUI.SetActive(false);
         p2WeaponUI.SetActive(false);
@@ -65,7 +71,6 @@ public class CombatUIManager : MonoBehaviour
 
     public void UpdateHealthUI()
     {
-
         p1Health.GetComponent<Image>().fillAmount = GameManager.instance.playerOne.health.currentHealth / GameManager.instance.playerOne.health.maxHealth;
         p1Icon.GetComponent<Image>().color = healthGradient.Evaluate(GameManager.instance.playerOne.health.currentHealth / GameManager.instance.playerOne.health.maxHealth);
 
@@ -73,6 +78,15 @@ public class CombatUIManager : MonoBehaviour
         {
             p2Health.GetComponent<Image>().fillAmount = GameManager.instance.playerTwo.health.currentHealth / GameManager.instance.playerTwo.health.maxHealth;
             p2Icon.GetComponent<Image>().color = healthGradient.Evaluate(GameManager.instance.playerTwo.health.currentHealth / GameManager.instance.playerTwo.health.maxHealth);
+            Debug.Log("Adjust P2 UI");
+        }
+    }
+
+    public void EquipWeapon(WeaponBase weapon)
+    {
+        if (weapon.usesLifetime)
+        {
+
         }
     }
 
@@ -152,13 +166,45 @@ public class CombatUIManager : MonoBehaviour
 
     public void UpdateWins()
     {
-        p1WinUI.GetComponent<Image>().fillAmount = p1Wins / 2;
-        p2WinUI.GetComponent<Image>().fillAmount = p2Wins / 2;
+        p1WinUI.GetComponent<Image>().fillAmount = p1Wins / 2.0f;
+        p2WinUI.GetComponent<Image>().fillAmount = p2Wins / 2.0f;
+
+        if (GameManager.instance.playerOne != null)
+        {
+            Destroy(GameManager.instance.playerOne.gameObject);
+        }
+        if (GameManager.instance.playerTwo != null)
+        {
+            Destroy(GameManager.instance.playerTwo.gameObject);
+        }
+
+        StopAllCoroutines();
+
+        InitializeUI();
+
+        if (p1Wins == 2 || p2Wins == 2)
+        {
+            if (p1Wins > p2Wins)
+            {
+                GameManager.instance.winner = "P1 Wins!";
+            }
+            else if (p2Wins > p1Wins)
+            {
+                GameManager.instance.winner = "P2 Wins!";
+            }
+            else
+            {
+                GameManager.instance.winner = "Draw.";
+            }
+            GameManager.instance.winLossRecord = p1Wins + " - " + p2Wins;
+
+            SceneSwapper.swapper.SwapScenes("VictoryScreen");
+        }
     }
 
     public void EndGame()
     {
-        //TODO: END GAME
+        SceneSwapper.swapper.SwapScenes("VictoryScreen");
     }
 
     IEnumerator abilityTimer(Image targetImage, float timerLength)

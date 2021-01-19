@@ -17,6 +17,9 @@ public class GameManager : MonoBehaviour {
     public float musicVolume = 1;
     public float sfxVolume = 1;
 
+    [HideInInspector] public string winner = "Draw";
+    [HideInInspector] public string winLossRecord = "0 - 0";
+
 	// Use this for initialization
 	void Awake () {
         if (instance == null)
@@ -68,6 +71,15 @@ public class GameManager : MonoBehaviour {
         else
         {
             Pause();
+        }
+    }
+
+    public void SetTargets()
+    {
+        if (playerOne != null && playerTwo != null)
+        {
+            playerOne.opponent = playerTwo.gameObject;
+            playerTwo.opponent = playerOne.gameObject;
         }
     }
 }
