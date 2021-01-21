@@ -23,7 +23,7 @@ public class Controller : MonoBehaviour
 
     public float abilityResetTime = 5;
 
-    private Transform player;
+    private Transform playerTf;
     private float previousX;
     private float previousY;
     private float lockOnTimer;
@@ -39,7 +39,7 @@ public class Controller : MonoBehaviour
     {
         pawn = GetComponent<Pawn>();
         pawn.controller = this;
-        player = gameObject.transform;
+        playerTf = gameObject.transform;
         health = GetComponent<Health>();
 
         if (playerID == "P1")
@@ -94,10 +94,10 @@ public class Controller : MonoBehaviour
 
         if (grounded)
         {
-            Debug.DrawRay(player.position, player.up * -0.5f, Color.blue, 0.5f);
+            Debug.DrawRay(playerTf.position, playerTf.up * -0.5f, Color.blue, 0.5f);
 
             RaycastHit raycastData;
-            Physics.Raycast(player.position, player.up * -1, out raycastData, 0.5f);
+            Physics.Raycast(playerTf.position, playerTf.up * -1, out raycastData, 0.5f);
 
 
             if (!immobile)
@@ -116,10 +116,10 @@ public class Controller : MonoBehaviour
         }
         else
         {
-            Debug.DrawRay(player.position, player.up * -0.5f, Color.red, 0.5f);
+            Debug.DrawRay(playerTf.position, playerTf.up * -0.5f, Color.red, 0.5f);
 
             RaycastHit raycastData;
-            Physics.Raycast(player.position, player.up * -1, out raycastData, 0.5f);
+            Physics.Raycast(playerTf.position, playerTf.up * -1, out raycastData, 0.5f);
             if (raycastData.collider != null)
             {
                 grounded = true;
@@ -206,7 +206,7 @@ public class Controller : MonoBehaviour
             {
                 float targetAngle = Mathf.Atan2(Input.GetAxis(playerID + "Horizontal"), Input.GetAxis(playerID + "Vertical")) * Mathf.Rad2Deg;
                 Quaternion targetQuat = Quaternion.Euler(0, targetAngle, 0);
-                player.rotation = Quaternion.RotateTowards(player.rotation, targetQuat, Time.deltaTime * rotateSpeed * 60);
+                playerTf.rotation = Quaternion.RotateTowards(playerTf.rotation, targetQuat, Time.deltaTime * rotateSpeed * 60);
             }
 
             lockOnTimer += Time.deltaTime * lockOnRecharge;
@@ -215,9 +215,9 @@ public class Controller : MonoBehaviour
         {
             if (opponent)
             {
-                float targetAngle = Mathf.Atan2(opponent.transform.position.x - player.position.x,opponent.transform.position.z - player.position.z) * Mathf.Rad2Deg;
+                float targetAngle = Mathf.Atan2(opponent.transform.position.x - playerTf.position.x,opponent.transform.position.z - playerTf.position.z) * Mathf.Rad2Deg;
                 Quaternion targetQuat = Quaternion.Euler(0, targetAngle, 0);
-                player.rotation = Quaternion.RotateTowards(player.rotation, targetQuat, Time.deltaTime * rotateSpeed * 60);
+                playerTf.rotation = Quaternion.RotateTowards(playerTf.rotation, targetQuat, Time.deltaTime * rotateSpeed * 60);
             }
 
             lockOnTimer -= Time.deltaTime * lockOnDrain;

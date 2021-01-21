@@ -33,14 +33,14 @@ public class GrappleCode : MonoBehaviour
 
     IEnumerator hookLoop()
     {
-        Debug.Log("Sending hook");
+        //moves hook forwards until maximum range is reached
         while ((hook.transform.position - gameObject.transform.position).magnitude < parentAttack.range)
         {
             hook.transform.position += transform.forward * parentAttack.hookSpeed * Time.deltaTime;
             yield return null;
         }
 
-        Debug.Log("Returning hook");
+        //moves hook backwards until it returns to the player
         while ((hook.transform.position - gameObject.transform.position).magnitude > 0.5f)
         {
             hook.transform.position -= transform.forward * parentAttack.hookSpeed * 2 * Time.deltaTime;
@@ -53,6 +53,7 @@ public class GrappleCode : MonoBehaviour
 
     IEnumerator dragBack(GameObject draggedObj)
     {
+        //moves hook back until it returns to the player
         while ((hook.transform.position - gameObject.transform.position).magnitude > 0.5f)
         {
             hook.transform.position -= transform.forward * parentAttack.hookSpeed  * Time.deltaTime;

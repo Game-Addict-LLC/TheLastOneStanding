@@ -28,14 +28,6 @@ public class Health : MonoBehaviour {
         
         if (currentHealth <= 0)
         {
-            if (gameObject.GetComponent<EnemyController>())
-            {
-                foreach (Image child in gameObject.GetComponentsInChildren<Image>())
-                {
-                    child.enabled = false;
-                }
-            }
-
             if (deathSound)
             {
                 AudioSource.PlayClipAtPoint(deathSound, transform.position);
