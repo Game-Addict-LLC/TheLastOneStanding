@@ -66,7 +66,7 @@ public class GunWeapon : WeaponBase
                     //parentPawn.leftTarget[2] = leftHandTf;
                 }
 
-                UpdateAmmoText();
+                UpdateAmmoText(parentPawn);
             }
 
             base.OnEquip(pawn);
@@ -124,14 +124,13 @@ public class GunWeapon : WeaponBase
                 }
             }
 
-            UpdateAmmoText();
             timer = Time.time + 60 / rateOfFire;
         }
     }
 
-    public override void UpdateAmmoText()
+    public override void UpdateAmmoText(Pawn pawn)
     {
-
+        GameManager.instance.combatUI.EquipWeapon(this, pawn.controller.playerID);
     }
 }
 
@@ -170,6 +169,8 @@ public class GunWeapon_Editor : Editor
         }
 
         script.shootPoint = EditorGUILayout.ObjectField("Fire Point", script.shootPoint, typeof(Transform), true) as Transform;
+
+        script.range = EditorGUILayout.FloatField("Range", script.range);
 
         script.rateOfFire = EditorGUILayout.FloatField("Rate of Fire", script.rateOfFire);
 

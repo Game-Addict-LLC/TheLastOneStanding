@@ -42,7 +42,7 @@ public class WeaponBase : MonoBehaviour {
         
     }
 
-    public virtual void UpdateAmmoText()
+    public virtual void UpdateAmmoText(Pawn pawn)
     {
 
     }

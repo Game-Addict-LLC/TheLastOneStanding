@@ -111,7 +111,7 @@ MonoBehaviour:
   infiniteAmmo: 1
   ammoCount: 0
   rateOfFire: 60
-  range: 0
+  range: 10
 --- !u!1 &5838082640646162021
 GameObject:
   m_ObjectHideFlags: 0

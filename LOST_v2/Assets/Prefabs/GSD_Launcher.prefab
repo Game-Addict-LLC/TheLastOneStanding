@@ -50,8 +50,8 @@ MonoBehaviour:
   leftHandTf: {fileID: 0}
   equipped: 0
   damage: 50
-  usesLifetime: 0
-  lifetime: 0
+  usesLifetime: 1
+  lifetime: 20
   useProjectile: 1
   bulletPrefab: {fileID: 1072872746662042470, guid: ab8712c4013b52f4192efe25141200a4,
     type: 3}
@@ -60,8 +60,8 @@ MonoBehaviour:
   shotCount: 1
   spread: 5
   infiniteAmmo: 0
-  ammoCount: 1
-  rateOfFire: 10
+  ammoCount: 5
+  rateOfFire: 30
   range: 0
 --- !u!1 &3944091399398474626
 GameObject:

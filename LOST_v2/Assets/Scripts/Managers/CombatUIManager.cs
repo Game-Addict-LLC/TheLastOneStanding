@@ -30,8 +30,10 @@ public class CombatUIManager : MonoBehaviour
     [HideInInspector] public int p1Wins = 0;
     [HideInInspector] public int p2Wins = 0;
 
-    private Coroutine p1Coroutine;
-    private Coroutine p2Coroutine;
+    private Coroutine p1LockOnCoroutine;
+    private Coroutine p1WeaponCoroutine;
+    private Coroutine p2LockOnCoroutine;
+    private Coroutine p2WeaponCoroutine;
 
     private Coroutine mainTimer;
 
@@ -56,14 +58,12 @@ public class CombatUIManager : MonoBehaviour
 
         p1Health.GetComponent<Image>().fillAmount = 1;
         p1LockOnBar.GetComponent<Image>().fillAmount = 1;
-        p1LockOnBar.GetComponent<Image>().color = Color.green;
         p1Icon.GetComponent<Image>().color = healthGradient.Evaluate(1);
         p1AbilityUI.SetActive(false);
         p1WeaponUI.SetActive(false);
 
         p2Health.GetComponent<Image>().fillAmount = 1;
         p2LockOnBar.GetComponent<Image>().fillAmount = 1;
-        p2LockOnBar.GetComponent<Image>().color = Color.green;
         p2Icon.GetComponent<Image>().color = healthGradient.Evaluate(1);
         p2AbilityUI.SetActive(false);
         p2WeaponUI.SetActive(false);
@@ -78,15 +78,38 @@ public class CombatUIManager : MonoBehaviour
         {
             p2Health.GetComponent<Image>().fillAmount = GameManager.instance.playerTwo.health.currentHealth / GameManager.instance.playerTwo.health.maxHealth;
             p2Icon.GetComponent<Image>().color = healthGradient.Evaluate(GameManager.instance.playerTwo.health.currentHealth / GameManager.instance.playerTwo.health.maxHealth);
-            Debug.Log("Adjust P2 UI");
         }
     }
 
-    public void EquipWeapon(WeaponBase weapon)
+    public void EquipWeapon(GunWeapon weapon, string playerID)
     {
+        Debug.Log("Call UI Equip");
         if (weapon.usesLifetime)
         {
+            if (playerID == "P1")
+            {
+                if (p1WeaponCoroutine != null)
+                {
+                    StopCoroutine(p1WeaponCoroutine);
+                }
 
+                Debug.Log("P1 Equip UI");
+                p1WeaponCoroutine = StartCoroutine(weaponTimer(p1WeaponBar.GetComponent<Image>(), p1Ammo.GetComponent<Text>(), weapon));
+            }
+            else if (playerID == "P2")
+            {
+                if (p2WeaponCoroutine != null)
+                {
+                    StopCoroutine(p2WeaponCoroutine);
+                }
+
+                Debug.Log("P2 Equip UI");
+                p2WeaponCoroutine = StartCoroutine(weaponTimer(p2WeaponBar.GetComponent<Image>(), p2Ammo.GetComponent<Text>(), weapon));
+            }
+            else
+            {
+                Debug.Log("Invalid player ID: " + playerID);
+            }
         }
     }
 
@@ -110,21 +133,21 @@ public class CombatUIManager : MonoBehaviour
     {
         if (controller.playerID == "P1")
         {
-            if (p1Coroutine != null)
+            if (p1LockOnCoroutine != null)
             {
-                StopCoroutine(p1Coroutine);
+                StopCoroutine(p1LockOnCoroutine);
             }
 
-            p1Coroutine = StartCoroutine(lockOnDrain(p1LockOnBar.GetComponent<Image>(), controller.lockOnDrain, controller.lockOnTime));
+            p1LockOnCoroutine = StartCoroutine(lockOnDrain(p1LockOnBar.GetComponent<Image>(), controller.lockOnDrain, controller.lockOnTime));
         }
         else if (controller.playerID == "P2")
         {
-            if (p2Coroutine != null)
+            if (p2LockOnCoroutine != null)
             {
-                StopCoroutine(p2Coroutine);
+                StopCoroutine(p2LockOnCoroutine);
             }
 
-            p2Coroutine = StartCoroutine(lockOnDrain(p2LockOnBar.GetComponent<Image>(), controller.lockOnDrain, controller.lockOnTime));
+            p2LockOnCoroutine = StartCoroutine(lockOnDrain(p2LockOnBar.GetComponent<Image>(), controller.lockOnDrain, controller.lockOnTime));
         }
         else
         {
@@ -140,23 +163,23 @@ public class CombatUIManager : MonoBehaviour
 
         if (controller.playerID == "P1")
         {
-            if (p1Coroutine != null)
+            if (p1LockOnCoroutine != null)
             {
-                StopCoroutine(p1Coroutine);
+                StopCoroutine(p1LockOnCoroutine);
             }
 
             StartCoroutine(lockOnDisable(p1LockOnBar.GetComponent<Image>(), controller.lockOnCooldown));
-            p1Coroutine = StartCoroutine(lockOnCharge(p1LockOnBar.GetComponent<Image>(), controller.lockOnRecharge, controller.lockOnTime));
+            p1LockOnCoroutine = StartCoroutine(lockOnCharge(p1LockOnBar.GetComponent<Image>(), controller.lockOnRecharge, controller.lockOnTime));
         }
         else if (controller.playerID == "P2")
         {
-            if (p2Coroutine != null)
+            if (p2LockOnCoroutine != null)
             {
-                StopCoroutine(p2Coroutine);
+                StopCoroutine(p2LockOnCoroutine);
             }
 
             StartCoroutine(lockOnDisable(p2LockOnBar.GetComponent<Image>(), controller.lockOnCooldown));
-            p2Coroutine = StartCoroutine(lockOnCharge(p2LockOnBar.GetComponent<Image>(), controller.lockOnRecharge, controller.lockOnTime));
+            p2LockOnCoroutine = StartCoroutine(lockOnCharge(p2LockOnBar.GetComponent<Image>(), controller.lockOnRecharge, controller.lockOnTime));
         }
         else
         {
@@ -237,20 +260,22 @@ public class CombatUIManager : MonoBehaviour
         EndGame();
     }
 
-    IEnumerator weaponTimer(Image targetImage, float timerLength)
+    IEnumerator weaponTimer(Image targetImage, Text targetText, GunWeapon weaponScript)
     {
-        targetImage.GetComponentInParent<GameObject>().SetActive(true);
+        targetImage.transform.parent.gameObject.SetActive(true);
 
-        float resetTime = timerLength;
+        float resetTime = weaponScript.lifetime;
 
-        while (resetTime > 0)
+        while (resetTime > 0 && weaponScript.ammoCount > 0)
         {
+            targetText.text = weaponScript.ammoCount.ToString();
+
             resetTime -= Time.deltaTime;
-            targetImage.fillAmount = resetTime / timerLength;
+            targetImage.fillAmount = resetTime / weaponScript.lifetime;
             yield return null;
         }
 
-        targetImage.GetComponentInParent<GameObject>().SetActive(false);
+        targetImage.transform.parent.gameObject.SetActive(true);
     }
 
     IEnumerator lockOnDrain(Image targetImage, float drainSpeed, float totalLockOnTime)
