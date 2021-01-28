@@ -207,6 +207,7 @@ MonoBehaviour:
   meleeWepScript: {fileID: 0}
   specialAbility: {fileID: -2353809242494934067}
   weaponPoint: {fileID: 5631192129409369458}
+  dominantHand: 1
   rightTarget:
   - {fileID: 0}
   - {fileID: 0}

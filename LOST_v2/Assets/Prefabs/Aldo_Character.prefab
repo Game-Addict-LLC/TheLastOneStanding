@@ -79,7 +79,7 @@ Animator:
   m_GameObject: {fileID: 1873552293215730160}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: fc0478cfd46f64f4cba238a055a6f521, type: 3}
-  m_Controller: {fileID: 9100000, guid: 1416025ec1e694e49b019d976e4b2ecf, type: 2}
+  m_Controller: {fileID: 9100000, guid: 90ce219b4124b864ca3e7449c15f86c5, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -188,6 +188,7 @@ MonoBehaviour:
   meleeWepScript: {fileID: 0}
   specialAbility: {fileID: 0}
   weaponPoint: {fileID: 1873552292145768378}
+  dominantHand: 0
   rightTarget:
   - {fileID: 0}
   - {fileID: 0}

@@ -22,6 +22,10 @@ public class Pawn : MonoBehaviour {
     public SpecialAttack specialAbility;
 
     public Transform weaponPoint;
+
+    public enum DominantHand { Left, Right };
+    public DominantHand dominantHand;
+
     public List<Transform> rightTarget;
     public Transform rightAnchor;
     public List<Transform> leftTarget;
@@ -78,9 +82,19 @@ public class Pawn : MonoBehaviour {
             tempWeapon = Instantiate(meleeWeapon);
 
             tempWeapon.layer = gameObject.layer;
-            tempWeapon.transform.parent = rightAnchor;
-            tempWeapon.transform.position = rightAnchor.transform.position;
-            tempWeapon.transform.rotation = rightAnchor.transform.rotation;
+
+            if (dominantHand == DominantHand.Right)
+            {
+                tempWeapon.transform.parent = rightAnchor;
+                tempWeapon.transform.position = rightAnchor.transform.position;
+                tempWeapon.transform.rotation = rightAnchor.transform.rotation;
+            }
+            else if (dominantHand == DominantHand.Left)
+            {
+                tempWeapon.transform.parent = leftAnchor;
+                tempWeapon.transform.position = leftAnchor.transform.position;
+                tempWeapon.transform.rotation = leftAnchor.transform.rotation;
+            }
 
             if (tempWeapon.GetComponent<MeleeWeapon>())
             {
