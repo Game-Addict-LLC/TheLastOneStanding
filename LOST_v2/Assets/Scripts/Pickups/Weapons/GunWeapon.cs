@@ -36,10 +36,10 @@ public class GunWeapon : WeaponBase
 
     public override void OnEquip(Pawn pawn)
     {
-        parentPawn = pawn;
-
         if (equipped == false)
         {
+            parentPawn = pawn;
+
             if (parentPawn.baseWepScript == null)
             {
                 parentPawn.baseWepScript = this;

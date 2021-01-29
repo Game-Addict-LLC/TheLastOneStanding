@@ -23,6 +23,7 @@ public class HookCode : MonoBehaviour
         if (collider.GetComponent<Pawn>())
         {
             collider.GetComponent<Pawn>().controller.immobile = true;
+            collider.GetComponent<Pawn>().anim.SetTrigger("OnHit");
 
             grappleCode.OnHit(collider.gameObject);
         }

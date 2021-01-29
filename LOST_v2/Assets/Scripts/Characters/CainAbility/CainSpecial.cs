@@ -25,8 +25,6 @@ public class CainSpecial : SpecialAttack
 
     public override void OnUse()
     {
-        base.OnUse();
-
         parentPawn.controller.immobile = true;
         StartCoroutine(specialAttack());
     }

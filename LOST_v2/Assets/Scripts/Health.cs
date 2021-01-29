@@ -25,7 +25,7 @@ public class Health : MonoBehaviour {
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 
         GameManager.instance.combatUI.UpdateHealthUI();
-        
+
         if (currentHealth <= 0)
         {
             if (deathSound)

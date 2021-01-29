@@ -43,9 +43,10 @@ GameObject:
   - component: {fileID: 1873552293215730175}
   - component: {fileID: 1873552293215730172}
   - component: {fileID: 1873552293215730173}
-  - component: {fileID: 1873552293215730162}
   - component: {fileID: 1873552293215730163}
   - component: {fileID: 8693246398326764413}
+  - component: {fileID: 4453327705191351457}
+  - component: {fileID: -7980007051778022701}
   m_Layer: 10
   m_Name: Aldo_Character
   m_TagString: Untagged
@@ -130,7 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dc66aa59ebe2fd4dbaa23183f908f6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerID: P2
+  playerID: P1
   pawn: {fileID: 0}
   health: {fileID: 0}
   rotateSpeed: 10
@@ -147,21 +148,6 @@ MonoBehaviour:
   grounded: 0
   buttonReset: 0
   immobile: 0
---- !u!114 &1873552293215730162
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1873552293215730160}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a988df44fa02ed64d9d1dbcb4f542efa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentHealth: 0
-  maxHealth: 100
-  deathSound: {fileID: 0}
 --- !u!114 &1873552293215730163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,6 +204,39 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &4453327705191351457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1873552293215730160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65582aae2db0b154e8b31fe024545259, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 0
+  maxHealth: 100
+  deathSound: {fileID: 0}
+  parentPawn: {fileID: 0}
+--- !u!114 &-7980007051778022701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1873552293215730160}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9ff6ee9770010149a2af94d68e796ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentPawn: {fileID: 0}
+  gunPrefab: {fileID: 4975510985499460117, guid: c5516f1a582bad047a308ef2965992d7,
+    type: 3}
+  gunOne: {fileID: 0}
+  gunTwo: {fileID: 0}
 --- !u!1001 &6793059189224059216
 PrefabInstance:
   m_ObjectHideFlags: 0

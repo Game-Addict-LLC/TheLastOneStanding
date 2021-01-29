@@ -39,6 +39,8 @@ public class Pawn : MonoBehaviour {
         tf = GetComponent<Transform>();
         pawnCollider = GetComponent<CapsuleCollider>();
 
+        GetComponent<PlayerHealth>().parentPawn = this;
+
         if (specialAbility != null)
         {
             specialAbility.parentPawn = this;

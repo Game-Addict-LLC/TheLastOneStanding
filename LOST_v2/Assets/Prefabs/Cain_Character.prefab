@@ -62,9 +62,9 @@ GameObject:
   - component: {fileID: 5631192129362259995}
   - component: {fileID: 5631192129362259997}
   - component: {fileID: 5631192129362259996}
-  - component: {fileID: 5631192129362259999}
   - component: {fileID: 5631192129362259998}
   - component: {fileID: -2353809242494934067}
+  - component: {fileID: -6680442022453359468}
   m_Layer: 9
   m_Name: Cain_Character
   m_TagString: Untagged
@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dc66aa59ebe2fd4dbaa23183f908f6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerID: P1
+  playerID: P2
   pawn: {fileID: 5631192129362259998}
   health: {fileID: 0}
   rotateSpeed: 10
@@ -166,21 +166,6 @@ MonoBehaviour:
   grounded: 0
   buttonReset: 0
   immobile: 0
---- !u!114 &5631192129362259999
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5631192129362259985}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a988df44fa02ed64d9d1dbcb4f542efa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentHealth: 0
-  maxHealth: 100
-  deathSound: {fileID: 0}
 --- !u!114 &5631192129362259998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,6 +222,22 @@ MonoBehaviour:
   spawnLocation: {fileID: 8812200059969749727}
   range: 5
   hookSpeed: 15
+--- !u!114 &-6680442022453359468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5631192129362259985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65582aae2db0b154e8b31fe024545259, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 0
+  maxHealth: 100
+  deathSound: {fileID: 0}
+  parentPawn: {fileID: 0}
 --- !u!1 &5631192129409369461
 GameObject:
   m_ObjectHideFlags: 0
