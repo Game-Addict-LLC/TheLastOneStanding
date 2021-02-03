@@ -24,6 +24,7 @@ public class CombatUIManager : MonoBehaviour
     [SerializeField] private GameObject p2WinUI;
 
     [SerializeField] private GameObject timerUI;
+    [SerializeField] private GameObject countdownUI;
 
     [SerializeField] private Gradient healthGradient;
 
@@ -189,6 +190,22 @@ public class CombatUIManager : MonoBehaviour
 
     public void UpdateWins()
     {
+        if (GameManager.instance.playerOne != null && GameManager.instance.playerTwo != null)
+        {
+            if (GameManager.instance.playerOne.health.currentHealth > GameManager.instance.playerTwo.health.currentHealth)
+            {
+                p1Wins++;
+            }
+            else if (GameManager.instance.playerTwo.health.currentHealth > GameManager.instance.playerOne.health.currentHealth)
+            {
+                p2Wins++;
+            }
+            else
+            {
+                Debug.Log("Tie");
+            }
+        }
+
         p1WinUI.GetComponent<Image>().fillAmount = p1Wins / 2.0f;
         p2WinUI.GetComponent<Image>().fillAmount = p2Wins / 2.0f;
 
@@ -248,16 +265,51 @@ public class CombatUIManager : MonoBehaviour
 
     IEnumerator gameTimer(float gameTime)
     {
+        float startTime = 5;
+
+        timerUI.SetActive(false);
+        countdownUI.SetActive(true);
+
+        if (GameManager.instance.playerOne != null && GameManager.instance.playerTwo != null)
+        {
+            GameManager.instance.playerOne.immobile = true;
+            GameManager.instance.playerTwo.immobile = true;
+        }
+        while (startTime > 0)
+        {
+            startTime -= Time.deltaTime;
+            countdownUI.GetComponent<Text>().text = Mathf.Ceil(startTime).ToString();
+            countdownUI.GetComponent<Text>().fontSize = Mathf.RoundToInt(Mathf.Lerp(50, 120, startTime % 1));
+            yield return null;
+        }
+
+        GameManager.instance.playerOne.immobile = false;
+        GameManager.instance.playerTwo.immobile = false;
+
         float currentTime = gameTime;
 
-        while (currentTime > 0)
+        timerUI.SetActive(true);
+        countdownUI.SetActive(false);
+
+        while (currentTime > 5)
         {
             currentTime -= Time.deltaTime;
             timerUI.GetComponent<Text>().text = (Mathf.RoundToInt(currentTime)).ToString();
             yield return null;
         }
 
-        EndGame();
+        timerUI.SetActive(false);
+        countdownUI.SetActive(true);
+
+        while (currentTime > 0)
+        {
+            currentTime -= Time.deltaTime;
+            countdownUI.GetComponent<Text>().text = Mathf.Ceil(startTime).ToString();
+            countdownUI.GetComponent<Text>().fontSize = Mathf.RoundToInt(Mathf.Lerp(50, 120, startTime % 1));
+            yield return null;
+        }
+
+        UpdateWins();
     }
 
     IEnumerator weaponTimer(Image targetImage, Text targetText, GunWeapon weaponScript)

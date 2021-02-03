@@ -6,8 +6,8 @@ public class PauseMenuScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        GameManager.instance.pauseMenu = gameObject.transform.parent.gameObject;
-        gameObject.transform.parent.gameObject.SetActive(false);
+        GameManager.instance.pauseMenu = gameObject;
+        gameObject.SetActive(false);
 
     }
 	

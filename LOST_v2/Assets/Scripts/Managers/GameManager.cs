@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour {
     [HideInInspector] public string winner = "Draw";
     [HideInInspector] public string winLossRecord = "0 - 0";
 
+    private bool pausedThisFrame = false;
+
 	// Use this for initialization
 	void Awake () {
         if (instance == null)
@@ -39,7 +41,10 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+        if (pausedThisFrame)
+        {
+            pausedThisFrame = false;
+        }
     }
 
     public void Pause()
@@ -64,13 +69,21 @@ public class GameManager : MonoBehaviour {
 
     public void TogglePause()
     {
-        if (isPaused)
+        if (!pausedThisFrame)
         {
-            UnPause();
-        }
-        else
-        {
-            Pause();
+            pausedThisFrame = true;
+
+            Debug.Log("Toggle pause");
+            if (isPaused)
+            {
+                Debug.Log("unpause");
+                UnPause();
+            }
+            else
+            {
+                Debug.Log("pause");
+                Pause();
+            }
         }
     }
 
