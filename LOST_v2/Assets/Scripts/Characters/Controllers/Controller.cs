@@ -24,6 +24,7 @@ public class Controller : MonoBehaviour
     public float abilityResetTime = 5;
 
     private Transform playerTf;
+    private LayerMask objectLayer;
     private float previousX;
     private float previousY;
     private float lockOnTimer;
@@ -40,6 +41,7 @@ public class Controller : MonoBehaviour
         pawn = GetComponent<Pawn>();
         pawn.controller = this;
         playerTf = gameObject.transform;
+        objectLayer = gameObject.layer;
         health = GetComponent<Health>();
 
         if (playerID == "P1")
@@ -94,32 +96,32 @@ public class Controller : MonoBehaviour
 
         if (grounded)
         {
-            Debug.DrawRay(playerTf.position, playerTf.up * -0.5f, Color.blue, 0.5f);
+            Debug.DrawRay(playerTf.position + playerTf.up, playerTf.up * -1.5f, Color.blue, 0.5f);
 
             RaycastHit raycastData;
-            Physics.Raycast(playerTf.position, playerTf.up * -1, out raycastData, 0.5f);
-
-
+            Physics.Raycast(playerTf.position + playerTf.up, playerTf.up * -1, out raycastData, 1.5f, ~objectLayer);
+            
             if (!immobile)
             {
-                if (Input.GetButtonDown(playerID + "Jump"))
-                {
-                    grounded = false;
-                    pawn.Jump();
-                }
                 if (raycastData.collider == null)
                 {
                     grounded = false;
                     pawn.anim.SetBool("OnGround", false);
                 }
+                else if (Input.GetButtonDown(playerID + "Jump"))
+                {
+                    grounded = false;
+                    pawn.Jump();
+                    Debug.Log(raycastData.collider.gameObject.layer);
+                }
             }
         }
         else
         {
-            Debug.DrawRay(playerTf.position, playerTf.up * -0.5f, Color.red, 0.5f);
+            Debug.DrawRay(playerTf.position + playerTf.up, playerTf.up * -1.5f, Color.red, 0.5f);
 
             RaycastHit raycastData;
-            Physics.Raycast(playerTf.position, playerTf.up * -1, out raycastData, 0.5f);
+            Physics.Raycast(playerTf.position + playerTf.up, playerTf.up * -1, out raycastData, 1.5f, ~objectLayer);
             if (raycastData.collider != null)
             {
                 grounded = true;
@@ -133,47 +135,37 @@ public class Controller : MonoBehaviour
             {
                 if (pawn.specialWeapon != null)
                 {
-                    Debug.Log("Special weapon");
                     pawn.specialWepScript.OnAttack();
                     buttonReset = true;
                 }
                 else if (pawn.baseWeapon != null)
                 {
-                    Debug.Log(pawn.baseWepScript);
                     pawn.baseWepScript.OnAttack();
                 }
 
-                Debug.Log("Main attack");
             }
             else if (Input.GetAxis(playerID + "Attack") != 0 && buttonReset == false)
             {
                 if (pawn.specialWeapon != null)
                 {
-                    Debug.Log("Special weapon");
                     pawn.specialWepScript.OnAttack();
                     buttonReset = true;
                 }
                 else if (pawn.baseWeapon != null)
                 {
-                    Debug.Log(pawn.baseWepScript);
                     pawn.baseWepScript.OnAttack();
                 }
-
-                Debug.Log("Main attack");
             }
             else if (Input.GetButtonDown(playerID + "Melee"))
             {
                 if (pawn.meleeWeapon != null)
                 {
-                    Debug.Log("Melee weapon");
                     pawn.meleeWepScript.gameObject.SetActive(true);
                     pawn.meleeWepScript.OnAttack();
                 }
 
                 pawn.anim.SetTrigger("MeleeAttack");
                 pawn.useFullAnim = true;
-
-                Debug.Log("Melee attack");
             }
             else if (Input.GetAxis(playerID + "Attack") == 0 && buttonReset == true)
             {

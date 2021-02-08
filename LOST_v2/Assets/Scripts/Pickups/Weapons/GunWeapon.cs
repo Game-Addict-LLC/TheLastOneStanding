@@ -25,7 +25,7 @@ public class GunWeapon : WeaponBase
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Base wep equip status" + equipped);
+
     }
 
     // Update is called once per frame

@@ -55,7 +55,7 @@ public class CombatUIManager : MonoBehaviour
 
     public void InitializeUI()
     {
-        mainTimer = StartCoroutine(gameTimer(180));
+        mainTimer = StartCoroutine(gameTimer(25));
 
         p1Health.GetComponent<Image>().fillAmount = 1;
         p1LockOnBar.GetComponent<Image>().fillAmount = 1;
@@ -84,7 +84,6 @@ public class CombatUIManager : MonoBehaviour
 
     public void EquipWeapon(GunWeapon weapon, string playerID)
     {
-        Debug.Log("Call UI Equip");
         if (weapon.usesLifetime)
         {
             if (playerID == "P1")
@@ -94,7 +93,6 @@ public class CombatUIManager : MonoBehaviour
                     StopCoroutine(p1WeaponCoroutine);
                 }
 
-                Debug.Log("P1 Equip UI");
                 p1WeaponCoroutine = StartCoroutine(weaponTimer(p1WeaponBar.GetComponent<Image>(), p1Ammo.GetComponent<Text>(), weapon));
             }
             else if (playerID == "P2")
@@ -104,7 +102,6 @@ public class CombatUIManager : MonoBehaviour
                     StopCoroutine(p2WeaponCoroutine);
                 }
 
-                Debug.Log("P2 Equip UI");
                 p2WeaponCoroutine = StartCoroutine(weaponTimer(p2WeaponBar.GetComponent<Image>(), p2Ammo.GetComponent<Text>(), weapon));
             }
             else
@@ -265,18 +262,19 @@ public class CombatUIManager : MonoBehaviour
 
     IEnumerator gameTimer(float gameTime)
     {
-        float startTime = 5;
+        float startTime = 3;
 
         timerUI.SetActive(false);
         countdownUI.SetActive(true);
 
-        if (GameManager.instance.playerOne != null && GameManager.instance.playerTwo != null)
-        {
-            GameManager.instance.playerOne.immobile = true;
-            GameManager.instance.playerTwo.immobile = true;
-        }
         while (startTime > 0)
         {
+            if (GameManager.instance.playerOne != null && GameManager.instance.playerTwo != null)
+            {
+                GameManager.instance.playerOne.immobile = true;
+                GameManager.instance.playerTwo.immobile = true;
+            }
+
             startTime -= Time.deltaTime;
             countdownUI.GetComponent<Text>().text = Mathf.Ceil(startTime).ToString();
             countdownUI.GetComponent<Text>().fontSize = Mathf.RoundToInt(Mathf.Lerp(50, 120, startTime % 1));
@@ -304,8 +302,8 @@ public class CombatUIManager : MonoBehaviour
         while (currentTime > 0)
         {
             currentTime -= Time.deltaTime;
-            countdownUI.GetComponent<Text>().text = Mathf.Ceil(startTime).ToString();
-            countdownUI.GetComponent<Text>().fontSize = Mathf.RoundToInt(Mathf.Lerp(50, 120, startTime % 1));
+            countdownUI.GetComponent<Text>().text = Mathf.Ceil(currentTime).ToString();
+            countdownUI.GetComponent<Text>().fontSize = Mathf.RoundToInt(Mathf.Lerp(50, 120, currentTime % 1));
             yield return null;
         }
 
@@ -327,7 +325,11 @@ public class CombatUIManager : MonoBehaviour
             yield return null;
         }
 
-        targetImage.transform.parent.gameObject.SetActive(true);
+        if (weaponScript != null)
+        {
+            Destroy(weaponScript.gameObject);
+        }
+        targetImage.transform.parent.gameObject.SetActive(false);
     }
 
     IEnumerator lockOnDrain(Image targetImage, float drainSpeed, float totalLockOnTime)

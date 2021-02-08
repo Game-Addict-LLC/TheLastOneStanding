@@ -22,7 +22,6 @@ public class PlayerHealth : Health
     {
         if (gameObject.GetComponent<Animator>())
         {
-            Debug.Log("OnHit called");
             gameObject.GetComponent<Animator>().SetTrigger("OnHit");
 
             if (parentPawn != null)

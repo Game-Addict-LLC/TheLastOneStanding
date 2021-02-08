@@ -35,27 +35,8 @@ public class Health : MonoBehaviour {
 
             if (gameObject.GetComponent<Controller>())
             {
-                Debug.Log("Player death");
-
-                if (gameObject.GetComponent<Controller>().playerID == "P1")
-                {
-                    GameManager.instance.combatUI.p2Wins++;
-                    Debug.Log("P2 Wins!");
-                }
-                else if (gameObject.GetComponent<Controller>().playerID == "P2")
-                {
-                    GameManager.instance.combatUI.p1Wins++;
-                    Debug.Log("P1 Wins!");
-                }
-                else
-                {
-                    Debug.Log("Invalid player ID");
-                }
-
                 GameManager.instance.combatUI.UpdateWins();
             }
-
-            Debug.Log("Running death");
 
             OnDeath();
         }

@@ -31,8 +31,6 @@ public class WeaponBase : MonoBehaviour {
         if (gameObject.GetComponent<Outline>())
         {
             gameObject.GetComponent<Outline>().enabled = false;
-
-            Debug.Log("Disabled outline");
         }
         equipped = true;
     }

@@ -73,15 +73,12 @@ public class GameManager : MonoBehaviour {
         {
             pausedThisFrame = true;
 
-            Debug.Log("Toggle pause");
             if (isPaused)
             {
-                Debug.Log("unpause");
                 UnPause();
             }
             else
             {
-                Debug.Log("pause");
                 Pause();
             }
         }

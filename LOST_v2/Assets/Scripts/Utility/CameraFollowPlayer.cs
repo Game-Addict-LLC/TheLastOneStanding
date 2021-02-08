@@ -19,19 +19,19 @@ public class CameraFollowPlayer : MonoBehaviour {
 	void Update () {
         if (targetTf)
         {
-            RaycastHit raycastData;
-            //Resident Evil Camera Code
-            //Physics.Raycast(targetTf.position + Vector3.up, tf.position, out raycastData);
+            //RaycastHit raycastData;
+            ////Resident Evil Camera Code
+            ////Physics.Raycast(targetTf.position + Vector3.up, tf.position, out raycastData);
 
-            Physics.Raycast(targetTf.position + Vector3.up, offset, out raycastData);
-            if (raycastData.collider)
-            {
-                tf.position = raycastData.point;
-            }
-            else
-            {
+            //Physics.Raycast(targetTf.position + Vector3.up, offset, out raycastData);
+            //if (raycastData.collider)
+            //{
+            //    tf.position = raycastData.point;
+            //}
+            //else
+            //{
                 tf.position = targetTf.position + offset;
-            }
+            //}
 
             tf.LookAt(targetTf.position);
         }

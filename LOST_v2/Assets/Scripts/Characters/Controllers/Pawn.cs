@@ -74,7 +74,6 @@ public class Pawn : MonoBehaviour {
             if (tempWeapon.GetComponent<GunWeapon>())
             {
                 baseWepScript = tempWeapon.GetComponent<GunWeapon>();
-                Debug.Log("Base wep equip status" + baseWepScript.equipped);
                 baseWepScript.OnEquip(this);
             }
         }
@@ -101,7 +100,6 @@ public class Pawn : MonoBehaviour {
             if (tempWeapon.GetComponent<MeleeWeapon>())
             {
                 meleeWepScript = tempWeapon.GetComponent<MeleeWeapon>();
-                Debug.Log("Melee equip status" + meleeWepScript.equipped);
                 meleeWepScript.OnEquip(this);
             }
         }
@@ -137,7 +135,6 @@ public class Pawn : MonoBehaviour {
     public void Jump()
     {
         gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * controller.jumpHeight * 50);
-        Debug.Log("Jump");
         anim.SetBool("OnGround", false);
     }
 
@@ -178,7 +175,6 @@ public class Pawn : MonoBehaviour {
     {
         if (collider.gameObject.tag == "Weapon" && LayerMask.LayerToName(gameObject.layer).Contains("Player"))
         {
-            Debug.Log("Equip weapon from ground");
             OnEquip(collider.gameObject);
         }
     }
