@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour {
 
+    public bool spawnAtStart = true;
     public bool respawnable = false;
     public float respawnTime;
     public GameObject objectToSpawn;
+    public Vector3 spawnOffset = new Vector3(0, 1, 0);
     public Vector3 gizmoSize = new Vector3(0.5f, 0.5f, 0.5f);
     public Color gizmoColor = new Color(100, 100, 100, 200);
 
@@ -14,10 +16,21 @@ public class Spawner : MonoBehaviour {
     private float timeUntilNextSpawn;
     private Transform tf;
 
+    private void Awake()
+    {
+        tf = gameObject.transform;
+    }
+
     // Use this for initialization
     void Start () {
-        tf = gameObject.transform;
-        Spawn();
+        if (spawnAtStart)
+        {
+            Spawn();
+        }
+        else
+        {
+            timeUntilNextSpawn = respawnTime;
+        }
     }
 
     // Update is called once per frame
@@ -36,7 +49,7 @@ public class Spawner : MonoBehaviour {
     public void Spawn()
     {
         //create object
-        spawnedObject = Instantiate(objectToSpawn, tf.position + new Vector3 (0, 1, 0), tf.rotation);
+        spawnedObject = Instantiate(objectToSpawn, tf.position + spawnOffset, tf.rotation);
         //reset respawn timer
         timeUntilNextSpawn = respawnTime;
     }
