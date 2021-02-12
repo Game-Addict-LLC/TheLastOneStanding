@@ -20,7 +20,12 @@ public class Molotov : Hazard
 
     private void OnCollisionEnter(Collision collision)
     {
-        Instantiate(damageField, transform.position, Quaternion.LookRotation(collision.GetContact(0).normal));
-        Destroy(gameObject);
+        if (LayerMask.LayerToName(collision.gameObject.layer).Contains("Player") == false)
+        {
+            Instantiate(damageField, transform.position, Quaternion.LookRotation(collision.GetContact(0).normal));
+            gameObject.GetComponent<Renderer>().enabled = false;
+            gameObject.GetComponent<Collider>().enabled = false;
+            Destroy(gameObject, 1);
+        }
     }
 }

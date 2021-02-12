@@ -25,6 +25,7 @@ public class DamageOverTime : Hazard
         }
         else
         {
+            tickTimer = 1 / tickRate;
             if (objectsInField != null)
             {
                 foreach (GameObject obj in objectsInField)
@@ -32,7 +33,6 @@ public class DamageOverTime : Hazard
                     obj.GetComponent<PlayerHealth>().TakeDamage(damageToDeal);
                 }
             }
-            tickTimer = 1 / tickRate;
         }
     }
 
