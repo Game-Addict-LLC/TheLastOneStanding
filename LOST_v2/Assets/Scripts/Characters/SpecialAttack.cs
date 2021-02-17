@@ -25,6 +25,14 @@ public abstract class SpecialAttack : MonoBehaviour
 
     public virtual void OnEnd()
     {
-        
+        if (parentPawn.specialWepScript != null)
+        {
+            parentPawn.specialWepScript.gameObject.SetActive(true);
+        }
+        else if (parentPawn.baseWepScript != null)
+        {
+            parentPawn.baseWepScript.gameObject.SetActive(true);
+        }
+        parentPawn.useFullAnim = false;
     }
 }

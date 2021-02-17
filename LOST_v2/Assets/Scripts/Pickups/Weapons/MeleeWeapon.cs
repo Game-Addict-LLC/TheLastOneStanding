@@ -70,6 +70,7 @@ public class MeleeWeapon : WeaponBase
         yield return new WaitForSeconds(pressDelay);
         parentPawn.anim.ResetTrigger("MeleeAttack");
         gameObject.SetActive(false);
+        parentPawn.useFullAnim = false;
 
         if (parentPawn.specialWepScript != null)
         {

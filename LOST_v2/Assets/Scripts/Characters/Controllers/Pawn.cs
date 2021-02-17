@@ -57,8 +57,10 @@ public class Pawn : MonoBehaviour {
     public void StartEquip()
     {
         Destroy(specialWeapon);
-        rightTarget = null;
-        leftTarget = null;
+        rightTarget[0] = null;
+        rightTarget[1] = null;
+        leftTarget[0] = null;
+        leftTarget[1] = null;
 
         GameObject tempWeapon;
 
@@ -73,8 +75,22 @@ public class Pawn : MonoBehaviour {
 
             if (tempWeapon.GetComponent<GunWeapon>())
             {
-                baseWepScript = tempWeapon.GetComponent<GunWeapon>();
-                baseWepScript.OnEquip(this);
+                tempWeapon.GetComponent<GunWeapon>().OnEquip(this);
+            }
+        }
+
+        if (specialWeapon != null)
+        {
+            tempWeapon = Instantiate(specialWeapon);
+
+            tempWeapon.layer = gameObject.layer;
+            tempWeapon.transform.parent = weaponPoint;
+            tempWeapon.transform.position = weaponPoint.transform.position;
+            tempWeapon.transform.rotation = weaponPoint.transform.rotation;
+
+            if (tempWeapon.GetComponent<GunWeapon>())
+            {
+                tempWeapon.GetComponent<GunWeapon>().OnEquip(this);
             }
         }
 
@@ -144,8 +160,8 @@ public class Pawn : MonoBehaviour {
         {
             controller.buttonReset = true;
             Destroy(specialWeapon);
-            rightTarget = null;
-            leftTarget = null;
+            rightTarget[1] = null;
+            leftTarget[1] = null;
             specialWeapon = newWeapon;
             specialWeapon.layer = gameObject.layer;
             specialWeapon.transform.parent = weaponPoint;
@@ -181,66 +197,66 @@ public class Pawn : MonoBehaviour {
 
     public void OnAnimatorIK(int layerIndex)
     {
-        //if (!controller.grounded || useFullAnim || !specialWepScript && !baseWepScript)
-        //{
-        //    return; //do nothing
-        //}
+        if (!controller.grounded || useFullAnim || !specialWepScript && !baseWepScript)
+        {
+            return; //do nothing
+        }
 
-        //if (specialWepScript != null)
-        //{
-        //    if (specialWepScript.useRightHand && specialWepScript.rightHandTf)
-        //    {
-        //        anim.SetIKPosition(AvatarIKGoal.RightHand, rightTarget[2].position);
-        //        anim.SetIKPositionWeight(AvatarIKGoal.RightHand, 1f);
-        //        anim.SetIKRotation(AvatarIKGoal.RightHand, rightTarget[2].rotation);
-        //        anim.SetIKRotationWeight(AvatarIKGoal.RightHand, 1f);
-        //    }
-        //    else
-        //    {
-        //        anim.SetIKPositionWeight(AvatarIKGoal.RightHand, 0f);
-        //        anim.SetIKRotationWeight(AvatarIKGoal.RightHand, 0f);
-        //    }
+        if (specialWepScript != null)
+        {
+            if (specialWepScript.useRightHand && specialWepScript.rightHandTf)
+            {
+                anim.SetIKPosition(AvatarIKGoal.RightHand, rightTarget[1].position);
+                anim.SetIKPositionWeight(AvatarIKGoal.RightHand, 1f);
+                anim.SetIKRotation(AvatarIKGoal.RightHand, rightTarget[1].rotation);
+                anim.SetIKRotationWeight(AvatarIKGoal.RightHand, 1f);
+            }
+            else
+            {
+                anim.SetIKPositionWeight(AvatarIKGoal.RightHand, 0f);
+                anim.SetIKRotationWeight(AvatarIKGoal.RightHand, 0f);
+            }
 
-        //    if (specialWepScript.useLeftHand && specialWepScript.leftHandTf)
-        //    {
-        //        anim.SetIKPosition(AvatarIKGoal.LeftHand, leftTarget[2].position);
-        //        anim.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1f);
-        //        anim.SetIKRotation(AvatarIKGoal.LeftHand, leftTarget[2].rotation);
-        //        anim.SetIKRotationWeight(AvatarIKGoal.LeftHand, 1f);
-        //    }
-        //    else
-        //    {
-        //        anim.SetIKPositionWeight(AvatarIKGoal.LeftHand, 0f);
-        //        anim.SetIKRotationWeight(AvatarIKGoal.LeftHand, 0f);
-        //    }
-        //}
-        //else if (baseWepScript != null)
-        //{
-        //    if (baseWepScript.useRightHand && baseWepScript.rightHandTf)
-        //    {
-        //        anim.SetIKPosition(AvatarIKGoal.RightHand, rightTarget[1].position);
-        //        anim.SetIKPositionWeight(AvatarIKGoal.RightHand, 1f);
-        //        anim.SetIKRotation(AvatarIKGoal.RightHand, rightTarget[1].rotation);
-        //        anim.SetIKRotationWeight(AvatarIKGoal.RightHand, 1f);
-        //    }
-        //    else
-        //    {
-        //        anim.SetIKPositionWeight(AvatarIKGoal.RightHand, 0f);
-        //        anim.SetIKRotationWeight(AvatarIKGoal.RightHand, 0f);
-        //    }
+            if (specialWepScript.useLeftHand && specialWepScript.leftHandTf)
+            {
+                anim.SetIKPosition(AvatarIKGoal.LeftHand, leftTarget[1].position);
+                anim.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1f);
+                anim.SetIKRotation(AvatarIKGoal.LeftHand, leftTarget[1].rotation);
+                anim.SetIKRotationWeight(AvatarIKGoal.LeftHand, 1f);
+            }
+            else
+            {
+                anim.SetIKPositionWeight(AvatarIKGoal.LeftHand, 0f);
+                anim.SetIKRotationWeight(AvatarIKGoal.LeftHand, 0f);
+            }
+        }
+        else if (baseWepScript != null)
+        {
+            if (baseWepScript.useRightHand && baseWepScript.rightHandTf)
+            {
+                anim.SetIKPosition(AvatarIKGoal.RightHand, rightTarget[0].position);
+                anim.SetIKPositionWeight(AvatarIKGoal.RightHand, 1f);
+                anim.SetIKRotation(AvatarIKGoal.RightHand, rightTarget[0].rotation);
+                anim.SetIKRotationWeight(AvatarIKGoal.RightHand, 1f);
+            }
+            else
+            {
+                anim.SetIKPositionWeight(AvatarIKGoal.RightHand, 0f);
+                anim.SetIKRotationWeight(AvatarIKGoal.RightHand, 0f);
+            }
 
-        //    if (baseWepScript.useLeftHand && baseWepScript.leftHandTf)
-        //    {
-        //        anim.SetIKPosition(AvatarIKGoal.LeftHand, leftTarget[1].position);
-        //        anim.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1f);
-        //        anim.SetIKRotation(AvatarIKGoal.LeftHand, leftTarget[1].rotation);
-        //        anim.SetIKRotationWeight(AvatarIKGoal.LeftHand, 1f);
-        //    }
-        //    else
-        //    {
-        //        anim.SetIKPositionWeight(AvatarIKGoal.LeftHand, 0f);
-        //        anim.SetIKRotationWeight(AvatarIKGoal.LeftHand, 0f);
-        //    }
-        //}
+            if (baseWepScript.useLeftHand && baseWepScript.leftHandTf)
+            {
+                anim.SetIKPosition(AvatarIKGoal.LeftHand, leftTarget[0].position);
+                anim.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1f);
+                anim.SetIKRotation(AvatarIKGoal.LeftHand, leftTarget[0].rotation);
+                anim.SetIKRotationWeight(AvatarIKGoal.LeftHand, 1f);
+            }
+            else
+            {
+                anim.SetIKPositionWeight(AvatarIKGoal.LeftHand, 0f);
+                anim.SetIKRotationWeight(AvatarIKGoal.LeftHand, 0f);
+            }
+        }
     }
 }

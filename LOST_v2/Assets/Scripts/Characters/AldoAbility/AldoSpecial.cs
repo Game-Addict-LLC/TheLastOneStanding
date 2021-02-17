@@ -44,19 +44,22 @@ public class AldoSpecial : SpecialAttack
 
     public override void OnEnd()
     {
-        
+        parentPawn.controller.immobile = false;
+        base.OnEnd();
     }
 
     private IEnumerator attackLoop()
     {
         for (int i = 0; i < 6; i++)
         {
+            yield return new WaitForSeconds(0.3f);
             gunOne.OnAttack();
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.3f);
             gunTwo.OnAttack();
-            yield return new WaitForSeconds(0.5f);
         }
-        parentPawn.controller.immobile = false;
-        yield return null;
+
+        gunOne.gameObject.SetActive(false);
+        gunTwo.gameObject.SetActive(false);
+        OnEnd();
     }
 }

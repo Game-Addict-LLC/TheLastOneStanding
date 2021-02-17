@@ -33,6 +33,7 @@ public class CainSpecial : SpecialAttack
     {
         Destroy(hookObject);
         parentPawn.controller.immobile = false;
+        base.OnEnd();
     }
 
     public IEnumerator specialAttack()

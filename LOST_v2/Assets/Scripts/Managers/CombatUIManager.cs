@@ -55,7 +55,7 @@ public class CombatUIManager : MonoBehaviour
 
     public void InitializeUI()
     {
-        mainTimer = StartCoroutine(gameTimer(25));
+        mainTimer = StartCoroutine(gameTimer(180));
 
         p1Health.GetComponent<Image>().fillAmount = 1;
         p1LockOnBar.GetComponent<Image>().fillAmount = 1;

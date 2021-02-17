@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dc66aa59ebe2fd4dbaa23183f908f6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerID: P1
+  playerID: P2
   pawn: {fileID: 5631192129362259998}
   health: {fileID: 0}
   rotateSpeed: 10
@@ -178,10 +178,8 @@ MonoBehaviour:
   rightTarget:
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
   rightAnchor: {fileID: 7307061167524610480}
   leftTarget:
-  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   leftAnchor: {fileID: 7425026648023866369}

@@ -64,7 +64,6 @@ public class GrappleCode : MonoBehaviour
         parentAttack.parentPawn.meleeWepScript.gameObject.SetActive(true);
         parentAttack.parentPawn.anim.SetTrigger("MeleeAttack");
         draggedObj.GetComponent<Pawn>().controller.immobile = false;
-        parentAttack.OnEnd();
 
         while (parentAttack.parentPawn.anim.IsInTransition(0) == false)
         {
@@ -72,6 +71,7 @@ public class GrappleCode : MonoBehaviour
         }
 
         parentAttack.parentPawn.meleeWepScript.gameObject.SetActive(false);
+        parentAttack.OnEnd();
 
         yield return null;
     }

@@ -6,14 +6,20 @@ public class DamageOverTime : Hazard
 {
     public float damageToDeal;
     public float tickRate;
+    public bool usesLifetime;
+    public float lifetime;
 
-    public List<GameObject> objectsInField;
+    private List<IDamageable<float>> objectsInField = new List<IDamageable<float>>();
     private float tickTimer;
+    private ParticleSystem ps;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (usesLifetime)
+        {
+            Destroy(gameObject, lifetime);
+        }
     }
 
     // Update is called once per frame
@@ -28,9 +34,9 @@ public class DamageOverTime : Hazard
             tickTimer = 1 / tickRate;
             if (objectsInField != null)
             {
-                foreach (GameObject obj in objectsInField)
+                foreach (IDamageable<float> obj in objectsInField)
                 {
-                    obj.GetComponent<PlayerHealth>().TakeDamage(damageToDeal);
+                    obj.TakeDamage(damageToDeal);
                 }
             }
         }
@@ -38,18 +44,44 @@ public class DamageOverTime : Hazard
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.GetComponent<PlayerHealth>() != null && objectsInField.Contains(collision.gameObject) == false)
+        List<IDamageable<float>> interfaceList = new List<IDamageable<float>>();
+        MonoBehaviour[] list = collision.GetComponents<MonoBehaviour>();
+        foreach (MonoBehaviour mb in list)
         {
-            objectsInField.Add(collision.gameObject);
-            collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(damageToDeal);
+            if (mb is IDamageable<float>)
+            {
+                interfaceList.Add((IDamageable<float>)mb);
+            }
+        }
+
+        if (interfaceList.Count > 0)
+        {
+            if (objectsInField.Contains(interfaceList[0]) == false)
+            {
+                objectsInField.Add(interfaceList[0]);
+                interfaceList[0].TakeDamage(damageToDeal);
+            }
         }
     }
 
     private void OnTriggerExit(Collider collision)
     {
-        if (collision.gameObject.GetComponent<PlayerHealth>() != null && objectsInField.Contains(collision.gameObject))
+        List<IDamageable<float>> interfaceList = new List<IDamageable<float>>();
+        MonoBehaviour[] list = collision.GetComponents<MonoBehaviour>();
+        foreach (MonoBehaviour mb in list)
         {
-            objectsInField.Remove(collision.gameObject);
+            if (mb is IDamageable<float>)
+            {
+                interfaceList.Add((IDamageable<float>)mb);
+            }
+        }
+
+        if (interfaceList.Count > 0)
+        {
+            if (objectsInField.Contains(interfaceList[0]) == true)
+            {
+                objectsInField.Remove(interfaceList[0]);
+            }
         }
     }
 }

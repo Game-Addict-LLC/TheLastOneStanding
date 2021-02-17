@@ -9685,7 +9685,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 3
+      scalar: 9.5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -14338,7 +14338,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageToDeal: 10
   tickRate: 0.5
-  objectsInField: []
+  usesLifetime: 1
+  lifetime: 10
 --- !u!135 &1438278776
 SphereCollider:
   m_ObjectHideFlags: 0

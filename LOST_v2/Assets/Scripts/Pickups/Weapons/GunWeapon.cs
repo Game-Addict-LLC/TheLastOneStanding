@@ -42,28 +42,38 @@ public class GunWeapon : WeaponBase
 
             if (parentPawn.baseWepScript == null)
             {
+                Debug.Log("Setting" + gameObject.name + "as base weapon");
                 parentPawn.baseWepScript = this;
 
                 if (useRightHand)
                 {
-                    //parentPawn.rightTarget[1] = rightHandTf;
+                    parentPawn.rightTarget[0] = rightHandTf;
+                    if (parentPawn.rightTarget[1] == null)
+                    {
+                        parentPawn.rightTarget[1] = null;
+                    }
                 }
                 if (useLeftHand)
                 {
-                    //parentPawn.leftTarget[1] = leftHandTf;
+                    parentPawn.leftTarget[0] = leftHandTf;
+                    if (parentPawn.leftTarget[1] == null)
+                    {
+                        parentPawn.leftTarget[1] = null;
+                    }
                 }
             }
             else
             {
+                Debug.Log("Setting" + gameObject.name + "as special weapon");
                 parentPawn.specialWepScript = this;
 
                 if (useRightHand)
                 {
-                    //parentPawn.rightTarget[2] = rightHandTf;
+                    parentPawn.rightTarget[1] = rightHandTf;
                 }
                 if (useRightHand)
                 {
-                    //parentPawn.leftTarget[2] = leftHandTf;
+                    parentPawn.leftTarget[1] = leftHandTf;
                 }
 
                 UpdateAmmoText(parentPawn);
@@ -98,12 +108,15 @@ public class GunWeapon : WeaponBase
                 {
                     // Spawn a projectile
                     RaycastHit raycastData;
-                    Physics.Raycast(shootPoint.position, shootPoint.forward * range, out raycastData);
+                    Physics.Raycast(shootPoint.position, shootPoint.forward, out raycastData);
                     if (raycastData.collider)
                     {
-                        if (raycastData.collider.GetComponent<Health>())
+                        if (raycastData.distance <= range)
                         {
-                            raycastData.collider.GetComponent<Health>().TakeDamage(damage);
+                            if (raycastData.collider.GetComponent<Health>())
+                            {
+                                raycastData.collider.GetComponent<Health>().TakeDamage(damage);
+                            }
                         }
                     }
                     Debug.DrawRay(shootPoint.position, shootPoint.forward * range, Color.red, 5);
@@ -120,6 +133,12 @@ public class GunWeapon : WeaponBase
                 ammoCount--;
                 if (ammoCount <= 0)
                 {
+                    if (this == parentPawn.specialWepScript)
+                    {
+                        parentPawn.rightTarget[1] = null;
+                        parentPawn.leftTarget[1] = null;
+                        parentPawn.specialWepScript = null;
+                    }
                     Destroy(gameObject);
                 }
             }

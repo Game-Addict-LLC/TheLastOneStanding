@@ -29,7 +29,7 @@ public class Spawner : MonoBehaviour {
         }
         else
         {
-            timeUntilNextSpawn = respawnTime;
+            timeUntilNextSpawn = -1;
         }
     }
 
@@ -39,10 +39,10 @@ public class Spawner : MonoBehaviour {
         if (respawnable)
         {
             //reduces timer is object does not exist
-            if (spawnedObject == null) timeUntilNextSpawn -= Time.deltaTime;
+            if (spawnedObject == null && timeUntilNextSpawn != -1) timeUntilNextSpawn -= Time.deltaTime;
 
             //if timer is done, spawns new object 
-            if (timeUntilNextSpawn <= 0) Spawn();
+            if (timeUntilNextSpawn <= 0 && timeUntilNextSpawn != -1) Spawn();
         }
     }
 
