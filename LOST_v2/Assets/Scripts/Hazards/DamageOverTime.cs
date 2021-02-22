@@ -50,6 +50,7 @@ public class DamageOverTime : Hazard
         {
             if (mb is IDamageable<float>)
             {
+                
                 interfaceList.Add((IDamageable<float>)mb);
             }
         }

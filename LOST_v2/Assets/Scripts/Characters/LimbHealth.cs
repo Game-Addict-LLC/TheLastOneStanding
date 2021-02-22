@@ -14,6 +14,7 @@ public class LimbHealth : Health
     void Start()
     {
         currentHealth = maxHealth;
+        //parentScript.listOfChildScripts.Add(this);
     }
 
     // Update is called once per frame

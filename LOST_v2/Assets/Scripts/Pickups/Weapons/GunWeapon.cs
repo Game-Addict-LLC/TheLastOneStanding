@@ -19,6 +19,9 @@ public class GunWeapon : WeaponBase
     public int ammoCount;
     public float rateOfFire;
     public float range;
+    public float recoilSpeed;
+    public float recoilAngle;
+    public float recoilResetSpeed;
 
     private float timer;
 
@@ -31,7 +34,7 @@ public class GunWeapon : WeaponBase
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public override void OnEquip(Pawn pawn)
@@ -66,6 +69,7 @@ public class GunWeapon : WeaponBase
             {
                 Debug.Log("Setting" + gameObject.name + "as special weapon");
                 parentPawn.specialWepScript = this;
+                parentPawn.baseWepScript.gameObject.SetActive(false);
 
                 if (useRightHand)
                 {
@@ -123,8 +127,11 @@ public class GunWeapon : WeaponBase
                 }
             }
 
+            StartCoroutine(Recoil());
+
             if (gunShot != null)
             {
+                Debug.Log(GameManager.instance.sfxVolume);
                 AudioSource.PlayClipAtPoint(gunShot, shootPoint.position, GameManager.instance.sfxVolume);
             }
 
@@ -138,6 +145,8 @@ public class GunWeapon : WeaponBase
                         parentPawn.rightTarget[1] = null;
                         parentPawn.leftTarget[1] = null;
                         parentPawn.specialWepScript = null;
+
+                        parentPawn.baseWepScript.gameObject.SetActive(true);
                     }
                     Destroy(gameObject);
                 }
@@ -150,6 +159,34 @@ public class GunWeapon : WeaponBase
     public override void UpdateAmmoText(Pawn pawn)
     {
         GameManager.instance.combatUI.EquipWeapon(this, pawn.controller.playerID);
+    }
+
+    IEnumerator Recoil()
+    {
+        Vector3 tempRot = new Vector3(recoilAngle * -1, 0, 0);
+        Quaternion startingRot = transform.localRotation;
+        float tempTimer = recoilAngle / recoilSpeed;
+
+        while (tempTimer > 0)
+        {
+            tempTimer -= Time.deltaTime;
+            transform.localRotation = Quaternion.Euler(Quaternion.Slerp(startingRot, Quaternion.Euler(tempRot), 1 - (tempTimer / (recoilAngle / recoilSpeed))).eulerAngles.x, 0, 0);
+            yield return null;
+        }
+        transform.localRotation = Quaternion.Euler(recoilAngle * -1, 0, 0);
+
+        tempRot = new Vector3(0, 0, 0);
+        startingRot = transform.localRotation;
+        tempTimer = recoilAngle / recoilResetSpeed;
+        Debug.Log(tempTimer);
+
+        while (tempTimer > 0)
+        {
+            tempTimer -= Time.deltaTime;
+            transform.localRotation = Quaternion.Euler(Quaternion.Slerp(startingRot, Quaternion.Euler(tempRot), 1 - (tempTimer / (recoilAngle / recoilResetSpeed))).eulerAngles.x, 0, 0);
+            yield return null;
+        }
+        transform.localRotation = Quaternion.Euler(0, 0, 0);
     }
 }
 
@@ -212,6 +249,10 @@ public class GunWeapon_Editor : Editor
         {
             script.lifetime = EditorGUILayout.FloatField("Lifetime", script.lifetime);
         }
+
+        script.recoilSpeed = EditorGUILayout.FloatField("Recoil Speed", script.recoilSpeed);
+        script.recoilAngle = EditorGUILayout.FloatField("Recoil Angle", script.recoilAngle);
+        script.recoilResetSpeed = EditorGUILayout.FloatField("Recoil Reset Speed", script.recoilResetSpeed);
 
         if (GUI.changed)
         {

@@ -85,7 +85,7 @@ MonoBehaviour:
   lifetime: 0
   useProjectile: 0
   bulletPrefab: {fileID: 0}
-  gunShot: {fileID: 0}
+  gunShot: {fileID: 8300000, guid: 2cd8139507ff5fc44af6c8f50ea7b934, type: 3}
   shootPoint: {fileID: 6595775008124209715}
   shotCount: 1
   spread: 0
@@ -93,6 +93,9 @@ MonoBehaviour:
   ammoCount: 0
   rateOfFire: 60
   range: 10
+  recoilSpeed: 90
+  recoilAngle: 15
+  recoilResetSpeed: 30
 --- !u!1 &5838082640646162021
 GameObject:
   m_ObjectHideFlags: 0
@@ -120,7 +123,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5838082640646162021}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.068}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6595775008124209715}

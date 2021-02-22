@@ -197,7 +197,7 @@ public class Pawn : MonoBehaviour {
 
     public void OnAnimatorIK(int layerIndex)
     {
-        if (!controller.grounded || useFullAnim || !specialWepScript && !baseWepScript)
+        if (useFullAnim || !specialWepScript && !baseWepScript)
         {
             return; //do nothing
         }

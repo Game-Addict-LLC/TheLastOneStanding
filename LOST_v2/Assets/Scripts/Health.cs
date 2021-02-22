@@ -9,9 +9,10 @@ public class Health : MonoBehaviour, IDamageable<float>
     [HideInInspector] public float currentHealth;
     public float maxHealth;
     public AudioClip deathSound;
+    [HideInInspector] public List<IDamageable<float>> listOfChildScripts;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         currentHealth = maxHealth;
     }
 	
