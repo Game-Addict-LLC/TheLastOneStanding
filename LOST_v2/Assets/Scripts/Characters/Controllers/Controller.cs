@@ -96,10 +96,10 @@ public class Controller : MonoBehaviour
 
         if (grounded)
         {
-            Debug.DrawRay(playerTf.position + playerTf.up, playerTf.up * -1.5f, Color.blue, 0.5f);
+            Debug.DrawRay(playerTf.position + playerTf.up, playerTf.up * -3f, Color.blue, 0.5f);
 
             RaycastHit raycastData;
-            Physics.Raycast(playerTf.position + playerTf.up, playerTf.up * -1, out raycastData, 1.5f, ~objectLayer);
+            Physics.Raycast(playerTf.position + playerTf.up, playerTf.up * -1, out raycastData, 3f, ~objectLayer);
             
             if (!immobile)
             {
@@ -118,10 +118,10 @@ public class Controller : MonoBehaviour
         }
         else
         {
-            Debug.DrawRay(playerTf.position + playerTf.up, playerTf.up * -1.5f, Color.red, 0.5f);
+            Debug.DrawRay(playerTf.position + playerTf.up, playerTf.up * -3f, Color.red, 0.5f);
 
             RaycastHit raycastData;
-            Physics.Raycast(playerTf.position + playerTf.up, playerTf.up * -1, out raycastData, 1.5f, ~objectLayer);
+            Physics.Raycast(playerTf.position + playerTf.up, playerTf.up * -1, out raycastData, 3f, ~objectLayer);
             if (raycastData.collider != null)
             {
                 grounded = true;

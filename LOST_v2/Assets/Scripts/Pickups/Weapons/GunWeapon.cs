@@ -103,6 +103,7 @@ public class GunWeapon : WeaponBase
                     tempObject = Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation * Quaternion.Euler(Random.onUnitSphere * spread));
                     tempObject.layer = gameObject.layer;
                     tempObject.GetComponent<BulletScript>().damage = damage;
+                    tempObject.GetComponent<BulletScript>().parentObject = gameObject;
                     Destroy(tempObject, 5);
                 }
             }

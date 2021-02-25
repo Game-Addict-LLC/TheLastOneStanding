@@ -174,9 +174,18 @@ public class Pawn : MonoBehaviour {
 
     public void UseAbility()
     {
-        baseWepScript.gameObject.SetActive(false);
-        specialWepScript.gameObject.SetActive(false);
-        meleeWepScript.gameObject.SetActive(false);
+        if (baseWepScript != null)
+        {
+            baseWepScript.gameObject.SetActive(false);
+        }
+        if (specialWepScript != null)
+        {
+            specialWepScript.gameObject.SetActive(false);
+        }
+        if (meleeWepScript != null)
+        {
+            meleeWepScript.gameObject.SetActive(false);
+        }
 
         controller.abilityTimer = controller.abilityResetTime;
         GameManager.instance.combatUI.UseAbility(controller);

@@ -26,6 +26,7 @@ public class GrappleCode : MonoBehaviour
 
     public void OnHit(GameObject hitObject)
     {
+        Debug.Log("Hit");
         StopAllCoroutines();
 
         StartCoroutine(dragBack(hitObject));

@@ -6,6 +6,7 @@ public class BulletScript : MonoBehaviour {
 
     public float speed;
     [HideInInspector] public float damage;
+    [HideInInspector] public GameObject parentObject;
 
 	// Use this for initialization
 	void Start () {
@@ -20,7 +21,12 @@ public class BulletScript : MonoBehaviour {
     void OnCollisionEnter(Collision collider)
     {
         GameObject tempObject = collider.gameObject;
-        if (tempObject.layer != gameObject.layer)
+        if (tempObject.GetComponent<BulletScript>() != null)
+        {
+            return;
+        }
+
+        if (tempObject != parentObject)
         {
             if (tempObject.GetComponent<Health>() != null)
             {

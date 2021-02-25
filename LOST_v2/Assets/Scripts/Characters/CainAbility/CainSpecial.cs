@@ -31,6 +31,7 @@ public class CainSpecial : SpecialAttack
 
     public override void OnEnd()
     {
+        Debug.Log("Run End");
         Destroy(hookObject);
         parentPawn.controller.immobile = false;
         base.OnEnd();
