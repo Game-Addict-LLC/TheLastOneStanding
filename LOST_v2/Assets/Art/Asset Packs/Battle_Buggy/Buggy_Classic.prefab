@@ -9508,36 +9508,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!1 &1030839495
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1030839496}
-  m_Layer: 0
-  m_Name: BarrelPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1030839496
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1030839495}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 2, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4584309376401136}
-  m_RootOrder: 31
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1118716250
 GameObject:
   m_ObjectHideFlags: 0
@@ -19056,7 +19026,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4584309376401136}
   - component: {fileID: 2084620665}
-  - component: {fileID: 2084620666}
   - component: {fileID: 2084620668}
   m_Layer: 0
   m_Name: Buggy_Classic
@@ -19107,7 +19076,6 @@ Transform:
   - {fileID: 225354037}
   - {fileID: 1160256205}
   - {fileID: 479650940}
-  - {fileID: 1030839496}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -19130,29 +19098,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &2084620666
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4584309376401137}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae18b7e3a190c7c4d96a576751d1bf36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxVertAngle: 50
-  minVertAngle: 20
-  maxHorizAngle: 135
-  minHorizAngle: 45
-  maxSpeed: 50
-  minSpeed: 30
-  objectToSpawn: {fileID: 7900419699884969137, guid: 8e04578bad3db224aa0926035715352b,
-    type: 3}
-  spawnLocation: {fileID: 1030839496}
-  maxTimeToSpawn: 1
-  minTimeToSpawn: 0.5
 --- !u!65 &2084620668
 BoxCollider:
   m_ObjectHideFlags: 0
