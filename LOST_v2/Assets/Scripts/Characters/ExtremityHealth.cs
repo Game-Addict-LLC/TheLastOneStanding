@@ -9,7 +9,7 @@ public class ExtremityHealth : MonoBehaviour, IDamageable<float>
     // Start is called before the first frame update
     void Start()
     {
-        //parentScript.listOfChildScripts.Add(this);
+        parentScript.listOfChildScripts.Add(this);
     }
 
     // Update is called once per frame

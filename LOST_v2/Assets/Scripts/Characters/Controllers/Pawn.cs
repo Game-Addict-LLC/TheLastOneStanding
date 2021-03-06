@@ -196,12 +196,139 @@ public class Pawn : MonoBehaviour {
         specialAbility.OnUse();
     }
 
+    public void Dismember()
+    {
+        if (useFullAnim == false)
+        {
+            if (controller.opponent.GetComponent<Controller>().health.listOfChildScripts == null) { return; }
+
+            int targetLimb = 0;
+            foreach (IDamageable<float> child in controller.opponent.GetComponent<Controller>().health.listOfChildScripts)
+            {
+                if (child is Health)
+                {
+                    if((child as Health).currentHealth <= 0)
+                    {
+                        if ((int)(child as Health).objectLocation > targetLimb)
+                        {
+                            targetLimb = (int)(child as Health).objectLocation;
+                        }
+                    }
+                }
+            }
+
+            Debug.Log(Vector3.Angle(tf.forward, controller.opponent.transform.position - tf.position));
+
+            if (targetLimb != 0 && Vector3.Distance(tf.position, controller.opponent.transform.position) < 2 && Vector3.Angle(tf.forward, controller.opponent.transform.position - tf.position) < 20)
+            {
+                useFullAnim = true;
+                anim.SetTrigger("Dismember");
+
+                controller.opponent.transform.position = tf.position + tf.forward;
+                controller.opponent.transform.LookAt(tf);
+                controller.opponent.GetComponent<Controller>().immobile = true;
+                controller.immobile = true;
+
+                if (targetLimb % 2 == 0)
+                {
+                    anim.SetBool("TargetRight", true);
+                }
+                else
+                {
+                    anim.SetBool("TargetRight", false);
+                }
+
+                if (targetLimb - 2 > 0)
+                {
+                    anim.SetBool("TargetArm", true);
+                }
+                else
+                {
+                    anim.SetBool("TargetArm", false);
+                }
+
+                if (dominantHand == DominantHand.Right)
+                {
+                    anim.SetBool("UseRightArm", false);
+
+                    foreach (IDamageable<float> child in controller.health.listOfChildScripts)
+                    {
+                        if (child is Health)
+                        {
+                            if ((child as Health).currentHealth <= 0)
+                            {
+                                if ((child as Health).objectLocation == Health.Location.RightArm)
+                                {
+                                    anim.SetBool("UseRightArm", true);
+                                }
+                            }
+                        }
+                    }
+                }
+                else if (dominantHand == DominantHand.Left)
+                {
+                    anim.SetBool("UseRightArm", true);
+
+                    foreach (IDamageable<float> child in controller.health.listOfChildScripts)
+                    {
+                        if (child is Health)
+                        {
+                            if ((child as Health).currentHealth <= 0)
+                            {
+                                if ((child as Health).objectLocation == Health.Location.LeftArm)
+                                {
+                                    anim.SetBool("UseRightArm", false);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if (baseWepScript != null)
+                {
+                    baseWepScript.gameObject.SetActive(false);
+                }
+                if (specialWepScript != null)
+                {
+                    specialWepScript.gameObject.SetActive(false);
+                }
+                if (meleeWepScript != null)
+                {
+                    meleeWepScript.gameObject.SetActive(false);
+                }
+
+                StartCoroutine(Dismemberment());
+            }
+        }
+    }
+
     public void OnCollisionEnter(Collision collider)
     {
         if (collider.gameObject.tag == "Weapon" && LayerMask.LayerToName(gameObject.layer).Contains("Player"))
         {
             OnEquip(collider.gameObject);
         }
+    }
+
+    IEnumerator Dismemberment()
+    {
+        yield return new WaitForSeconds(1.8f);
+        useFullAnim = false;
+        if (specialWepScript != null)
+        {
+            specialWepScript.gameObject.SetActive(false);
+        }
+        else if (baseWepScript != null)
+        {
+            baseWepScript.gameObject.SetActive(false);
+        }
+        else if (meleeWepScript != null)
+        {
+            meleeWepScript.gameObject.SetActive(false);
+        }
+
+        controller.opponent.GetComponent<Controller>().immobile = false;
+        controller.immobile = false;
     }
 
     public void OnAnimatorIK(int layerIndex)

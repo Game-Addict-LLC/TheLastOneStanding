@@ -9,7 +9,9 @@ public class Health : MonoBehaviour, IDamageable<float>
     [HideInInspector] public float currentHealth;
     public float maxHealth;
     public AudioClip deathSound;
-    [HideInInspector] public List<IDamageable<float>> listOfChildScripts;
+    public List<IDamageable<float>> listOfChildScripts = new List<IDamageable<float>>();
+    public enum Location { NA, LeftLeg, RightLeg, LeftArm, RightArm };
+    public Location objectLocation;
 
     // Use this for initialization
     void Start () {

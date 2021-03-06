@@ -9,7 +9,7 @@ AnimatorState:
   m_PrefabAsset: {fileID: 0}
   m_Name: Wheel_Anim
   m_Speed: 1
-  m_CycleOffset: 0
+  m_CycleOffset: 0.25
   m_Transitions: []
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
@@ -20,7 +20,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 78e4ff12a85abe243ac5f048105abf0e, type: 2}
+  m_Motion: {fileID: 7400000, guid: 2b28547670e83ac47a8e883705ad1cb0, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LimbHealth : Health
 {
-    [SerializeField] private PlayerHealth parentScript;
+    public PlayerHealth parentScript;
     [SerializeField] private SkinnedMeshRenderer parentMesh;
     [SerializeField] private Material removableMaterial;
     [SerializeField] private int materialIndex;
@@ -14,7 +14,7 @@ public class LimbHealth : Health
     void Start()
     {
         currentHealth = maxHealth;
-        //parentScript.listOfChildScripts.Add(this);
+        parentScript.listOfChildScripts.Add(this);
     }
 
     // Update is called once per frame

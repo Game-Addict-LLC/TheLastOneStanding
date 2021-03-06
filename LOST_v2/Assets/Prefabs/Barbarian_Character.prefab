@@ -3270,6 +3270,7 @@ MonoBehaviour:
   currentHealth: 0
   maxHealth: 100
   deathSound: {fileID: 0}
+  objectLocation: 0
   parentPawn: {fileID: 0}
 --- !u!1 &3360649376177830625
 GameObject:

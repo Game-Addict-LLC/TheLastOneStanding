@@ -74,7 +74,11 @@ public class Controller : MonoBehaviour
 
         if (!immobile)
         {
-            if (Input.GetButtonDown(playerID + "LockOn") && ableToLockOn == true)
+            if (Input.GetButtonDown(playerID + "Dismember"))
+            {
+                pawn.Dismember();
+            }
+            else if (Input.GetButtonDown(playerID + "LockOn") && ableToLockOn == true)
             {
                 isLockedOn = !isLockedOn;
 
