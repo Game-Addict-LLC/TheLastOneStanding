@@ -11,7 +11,7 @@ public class SetFinisherActive : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        finisherObject.SetActive(false);
     }
 
     // Update is called once per frame

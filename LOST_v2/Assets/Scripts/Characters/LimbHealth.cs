@@ -5,9 +5,11 @@ using UnityEngine;
 public class LimbHealth : Health
 {
     public PlayerHealth parentScript;
+    [SerializeField] private bool meshBased;
     [SerializeField] private SkinnedMeshRenderer parentMesh;
     [SerializeField] private Material removableMaterial;
     [SerializeField] private int materialIndex;
+    [HideInInspector] public bool dismembered = false;
 
 
     // Start is called before the first frame update
@@ -41,6 +43,31 @@ public class LimbHealth : Health
     public override void OnDeath()
     {
         StartCoroutine(RemovalState());
+    }
+
+    public void OnDismember()
+    {
+        if (meshBased)
+        {
+            parentMesh.enabled = false;
+        }
+        else
+        {
+            Material[] matArray = parentMesh.materials;
+            matArray[materialIndex] = removableMaterial;
+            parentMesh.materials = matArray;
+        }
+
+        GetComponent<Collider>().enabled = false;
+        foreach (IDamageable<float> child in listOfChildScripts)
+        {
+            if ((child as Component).gameObject.GetComponent<Collider>() != null)
+            {
+                (child as Component).gameObject.GetComponent<Collider>().enabled = false;
+            }
+        }
+
+        dismembered = true;
     }
 
     IEnumerator RemovalState()

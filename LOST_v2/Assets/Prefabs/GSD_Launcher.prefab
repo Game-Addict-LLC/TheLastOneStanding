@@ -147,7 +147,7 @@ MonoBehaviour:
   shotCount: 1
   spread: 5
   infiniteAmmo: 0
-  ammoCount: 5
+  ammoCount: 1
   rateOfFire: 30
   range: 0
   recoilSpeed: 360

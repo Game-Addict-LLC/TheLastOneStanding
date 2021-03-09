@@ -13346,6 +13346,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activateFinisher: 106
   finisherObject: {fileID: 1626559421}
+  objectsToAnimate: []
 --- !u!1001 &1293258225
 PrefabInstance:
   m_ObjectHideFlags: 0

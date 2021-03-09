@@ -205,26 +205,24 @@ public class Pawn : MonoBehaviour {
             int targetLimb = 0;
             foreach (IDamageable<float> child in controller.opponent.GetComponent<Controller>().health.listOfChildScripts)
             {
-                if (child is Health)
+                if (child is LimbHealth)
                 {
-                    if((child as Health).currentHealth <= 0)
+                    if ((int)(child as LimbHealth).objectLocation > targetLimb)
                     {
-                        if ((int)(child as Health).objectLocation > targetLimb)
+                        if ((child as LimbHealth).currentHealth <= 0 && (child as LimbHealth).dismembered == false)
                         {
-                            targetLimb = (int)(child as Health).objectLocation;
+                            targetLimb = (int)(child as LimbHealth).objectLocation;
                         }
                     }
                 }
             }
-
-            Debug.Log(Vector3.Angle(tf.forward, controller.opponent.transform.position - tf.position));
 
             if (targetLimb != 0 && Vector3.Distance(tf.position, controller.opponent.transform.position) < 2 && Vector3.Angle(tf.forward, controller.opponent.transform.position - tf.position) < 20)
             {
                 useFullAnim = true;
                 anim.SetTrigger("Dismember");
 
-                controller.opponent.transform.position = tf.position + tf.forward;
+                controller.opponent.transform.position = tf.position + (tf.forward * 0.7f) + (tf.right * -0.2f);
                 controller.opponent.transform.LookAt(tf);
                 controller.opponent.GetComponent<Controller>().immobile = true;
                 controller.immobile = true;
@@ -297,7 +295,22 @@ public class Pawn : MonoBehaviour {
                     meleeWepScript.gameObject.SetActive(false);
                 }
 
-                StartCoroutine(Dismemberment());
+                StartCoroutine(Dismemberment(targetLimb));
+            }
+        }
+    }
+
+    public void GetDismembered(float limbIndex)
+    {
+        Health.Location limbToDismember = (Health.Location)limbIndex;
+        foreach (IDamageable<float> child in controller.health.listOfChildScripts)
+        {
+            if (child is LimbHealth)
+            {
+                if ((int)(child as LimbHealth).objectLocation == limbIndex)
+                {
+                    (child as LimbHealth).OnDismember();
+                }
             }
         }
     }
@@ -310,9 +323,15 @@ public class Pawn : MonoBehaviour {
         }
     }
 
-    IEnumerator Dismemberment()
+    IEnumerator Dismemberment(int targetLimb)
     {
-        yield return new WaitForSeconds(1.8f);
+        yield return new WaitForSeconds(1);
+        if (controller.opponent.GetComponent<Pawn>() != null)
+        {
+            controller.opponent.GetComponent<Pawn>().GetDismembered(targetLimb);
+        }
+
+        yield return new WaitForSeconds(0.8f);
         useFullAnim = false;
         if (specialWepScript != null)
         {

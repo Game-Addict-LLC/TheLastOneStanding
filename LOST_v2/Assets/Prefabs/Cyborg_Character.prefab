@@ -61,9 +61,11 @@ MonoBehaviour:
   deathSound: {fileID: 0}
   objectLocation: 2
   parentScript: {fileID: 694472495}
+  meshBased: 1
   parentMesh: {fileID: 1984361331213749727}
   removableMaterial: {fileID: 2100000, guid: 6c8bf8c9fad353347870091e4bcf3d7a, type: 2}
   materialIndex: 0
+  dismembered: 0
 --- !u!136 &460339033
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -122,9 +124,11 @@ MonoBehaviour:
   deathSound: {fileID: 0}
   objectLocation: 4
   parentScript: {fileID: 694472495}
+  meshBased: 1
   parentMesh: {fileID: 2533027854781697635}
   removableMaterial: {fileID: 2100000, guid: 6c8bf8c9fad353347870091e4bcf3d7a, type: 2}
   materialIndex: 0
+  dismembered: 0
 --- !u!1 &3360858862309901641
 GameObject:
   m_ObjectHideFlags: 0
@@ -187,7 +191,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3360858862309901641}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 66592eb9caeed9743857ae3524bd509b, type: 3}
+  m_Avatar: {fileID: 9000000, guid: dae1b795d963c814b96d0dd5553e0afb, type: 3}
   m_Controller: {fileID: 9100000, guid: 1416025ec1e694e49b019d976e4b2ecf, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
@@ -371,9 +375,11 @@ MonoBehaviour:
   deathSound: {fileID: 0}
   objectLocation: 1
   parentScript: {fileID: 694472495}
+  meshBased: 1
   parentMesh: {fileID: 3613645212085601521}
   removableMaterial: {fileID: 2100000, guid: 6c8bf8c9fad353347870091e4bcf3d7a, type: 2}
   materialIndex: 0
+  dismembered: 0
 --- !u!136 &111239884
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -432,9 +438,11 @@ MonoBehaviour:
   deathSound: {fileID: 0}
   objectLocation: 3
   parentScript: {fileID: 694472495}
+  meshBased: 1
   parentMesh: {fileID: 1414903543238704196}
   removableMaterial: {fileID: 2100000, guid: 6c8bf8c9fad353347870091e4bcf3d7a, type: 2}
   materialIndex: 0
+  dismembered: 0
 --- !u!136 &215770822
 CapsuleCollider:
   m_ObjectHideFlags: 0
