@@ -220,11 +220,13 @@ public class Pawn : MonoBehaviour {
             if (targetLimb != 0 && Vector3.Distance(tf.position, controller.opponent.transform.position) < 2 && Vector3.Angle(tf.forward, controller.opponent.transform.position - tf.position) < 20)
             {
                 useFullAnim = true;
+                GetComponent<Rigidbody>().isKinematic = true;
                 anim.SetTrigger("Dismember");
 
-                controller.opponent.transform.position = tf.position + (tf.forward * 0.7f) + (tf.right * -0.2f);
+                controller.opponent.transform.position = tf.position + (tf.forward * 0.7f) + (tf.right * 0.2f);
                 controller.opponent.transform.LookAt(tf);
                 controller.opponent.GetComponent<Controller>().immobile = true;
+                controller.opponent.GetComponent<Rigidbody>().isKinematic = true;
                 controller.immobile = true;
 
                 if (targetLimb % 2 == 0)
@@ -253,7 +255,7 @@ public class Pawn : MonoBehaviour {
                     {
                         if (child is Health)
                         {
-                            if ((child as Health).currentHealth <= 0)
+                            if ((child as Health).currentHealth >= 0)
                             {
                                 if ((child as Health).objectLocation == Health.Location.RightArm)
                                 {
@@ -271,7 +273,7 @@ public class Pawn : MonoBehaviour {
                     {
                         if (child is Health)
                         {
-                            if ((child as Health).currentHealth <= 0)
+                            if ((child as Health).currentHealth >= 0)
                             {
                                 if ((child as Health).objectLocation == Health.Location.LeftArm)
                                 {
@@ -300,7 +302,7 @@ public class Pawn : MonoBehaviour {
         }
     }
 
-    public void GetDismembered(float limbIndex)
+    public LimbHealth GetDismembered(float limbIndex)
     {
         Health.Location limbToDismember = (Health.Location)limbIndex;
         foreach (IDamageable<float> child in controller.health.listOfChildScripts)
@@ -310,9 +312,12 @@ public class Pawn : MonoBehaviour {
                 if ((int)(child as LimbHealth).objectLocation == limbIndex)
                 {
                     (child as LimbHealth).OnDismember();
+                    return child as LimbHealth;
                 }
             }
         }
+
+        return null;
     }
 
     public void OnCollisionEnter(Collision collider)
@@ -328,26 +333,45 @@ public class Pawn : MonoBehaviour {
         yield return new WaitForSeconds(1);
         if (controller.opponent.GetComponent<Pawn>() != null)
         {
-            controller.opponent.GetComponent<Pawn>().GetDismembered(targetLimb);
+            LimbHealth tempScript;
+            tempScript = controller.opponent.GetComponent<Pawn>().GetDismembered(targetLimb);
+
+            if (tempScript != null)
+            {
+                if (anim.GetBool("UseRightHand") == true)
+                {
+                    GameObject tempLimb = Instantiate(tempScript.limbToSpawn);
+                    tempLimb.transform.position = controller.opponent.transform.position;
+                    tempLimb.transform.rotation = controller.opponent.transform.rotation;
+                }
+                else if (anim.GetBool("UseRightHand") == false)
+                {
+                    GameObject tempLimb = Instantiate(tempScript.limbToSpawn);
+                    tempLimb.transform.position = controller.opponent.transform.position;
+                    tempLimb.transform.rotation = controller.opponent.transform.rotation;
+                }
+            }
         }
 
         yield return new WaitForSeconds(0.8f);
         useFullAnim = false;
         if (specialWepScript != null)
         {
-            specialWepScript.gameObject.SetActive(false);
+            specialWepScript.gameObject.SetActive(true);
         }
         else if (baseWepScript != null)
         {
-            baseWepScript.gameObject.SetActive(false);
+            baseWepScript.gameObject.SetActive(true);
         }
         else if (meleeWepScript != null)
         {
-            meleeWepScript.gameObject.SetActive(false);
+            meleeWepScript.gameObject.SetActive(true);
         }
 
         controller.opponent.GetComponent<Controller>().immobile = false;
+        controller.opponent.GetComponent<Rigidbody>().isKinematic = false;
         controller.immobile = false;
+        GetComponent<Rigidbody>().isKinematic = false;
     }
 
     public void OnAnimatorIK(int layerIndex)

@@ -9,8 +9,8 @@ public class LimbHealth : Health
     [SerializeField] private SkinnedMeshRenderer parentMesh;
     [SerializeField] private Material removableMaterial;
     [SerializeField] private int materialIndex;
+    public GameObject limbToSpawn;
     [HideInInspector] public bool dismembered = false;
-
 
     // Start is called before the first frame update
     void Start()
