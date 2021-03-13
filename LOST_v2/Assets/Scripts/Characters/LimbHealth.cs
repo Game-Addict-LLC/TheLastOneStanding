@@ -6,7 +6,7 @@ public class LimbHealth : Health
 {
     public PlayerHealth parentScript;
     [SerializeField] private bool meshBased;
-    [SerializeField] private SkinnedMeshRenderer parentMesh;
+    [SerializeField] private List<SkinnedMeshRenderer> parentMeshes;
     [SerializeField] private Material removableMaterial;
     [SerializeField] private int materialIndex;
     public GameObject limbToSpawn;
@@ -49,13 +49,21 @@ public class LimbHealth : Health
     {
         if (meshBased)
         {
-            parentMesh.enabled = false;
+            foreach (SkinnedMeshRenderer mesh in parentMeshes)
+            {
+                mesh.enabled = false;
+            }
         }
         else
         {
-            Material[] matArray = parentMesh.materials;
-            matArray[materialIndex] = removableMaterial;
-            parentMesh.materials = matArray;
+            Material[] matArray;
+
+            foreach (SkinnedMeshRenderer mesh in parentMeshes)
+            {
+                matArray = mesh.materials;
+                matArray[materialIndex] = removableMaterial;
+                mesh.materials = matArray;
+            }
         }
 
         GetComponent<Collider>().enabled = false;
@@ -75,17 +83,24 @@ public class LimbHealth : Health
         parentScript.gameObject.GetComponent<Animator>().SetBool("Stunned", true);
         StartCoroutine(parentScript.HitStun(3));
 
-        Material tempMaterial;
-        Material[] matArray = parentMesh.materials;
-        tempMaterial = matArray[materialIndex];
-        matArray[materialIndex] = removableMaterial;
-        parentMesh.materials = matArray;
+        Material tempMaterial = null;
+        Material[] matArray = null;
+
+        foreach (SkinnedMeshRenderer mesh in parentMeshes)
+        {
+            matArray = mesh.materials;
+            tempMaterial = matArray[materialIndex];
+            matArray[materialIndex] = removableMaterial;
+            mesh.materials = matArray;
+        }
 
         yield return new WaitForSeconds(3);
 
-        matArray[materialIndex] = tempMaterial;
-        parentMesh.materials = matArray;
-
+        foreach (SkinnedMeshRenderer mesh in parentMeshes)
+        {
+            matArray[materialIndex] = tempMaterial;
+            mesh.materials = matArray;
+        }
         parentScript.gameObject.GetComponent<Animator>().SetBool("Stunned", false);
     }
 }

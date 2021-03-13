@@ -207,7 +207,7 @@ public class Pawn : MonoBehaviour {
             {
                 if (child is LimbHealth)
                 {
-                    if ((int)(child as LimbHealth).objectLocation > targetLimb)
+                    if ((int)(child as LimbHealth).objectLocation > targetLimb && (int)(child as LimbHealth).objectLocation != 3 && (int)(child as LimbHealth).objectLocation != 2) //Remove != statements
                     {
                         if ((child as LimbHealth).currentHealth <= 0 && (child as LimbHealth).dismembered == false)
                         {

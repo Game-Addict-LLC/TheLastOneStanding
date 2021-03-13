@@ -187,7 +187,7 @@ MonoBehaviour:
   objectLocation: 2
   parentScript: {fileID: 1261628636414944}
   meshBased: 0
-  parentMesh: {fileID: 3408437888318825503}
+  parentMeshes: []
   removableMaterial: {fileID: 2100000, guid: 6c8bf8c9fad353347870091e4bcf3d7a, type: 2}
   materialIndex: 0
   limbToSpawn: {fileID: 0}
@@ -736,7 +736,7 @@ MonoBehaviour:
   objectLocation: 4
   parentScript: {fileID: 1261628636414944}
   meshBased: 0
-  parentMesh: {fileID: 3408437888318825503}
+  parentMeshes: []
   removableMaterial: {fileID: 2100000, guid: 6c8bf8c9fad353347870091e4bcf3d7a, type: 2}
   materialIndex: 0
   limbToSpawn: {fileID: 0}
@@ -2403,7 +2403,7 @@ MonoBehaviour:
   objectLocation: 1
   parentScript: {fileID: 1261628636414944}
   meshBased: 0
-  parentMesh: {fileID: 3408437888318825503}
+  parentMeshes: []
   removableMaterial: {fileID: 2100000, guid: 6c8bf8c9fad353347870091e4bcf3d7a, type: 2}
   materialIndex: 0
   limbToSpawn: {fileID: 0}
@@ -3113,7 +3113,7 @@ MonoBehaviour:
   objectLocation: 3
   parentScript: {fileID: 1261628636414944}
   meshBased: 0
-  parentMesh: {fileID: 3408437888318825503}
+  parentMeshes: []
   removableMaterial: {fileID: 2100000, guid: 6c8bf8c9fad353347870091e4bcf3d7a, type: 2}
   materialIndex: 0
   limbToSpawn: {fileID: 0}
@@ -3256,8 +3256,8 @@ GameObject:
   - component: {fileID: 1261628636414948}
   - component: {fileID: 1261628636414947}
   - component: {fileID: 1261628636414946}
-  - component: {fileID: 1261628636414945}
   - component: {fileID: 1261628636414944}
+  - component: {fileID: 1209058959}
   m_Layer: 10
   m_Name: Barbarian_Character
   m_TagString: Untagged
@@ -3316,7 +3316,7 @@ Animator:
   m_GameObject: {fileID: 3360646963012080937}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 5d3a4d7e09b44414eb131bf09a6ed74d, type: 3}
-  m_Controller: {fileID: 9100000, guid: 1416025ec1e694e49b019d976e4b2ecf, type: 2}
+  m_Controller: {fileID: 9100000, guid: 2a9721cbc01605b4683cd36d168a2a00, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -3408,7 +3408,7 @@ MonoBehaviour:
   meleeWeapon: {fileID: 1058853811396252469, guid: aa9a3b40b4cf96949999405a44fc0a23,
     type: 3}
   meleeWepScript: {fileID: 0}
-  specialAbility: {fileID: 1261628636414945}
+  specialAbility: {fileID: 1209058959}
   weaponPoint: {fileID: 1587640474}
   dominantHand: 1
   rightTarget:
@@ -3420,24 +3420,6 @@ MonoBehaviour:
   - {fileID: 0}
   leftAnchor: {fileID: 3361987108441432661}
   useFullAnim: 0
---- !u!114 &1261628636414945
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3360646963012080937}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c057b0ec19f7b54ea104269e36745c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parentPawn: {fileID: 1261628636414946}
-  hookPrefab: {fileID: 3284936683043544304, guid: 9db6be6b791741249946aa83b8864f9d,
-    type: 3}
-  spawnLocation: {fileID: 3360051052632809197}
-  range: 5
-  hookSpeed: 15
 --- !u!114 &1261628636414944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3455,6 +3437,22 @@ MonoBehaviour:
   deathSound: {fileID: 0}
   objectLocation: 0
   parentPawn: {fileID: 0}
+--- !u!114 &1209058959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3360646963012080937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af19c6ab2ac389944850500bab64921d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentPawn: {fileID: 1261628636414946}
+  rageEffect: {fileID: 2127124472902696111, guid: b3d35c1a066a3454981fab4760aac338,
+    type: 3}
+  runSpeed: 5
 --- !u!1 &3360649376177830625
 GameObject:
   m_ObjectHideFlags: 0
