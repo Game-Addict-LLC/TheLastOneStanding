@@ -4793,6 +4793,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   damage: 0
+  parentObject: {fileID: 0}
 --- !u!1001 &1072872746662010310
 PrefabInstance:
   m_ObjectHideFlags: 0

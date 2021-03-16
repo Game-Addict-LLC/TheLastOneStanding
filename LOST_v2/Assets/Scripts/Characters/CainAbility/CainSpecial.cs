@@ -39,7 +39,7 @@ public class CainSpecial : SpecialAttack
 
     public IEnumerator specialAttack()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.85f);
         hookObject = Instantiate(hookPrefab, spawnLocation.transform.position, gameObject.transform.rotation);
         hookObject.GetComponent<GrappleCode>().parentAttack = this;
         yield return null;

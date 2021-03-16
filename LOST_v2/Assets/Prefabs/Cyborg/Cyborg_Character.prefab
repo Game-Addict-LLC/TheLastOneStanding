@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 665588280}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.16, y: 1.538, z: 0.268}
+  m_LocalPosition: {x: 0.16, y: 1.538, z: 0.40200007}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5242471375151073050}
@@ -120,7 +120,7 @@ GameObject:
   m_Layer: 0
   m_Name: FirePoint
   m_TagString: Untagged
-  m_Icon: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -196,7 +196,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3360858862309901641}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.498, y: 0, z: -0.085}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1477785002800812116}
@@ -303,7 +303,7 @@ MonoBehaviour:
   baseWepScript: {fileID: 0}
   specialWeapon: {fileID: 0}
   specialWepScript: {fileID: 0}
-  meleeWeapon: {fileID: 1058853811396252469, guid: aa9a3b40b4cf96949999405a44fc0a23,
+  meleeWeapon: {fileID: 2291566016985135161, guid: 81df7508e627a8d408ffd52dec7e801b,
     type: 3}
   meleeWepScript: {fileID: 0}
   specialAbility: {fileID: 51502770}

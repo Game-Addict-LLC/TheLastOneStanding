@@ -176,15 +176,15 @@ public class Pawn : MonoBehaviour {
     {
         if (baseWepScript != null)
         {
-            baseWepScript.gameObject.SetActive(false);
+            baseWepScript.Deactivate();
         }
         if (specialWepScript != null)
         {
-            specialWepScript.gameObject.SetActive(false);
+            specialWepScript.Deactivate();
         }
         if (meleeWepScript != null)
         {
-            meleeWepScript.gameObject.SetActive(false);
+            meleeWepScript.Deactivate();
         }
 
         controller.abilityTimer = controller.abilityResetTime;
@@ -223,7 +223,7 @@ public class Pawn : MonoBehaviour {
                 GetComponent<Rigidbody>().isKinematic = true;
                 anim.SetTrigger("Dismember");
 
-                controller.opponent.transform.position = tf.position + (tf.forward * 0.7f) + (tf.right * 0.2f);
+                controller.opponent.transform.position = tf.position + (tf.forward * 0.7f) /*+ (tf.right * 0.2f)*/;
                 controller.opponent.transform.LookAt(tf);
                 controller.opponent.GetComponent<Controller>().immobile = true;
                 controller.opponent.GetComponent<Rigidbody>().isKinematic = true;
@@ -286,15 +286,15 @@ public class Pawn : MonoBehaviour {
 
                 if (baseWepScript != null)
                 {
-                    baseWepScript.gameObject.SetActive(false);
+                    baseWepScript.Deactivate();
                 }
                 if (specialWepScript != null)
                 {
-                    specialWepScript.gameObject.SetActive(false);
+                    specialWepScript.Deactivate();
                 }
                 if (meleeWepScript != null)
                 {
-                    meleeWepScript.gameObject.SetActive(false);
+                    meleeWepScript.Deactivate();
                 }
 
                 StartCoroutine(Dismemberment(targetLimb));
@@ -330,6 +330,8 @@ public class Pawn : MonoBehaviour {
 
     IEnumerator Dismemberment(int targetLimb)
     {
+        controller.opponent.GetComponent<Pawn>().anim.SetTrigger("GetDismembered");
+
         yield return new WaitForSeconds(1);
         if (controller.opponent.GetComponent<Pawn>() != null)
         {

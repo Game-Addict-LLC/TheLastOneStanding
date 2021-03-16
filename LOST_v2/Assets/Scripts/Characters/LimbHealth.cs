@@ -80,7 +80,7 @@ public class LimbHealth : Health
 
     IEnumerator RemovalState()
     {
-        parentScript.gameObject.GetComponent<Animator>().SetBool("Stunned", true);
+        //parentScript.gameObject.GetComponent<Animator>().SetBool("Stunned", true);
         StartCoroutine(parentScript.HitStun(3));
 
         Material tempMaterial = null;
@@ -101,6 +101,6 @@ public class LimbHealth : Health
             matArray[materialIndex] = tempMaterial;
             mesh.materials = matArray;
         }
-        parentScript.gameObject.GetComponent<Animator>().SetBool("Stunned", false);
+        //parentScript.gameObject.GetComponent<Animator>().SetBool("Stunned", false);
     }
 }

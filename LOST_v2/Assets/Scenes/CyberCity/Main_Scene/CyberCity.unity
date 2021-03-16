@@ -8503,6 +8503,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3617581701150811008, guid: 8c4bcfd0de561794e9572e4875686646,
+        type: 3}
+      propertyPath: field of view
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 3617581701150811009, guid: 8c4bcfd0de561794e9572e4875686646,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -65164,6 +65169,11 @@ PrefabInstance:
       propertyPath: m_NormalizedViewPortRect.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 715366123197202060, guid: 212f94b8d82e7a648b7dd306478c7239,
+        type: 3}
+      propertyPath: field of view
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 715366123197202062, guid: 212f94b8d82e7a648b7dd306478c7239,
         type: 3}
       propertyPath: m_Name
@@ -65174,12 +65184,6 @@ PrefabInstance:
 --- !u!1 &1644211646 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 715366123197202062, guid: 212f94b8d82e7a648b7dd306478c7239,
-    type: 3}
-  m_PrefabInstance: {fileID: 1644211645}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1644211647 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 715366123197202059, guid: 212f94b8d82e7a648b7dd306478c7239,
     type: 3}
   m_PrefabInstance: {fileID: 1644211645}
   m_PrefabAsset: {fileID: 0}
@@ -65195,7 +65199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volumeTrigger: {fileID: 1644211647}
+  volumeTrigger: {fileID: 247883264}
   volumeLayer:
     serializedVersion: 2
     m_Bits: 2048

@@ -40,6 +40,11 @@ public class WeaponBase : MonoBehaviour {
         
     }
 
+    public virtual void Deactivate()
+    {
+        gameObject.SetActive(false);
+    }
+
     public virtual void UpdateAmmoText(Pawn pawn)
     {
 

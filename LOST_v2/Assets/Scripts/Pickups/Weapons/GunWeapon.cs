@@ -10,6 +10,7 @@ public class GunWeapon : WeaponBase
 {
     public bool useProjectile;
     public GameObject bulletPrefab;
+    public GameObject shotEffect;
     public AudioClip gunShot;
     public Transform shootPoint;
 
@@ -109,6 +110,7 @@ public class GunWeapon : WeaponBase
             }
             else
             {
+                GameObject tempObject;
                 for (int i = 0; i < shotCount; i++)
                 {
                     // Spawn a projectile
@@ -122,6 +124,28 @@ public class GunWeapon : WeaponBase
                             {
                                 raycastData.collider.GetComponent<Health>().TakeDamage(damage);
                             }
+
+                            if (shotEffect != null)
+                            {
+                                tempObject = Instantiate(shotEffect, Vector3.zero, Quaternion.identity);
+                                StartCoroutine(MakeShotEffect(tempObject, shootPoint.transform.position, raycastData.point));
+                            }
+                        }
+                        else
+                        {
+                            if (shotEffect != null)
+                            {
+                                tempObject = Instantiate(shotEffect, Vector3.zero, Quaternion.identity);
+                                StartCoroutine(MakeShotEffect(tempObject, shootPoint.transform.position, shootPoint.transform.position + (shootPoint.transform.forward * range)));
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (shotEffect != null)
+                        {
+                            tempObject = Instantiate(shotEffect, Vector3.zero, Quaternion.identity);
+                            StartCoroutine(MakeShotEffect(tempObject, shootPoint.transform.position, shootPoint.transform.position + (shootPoint.transform.forward * range)));
                         }
                     }
                     Debug.DrawRay(shootPoint.position, shootPoint.forward * range, Color.red, 5);
@@ -162,6 +186,31 @@ public class GunWeapon : WeaponBase
         GameManager.instance.combatUI.EquipWeapon(this, pawn.controller.playerID);
     }
 
+    public override void Deactivate()
+    {
+        StopAllCoroutines();
+        transform.localRotation = Quaternion.identity;
+        base.Deactivate();
+    }
+
+    IEnumerator MakeShotEffect(GameObject obj, Vector3 targetOne, Vector3 targetTwo)
+    {
+        Debug.Log("Shot effect");
+        obj.GetComponent<LineRenderer>().SetPosition(0, targetOne);
+        obj.GetComponent<LineRenderer>().SetPosition(1, targetTwo);
+        Destroy(obj, 0.5f);
+
+        Color tempStartColor = obj.GetComponent<LineRenderer>().startColor;
+        Color tempEndColor = obj.GetComponent<LineRenderer>().endColor;
+
+        for (float i = 1; i > 0; i -= 2 * Time.deltaTime)
+        {
+            obj.GetComponent<LineRenderer>().startColor = new Color(tempStartColor.r, tempStartColor.g, tempStartColor.b, i);
+            obj.GetComponent<LineRenderer>().endColor = new Color(tempEndColor.r, tempEndColor.g, tempEndColor.b, i);
+            yield return null;
+        }
+    }
+
     IEnumerator Recoil()
     {
         Vector3 tempRot = new Vector3(recoilAngle * -1, 0, 0);
@@ -187,7 +236,7 @@ public class GunWeapon : WeaponBase
             transform.localRotation = Quaternion.Euler(Quaternion.Slerp(startingRot, Quaternion.Euler(tempRot), 1 - (tempTimer / (recoilAngle / recoilResetSpeed))).eulerAngles.x, 0, 0);
             yield return null;
         }
-        transform.localRotation = Quaternion.Euler(0, 0, 0);
+        transform.localRotation = Quaternion.identity;
     }
 }
 
@@ -210,6 +259,8 @@ public class GunWeapon_Editor : Editor
         }
 
         script.gunShot = EditorGUILayout.ObjectField("Shot Audio", script.gunShot, typeof(AudioClip), true) as AudioClip;
+
+        script.shotEffect = EditorGUILayout.ObjectField("Bullet Effect", script.shotEffect, typeof(GameObject), true) as GameObject;
 
         script.useLeftHand = EditorGUILayout.Toggle("Use Left Hand", script.useLeftHand);
 

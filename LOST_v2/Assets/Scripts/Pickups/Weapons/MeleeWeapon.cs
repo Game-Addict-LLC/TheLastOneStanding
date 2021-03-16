@@ -43,11 +43,11 @@ public class MeleeWeapon : WeaponBase
     {
         if (parentPawn.specialWepScript != null)
         {
-            parentPawn.specialWepScript.gameObject.SetActive(false);
+            parentPawn.specialWepScript.Deactivate();
         }
         else if (parentPawn.baseWepScript != null)
         {
-            parentPawn.baseWepScript.gameObject.SetActive(false);
+            parentPawn.baseWepScript.Deactivate();
         }
 
         StopAllCoroutines();
@@ -63,6 +63,11 @@ public class MeleeWeapon : WeaponBase
             hitThisAttack = true;
             collider.GetComponent<Health>().TakeDamage(damage);
         }
+    }
+
+    public override void Deactivate()
+    {
+        base.Deactivate();
     }
 
     IEnumerator comboTimer(float pressDelay)

@@ -85,6 +85,8 @@ MonoBehaviour:
   lifetime: 0
   useProjectile: 0
   bulletPrefab: {fileID: 0}
+  shotEffect: {fileID: 5545647539770968721, guid: ebb1431fe1f88cd499cc1e27757cdfd9,
+    type: 3}
   gunShot: {fileID: 8300000, guid: 2cd8139507ff5fc44af6c8f50ea7b934, type: 3}
   shootPoint: {fileID: 6595775008124209715}
   shotCount: 1
