@@ -55,7 +55,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4975510985499460117}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.78083, y: 1.374, z: 1.4335911}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4627256845897228385}
@@ -83,6 +83,7 @@ MonoBehaviour:
   damage: 10
   usesLifetime: 0
   lifetime: 0
+  weaponType: 1
   useProjectile: 0
   bulletPrefab: {fileID: 0}
   shotEffect: {fileID: 5545647539770968721, guid: ebb1431fe1f88cd499cc1e27757cdfd9,
@@ -224,7 +225,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7581331225802750876}
   m_LocalRotation: {x: -0.63885623, y: 0.7597009, z: -0.12021946, w: 0.016265143}
-  m_LocalPosition: {x: -0.052, y: -0.0416, z: 0.1532}
+  m_LocalPosition: {x: 0, y: -0.071, z: 0.093}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4627256845897228385}

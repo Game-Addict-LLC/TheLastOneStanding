@@ -22,8 +22,8 @@ public class PlayerHealth : Health
     {
         if (gameObject.GetComponent<Animator>())
         {
-            //gameObject.GetComponent<Animator>().SetTrigger("OnHit");
-
+            gameObject.GetComponent<Animator>().SetTrigger("OnHit");
+            
             if (parentPawn != null)
             {
                 StopAllCoroutines();

@@ -139,9 +139,11 @@ MonoBehaviour:
   damage: 50
   usesLifetime: 1
   lifetime: 20
+  weaponType: 2
   useProjectile: 1
   bulletPrefab: {fileID: 1072872746662042470, guid: ab8712c4013b52f4192efe25141200a4,
     type: 3}
+  shotEffect: {fileID: 0}
   gunShot: {fileID: 8300000, guid: 11995ae0ec494ce4396d15d27c341b8b, type: 3}
   shootPoint: {fileID: 9015480220028912624}
   shotCount: 1

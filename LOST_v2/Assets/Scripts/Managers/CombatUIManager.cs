@@ -325,10 +325,6 @@ public class CombatUIManager : MonoBehaviour
             yield return null;
         }
 
-        if (weaponScript != null)
-        {
-            Destroy(weaponScript.gameObject);
-        }
         targetImage.transform.parent.gameObject.SetActive(false);
     }
 

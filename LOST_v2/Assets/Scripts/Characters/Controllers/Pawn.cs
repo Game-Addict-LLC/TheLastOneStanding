@@ -51,8 +51,8 @@ public class Pawn : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-	}
+        
+    }
 
     public void StartEquip()
     {
@@ -69,9 +69,9 @@ public class Pawn : MonoBehaviour {
             tempWeapon = Instantiate(baseWeapon);
 
             tempWeapon.layer = gameObject.layer;
-            tempWeapon.transform.parent = weaponPoint;
-            tempWeapon.transform.position = weaponPoint.transform.position;
-            tempWeapon.transform.rotation = weaponPoint.transform.rotation;
+            tempWeapon.transform.parent = rightAnchor;
+            tempWeapon.transform.position = rightAnchor.transform.position + (tempWeapon.transform.position - tempWeapon.GetComponent<GunWeapon>().rightHandTf.position);
+            tempWeapon.transform.rotation = rightAnchor.transform.rotation;
 
             if (tempWeapon.GetComponent<GunWeapon>())
             {
@@ -84,9 +84,9 @@ public class Pawn : MonoBehaviour {
             tempWeapon = Instantiate(specialWeapon);
 
             tempWeapon.layer = gameObject.layer;
-            tempWeapon.transform.parent = weaponPoint;
-            tempWeapon.transform.position = weaponPoint.transform.position;
-            tempWeapon.transform.rotation = weaponPoint.transform.rotation;
+            tempWeapon.transform.parent = rightAnchor;
+            tempWeapon.transform.position = rightAnchor.transform.position + (tempWeapon.transform.position - tempWeapon.GetComponent<GunWeapon>().rightHandTf.position);
+            tempWeapon.transform.rotation = rightAnchor.transform.rotation;
 
             if (tempWeapon.GetComponent<GunWeapon>())
             {
@@ -159,15 +159,20 @@ public class Pawn : MonoBehaviour {
         if (newWeapon.GetComponent<GunWeapon>().equipped == false)
         {
             controller.buttonReset = true;
-            Destroy(specialWeapon);
+
+            if (specialWepScript != null)
+            {
+                Destroy(specialWepScript.gameObject);
+            }
+
             rightTarget[1] = null;
             leftTarget[1] = null;
-            specialWeapon = newWeapon;
-            specialWeapon.layer = gameObject.layer;
-            specialWeapon.transform.parent = weaponPoint;
-            specialWeapon.transform.position = weaponPoint.transform.position;
-            specialWeapon.transform.rotation = weaponPoint.transform.rotation;
-            specialWepScript = specialWeapon.GetComponent<GunWeapon>();
+            GameObject tempWeapon = newWeapon;
+            tempWeapon.layer = gameObject.layer;
+            tempWeapon.transform.parent = rightAnchor;
+            tempWeapon.transform.position = rightAnchor.transform.position + (tempWeapon.transform.position - tempWeapon.GetComponent<GunWeapon>().rightHandTf.position);
+            tempWeapon.transform.rotation = rightAnchor.transform.rotation;
+            specialWepScript = tempWeapon.GetComponent<GunWeapon>();
             specialWepScript.OnEquip(this);
         }
     }
@@ -378,25 +383,25 @@ public class Pawn : MonoBehaviour {
 
     public void OnAnimatorIK(int layerIndex)
     {
-        if (useFullAnim || !specialWepScript && !baseWepScript)
+        if (useFullAnim || !controller.grounded || !specialWepScript && !baseWepScript)
         {
             return; //do nothing
         }
 
         if (specialWepScript != null)
         {
-            if (specialWepScript.useRightHand && specialWepScript.rightHandTf)
-            {
-                anim.SetIKPosition(AvatarIKGoal.RightHand, rightTarget[1].position);
-                anim.SetIKPositionWeight(AvatarIKGoal.RightHand, 1f);
-                anim.SetIKRotation(AvatarIKGoal.RightHand, rightTarget[1].rotation);
-                anim.SetIKRotationWeight(AvatarIKGoal.RightHand, 1f);
-            }
-            else
-            {
-                anim.SetIKPositionWeight(AvatarIKGoal.RightHand, 0f);
-                anim.SetIKRotationWeight(AvatarIKGoal.RightHand, 0f);
-            }
+            //if (specialWepScript.useRightHand && specialWepScript.rightHandTf)
+            //{
+            //    anim.SetIKPosition(AvatarIKGoal.RightHand, rightTarget[1].position);
+            //    anim.SetIKPositionWeight(AvatarIKGoal.RightHand, 1f);
+            //    anim.SetIKRotation(AvatarIKGoal.RightHand, rightTarget[1].rotation);
+            //    anim.SetIKRotationWeight(AvatarIKGoal.RightHand, 1f);
+            //}
+            //else
+            //{
+            //    anim.SetIKPositionWeight(AvatarIKGoal.RightHand, 0f);
+            //    anim.SetIKRotationWeight(AvatarIKGoal.RightHand, 0f);
+            //}
 
             if (specialWepScript.useLeftHand && specialWepScript.leftHandTf)
             {
@@ -413,18 +418,18 @@ public class Pawn : MonoBehaviour {
         }
         else if (baseWepScript != null)
         {
-            if (baseWepScript.useRightHand && baseWepScript.rightHandTf)
-            {
-                anim.SetIKPosition(AvatarIKGoal.RightHand, rightTarget[0].position);
-                anim.SetIKPositionWeight(AvatarIKGoal.RightHand, 1f);
-                anim.SetIKRotation(AvatarIKGoal.RightHand, rightTarget[0].rotation);
-                anim.SetIKRotationWeight(AvatarIKGoal.RightHand, 1f);
-            }
-            else
-            {
-                anim.SetIKPositionWeight(AvatarIKGoal.RightHand, 0f);
-                anim.SetIKRotationWeight(AvatarIKGoal.RightHand, 0f);
-            }
+            //if (baseWepScript.useRightHand && baseWepScript.rightHandTf)
+            //{
+            //    anim.SetIKPosition(AvatarIKGoal.RightHand, rightTarget[0].position);
+            //    anim.SetIKPositionWeight(AvatarIKGoal.RightHand, 1f);
+            //    anim.SetIKRotation(AvatarIKGoal.RightHand, rightTarget[0].rotation);
+            //    anim.SetIKRotationWeight(AvatarIKGoal.RightHand, 1f);
+            //}
+            //else
+            //{
+            //    anim.SetIKPositionWeight(AvatarIKGoal.RightHand, 0f);
+            //    anim.SetIKRotationWeight(AvatarIKGoal.RightHand, 0f);
+            //}
 
             if (baseWepScript.useLeftHand && baseWepScript.leftHandTf)
             {

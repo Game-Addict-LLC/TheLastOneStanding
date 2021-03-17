@@ -137,26 +137,34 @@ public class Controller : MonoBehaviour
         {
             if (Input.GetButtonDown(playerID + "Attack") && buttonReset == false)
             {
-                if (pawn.specialWeapon != null)
+                if (pawn.specialWepScript != null)
                 {
+                    pawn.anim.SetTrigger("GunAttack");
+                    pawn.anim.SetInteger("WeaponType", (int)pawn.specialWepScript.weaponType);
                     pawn.specialWepScript.OnAttack();
                     buttonReset = true;
                 }
-                else if (pawn.baseWeapon != null)
+                else if (pawn.specialWepScript != null)
                 {
+                    pawn.anim.SetTrigger("GunAttack");
+                    pawn.anim.SetInteger("WeaponType", (int)pawn.baseWepScript.weaponType);
                     pawn.baseWepScript.OnAttack();
                 }
 
             }
             else if (Input.GetAxis(playerID + "Attack") != 0 && buttonReset == false)
             {
-                if (pawn.specialWeapon != null)
+                if (pawn.specialWepScript != null)
                 {
+                    pawn.anim.SetTrigger("GunAttack");
+                    pawn.anim.SetInteger("WeaponType", (int)pawn.specialWepScript.weaponType);
                     pawn.specialWepScript.OnAttack();
                     buttonReset = true;
                 }
-                else if (pawn.baseWeapon != null)
+                else if (pawn.baseWepScript != null)
                 {
+                    pawn.anim.SetTrigger("GunAttack");
+                    pawn.anim.SetInteger("WeaponType", (int)pawn.baseWepScript.weaponType);
                     pawn.baseWepScript.OnAttack();
                 }
             }
