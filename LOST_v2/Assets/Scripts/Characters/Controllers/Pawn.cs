@@ -51,7 +51,16 @@ public class Pawn : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        
+
+        if (specialWepScript != null)
+        {
+            specialWepScript.transform.position = rightAnchor.transform.position + (specialWepScript.transform.position - specialWepScript.GetComponent<GunWeapon>().rightHandTf.position);
+        }
+        else if (baseWepScript != null)
+        {
+            baseWepScript.transform.position = rightAnchor.transform.position + (baseWepScript.transform.position - baseWepScript.GetComponent<GunWeapon>().rightHandTf.position);
+        }
+
     }
 
     public void StartEquip()
@@ -390,19 +399,6 @@ public class Pawn : MonoBehaviour {
 
         if (specialWepScript != null)
         {
-            //if (specialWepScript.useRightHand && specialWepScript.rightHandTf)
-            //{
-            //    anim.SetIKPosition(AvatarIKGoal.RightHand, rightTarget[1].position);
-            //    anim.SetIKPositionWeight(AvatarIKGoal.RightHand, 1f);
-            //    anim.SetIKRotation(AvatarIKGoal.RightHand, rightTarget[1].rotation);
-            //    anim.SetIKRotationWeight(AvatarIKGoal.RightHand, 1f);
-            //}
-            //else
-            //{
-            //    anim.SetIKPositionWeight(AvatarIKGoal.RightHand, 0f);
-            //    anim.SetIKRotationWeight(AvatarIKGoal.RightHand, 0f);
-            //}
-
             if (specialWepScript.useLeftHand && specialWepScript.leftHandTf)
             {
                 anim.SetIKPosition(AvatarIKGoal.LeftHand, leftTarget[1].position);
@@ -418,19 +414,6 @@ public class Pawn : MonoBehaviour {
         }
         else if (baseWepScript != null)
         {
-            //if (baseWepScript.useRightHand && baseWepScript.rightHandTf)
-            //{
-            //    anim.SetIKPosition(AvatarIKGoal.RightHand, rightTarget[0].position);
-            //    anim.SetIKPositionWeight(AvatarIKGoal.RightHand, 1f);
-            //    anim.SetIKRotation(AvatarIKGoal.RightHand, rightTarget[0].rotation);
-            //    anim.SetIKRotationWeight(AvatarIKGoal.RightHand, 1f);
-            //}
-            //else
-            //{
-            //    anim.SetIKPositionWeight(AvatarIKGoal.RightHand, 0f);
-            //    anim.SetIKRotationWeight(AvatarIKGoal.RightHand, 0f);
-            //}
-
             if (baseWepScript.useLeftHand && baseWepScript.leftHandTf)
             {
                 anim.SetIKPosition(AvatarIKGoal.LeftHand, leftTarget[0].position);

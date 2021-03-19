@@ -93,6 +93,9 @@ public class GunWeapon : WeaponBase
 
         if (Time.time >= timer)
         {
+            parentPawn.anim.SetTrigger("GunAttack");
+            parentPawn.anim.SetInteger("WeaponType", (int)weaponType);
+
             if (useProjectile)
             {
                 GameObject tempObject;

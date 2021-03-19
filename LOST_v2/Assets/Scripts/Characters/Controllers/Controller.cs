@@ -139,15 +139,11 @@ public class Controller : MonoBehaviour
             {
                 if (pawn.specialWepScript != null)
                 {
-                    pawn.anim.SetTrigger("GunAttack");
-                    pawn.anim.SetInteger("WeaponType", (int)pawn.specialWepScript.weaponType);
                     pawn.specialWepScript.OnAttack();
                     buttonReset = true;
                 }
                 else if (pawn.specialWepScript != null)
                 {
-                    pawn.anim.SetTrigger("GunAttack");
-                    pawn.anim.SetInteger("WeaponType", (int)pawn.baseWepScript.weaponType);
                     pawn.baseWepScript.OnAttack();
                 }
 
@@ -156,15 +152,11 @@ public class Controller : MonoBehaviour
             {
                 if (pawn.specialWepScript != null)
                 {
-                    pawn.anim.SetTrigger("GunAttack");
-                    pawn.anim.SetInteger("WeaponType", (int)pawn.specialWepScript.weaponType);
                     pawn.specialWepScript.OnAttack();
                     buttonReset = true;
                 }
                 else if (pawn.baseWepScript != null)
                 {
-                    pawn.anim.SetTrigger("GunAttack");
-                    pawn.anim.SetInteger("WeaponType", (int)pawn.baseWepScript.weaponType);
                     pawn.baseWepScript.OnAttack();
                 }
             }
