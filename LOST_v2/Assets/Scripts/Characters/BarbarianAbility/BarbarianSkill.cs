@@ -36,7 +36,12 @@ public class BarbarianSkill : SpecialAttack
 
     IEnumerator Rage()
     {
-        GameObject tempObject = Instantiate(rageEffect, transform.position + (transform.up* 1.5f), transform.rotation, transform);
+        GameObject tempObject = null;
+
+        if (rageEffect != null)
+        {
+            tempObject = Instantiate(rageEffect, transform.position + (transform.up * 1.5f), transform.rotation, transform);
+        }
 
         yield return new WaitForSeconds(2.65f);
 
@@ -46,7 +51,10 @@ public class BarbarianSkill : SpecialAttack
             yield return null;
         }
 
-        Destroy(tempObject, 1);
+        if (tempObject != null)
+        {
+            Destroy(tempObject, 1);
+        }
 
         parentPawn.anim.SetTrigger("EndSpecial");
         parentPawn.controller.immobile = false;

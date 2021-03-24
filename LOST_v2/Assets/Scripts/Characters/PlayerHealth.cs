@@ -22,13 +22,7 @@ public class PlayerHealth : Health
     {
         if (gameObject.GetComponent<Animator>())
         {
-            gameObject.GetComponent<Animator>().SetTrigger("OnHit");
-            
-            if (parentPawn != null)
-            {
-                StopAllCoroutines();
-                //StartCoroutine(HitStun(0.5f));
-            }
+            StartCoroutine(HitStun(0.75f));
         }
 
         base.TakeDamage(amount);
@@ -36,10 +30,11 @@ public class PlayerHealth : Health
 
     public IEnumerator HitStun(float stunTimer)
     {
-        parentPawn.controller.immobile = true;
+        gameObject.GetComponent<Animator>().SetTrigger("OnHit");
+        parentPawn.useFullAnim = true;
 
         yield return new WaitForSeconds(stunTimer);
 
-        parentPawn.controller.immobile = false;
+        parentPawn.useFullAnim = false;
     }
 }

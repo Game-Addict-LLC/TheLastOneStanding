@@ -33,8 +33,8 @@ public class Pawn : MonoBehaviour {
 
     [HideInInspector] public bool useFullAnim = false;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start() {
         anim = GetComponent<Animator>();
         tf = GetComponent<Transform>();
         pawnCollider = GetComponent<CapsuleCollider>();
@@ -48,9 +48,9 @@ public class Pawn : MonoBehaviour {
 
         StartEquip();
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update() {
 
         if (specialWepScript != null)
         {
@@ -138,7 +138,7 @@ public class Pawn : MonoBehaviour {
         if (controller.isLockedOn)
         {
             Vector3 tempVector = Quaternion.Euler(0, controller.transform.rotation.y * Mathf.PI * Mathf.Rad2Deg * -1, 0) * direction;
-            
+
             anim.SetFloat("Vertical", tempVector.z);
             anim.SetFloat("Horizontal", tempVector.x);
         }
@@ -342,9 +342,42 @@ public class Pawn : MonoBehaviour {
         }
     }
 
+    void KickstarterDismembered() //DELETE THIS CODE BEFORE FULL RELEASE
+    {
+        StartCoroutine(DeactivateGun(1.5f));
+    }
+
+    IEnumerator DeactivateGun(float time)
+    {
+        Debug.Log("Disable gun");
+        if (specialWepScript != null)
+        {
+            specialWepScript.gameObject.SetActive(false);
+        }
+        else if (baseWepScript != null)
+        {
+            baseWepScript.gameObject.SetActive(false);
+        }
+        useFullAnim = true;
+        Debug.Log("set anim to full");
+        yield return new WaitForSeconds(time);
+
+        if (specialWepScript != null)
+        {
+            specialWepScript.gameObject.SetActive(true);
+        }
+        else if (baseWepScript != null)
+        {
+            baseWepScript.gameObject.SetActive(true);
+        }
+        useFullAnim = false;
+        Debug.Log("set anim to false");
+    }
+
     IEnumerator Dismemberment(int targetLimb)
     {
         controller.opponent.GetComponent<Pawn>().anim.SetTrigger("GetDismembered");
+        controller.opponent.GetComponent<Pawn>().KickstarterDismembered();
 
         yield return new WaitForSeconds(1);
         if (controller.opponent.GetComponent<Pawn>() != null)

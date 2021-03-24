@@ -42,7 +42,7 @@ public class LimbHealth : Health
 
     public override void OnDeath()
     {
-        StartCoroutine(RemovalState());
+        //StartCoroutine(RemovalState());
     }
 
     public void OnDismember()

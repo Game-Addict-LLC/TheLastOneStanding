@@ -117,7 +117,7 @@ public class GunWeapon : WeaponBase
                 {
                     // Spawn a projectile
                     RaycastHit raycastData;
-                    Physics.Raycast(shootPoint.position, shootPoint.forward, out raycastData);
+                    Physics.Raycast(shootPoint.position, Vector3.ProjectOnPlane(shootPoint.forward, Vector3.up), out raycastData);
                     if (raycastData.collider)
                     {
                         if (raycastData.distance <= range)
@@ -138,7 +138,7 @@ public class GunWeapon : WeaponBase
                             if (shotEffect != null)
                             {
                                 tempObject = Instantiate(shotEffect, Vector3.zero, Quaternion.identity);
-                                StartCoroutine(MakeShotEffect(tempObject, shootPoint.transform.position, shootPoint.transform.position + (shootPoint.transform.forward * range)));
+                                StartCoroutine(MakeShotEffect(tempObject, shootPoint.transform.position, shootPoint.transform.position + (Vector3.ProjectOnPlane(shootPoint.forward, Vector3.up) * range)));
                             }
                         }
                     }
@@ -147,10 +147,10 @@ public class GunWeapon : WeaponBase
                         if (shotEffect != null)
                         {
                             tempObject = Instantiate(shotEffect, Vector3.zero, Quaternion.identity);
-                            StartCoroutine(MakeShotEffect(tempObject, shootPoint.transform.position, shootPoint.transform.position + (shootPoint.transform.forward * range)));
+                            StartCoroutine(MakeShotEffect(tempObject, shootPoint.transform.position, shootPoint.transform.position + (Vector3.ProjectOnPlane(shootPoint.forward, Vector3.up) * range)));
                         }
                     }
-                    Debug.DrawRay(shootPoint.position, shootPoint.forward * range, Color.red, 5);
+                    Debug.DrawRay(shootPoint.position, Vector3.ProjectOnPlane(shootPoint.forward, Vector3.up) * range, Color.red, 5);
                 }
             }
 
