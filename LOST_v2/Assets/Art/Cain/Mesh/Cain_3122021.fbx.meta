@@ -23,7 +23,22 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Body
+    second: {fileID: 2100000, guid: f3ae9755d5fdd8848a0aa83a945fc6c7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Boots
+    second: {fileID: 2100000, guid: f3ae9755d5fdd8848a0aa83a945fc6c7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Buckles
+    second: {fileID: 2100000, guid: f3ae9755d5fdd8848a0aa83a945fc6c7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hands
     second: {fileID: 2100000, guid: f3ae9755d5fdd8848a0aa83a945fc6c7, type: 2}
   - first:
       type: UnityEngine:Material

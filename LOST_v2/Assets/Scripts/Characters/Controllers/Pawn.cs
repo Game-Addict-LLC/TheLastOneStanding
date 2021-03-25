@@ -161,6 +161,8 @@ public class Pawn : MonoBehaviour {
     {
         gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * controller.jumpHeight * 50);
         anim.SetBool("OnGround", false);
+
+        StartCoroutine(JumpingAnim());
     }
 
     public void OnEquip(GameObject newWeapon)
@@ -345,6 +347,13 @@ public class Pawn : MonoBehaviour {
     void KickstarterDismembered() //DELETE THIS CODE BEFORE FULL RELEASE
     {
         StartCoroutine(DeactivateGun(1.5f));
+    }
+
+    IEnumerator JumpingAnim() //DELETE THIS CODE BEFORE FULL RELEASE
+    {
+        useFullAnim = true;
+        yield return new WaitForSeconds(1.25f);
+        useFullAnim = false;
     }
 
     IEnumerator DeactivateGun(float time)

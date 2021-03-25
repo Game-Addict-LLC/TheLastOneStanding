@@ -44,42 +44,47 @@ public class Railgun : MonoBehaviour
         tempEffect.GetComponent<LineRenderer>().SetPosition(0, firePoint.position);
 
         RaycastHit raycastData;
-        Physics.Raycast(firePoint.position, firePoint.forward, out raycastData);
+        Physics.Raycast(firePoint.position, Vector3.ProjectOnPlane(firePoint.forward, Vector3.up), out raycastData);
         if (raycastData.collider)
         {
             if (raycastData.distance <= range)
             {
-                Debug.Log("hin in range");
-                tempEffect.GetComponent<LineRenderer>().SetPosition(1, raycastData.point);
-
                 if (raycastData.collider.GetComponent<Health>())
                 {
                     raycastData.collider.GetComponent<Health>().TakeDamage(damage);
                 }
+               
+                StartCoroutine(MakeShotEffect(tempEffect, firePoint.transform.position, raycastData.point));
             }
             else
             {
-                Debug.Log("not in range");
-                tempEffect.GetComponent<LineRenderer>().SetPosition(1, firePoint.forward * range);
+                StartCoroutine(MakeShotEffect(tempEffect, firePoint.transform.position, firePoint.transform.position + (Vector3.ProjectOnPlane(firePoint.forward, Vector3.up) * range)));
             }
         }
         else
         {
-            Debug.Log("Complete miss");
-            tempEffect.GetComponent<LineRenderer>().SetPosition(1, firePoint.forward * range);
+            StartCoroutine(MakeShotEffect(tempEffect, firePoint.transform.position, firePoint.transform.position + (Vector3.ProjectOnPlane(firePoint.forward, Vector3.up) * range)));
         }
+    }
 
-        Color tempStartColor = tempEffect.GetComponent<LineRenderer>().startColor;
-        Color tempEndColor = tempEffect.GetComponent<LineRenderer>().endColor;
+    IEnumerator MakeShotEffect(GameObject obj, Vector3 targetOne, Vector3 targetTwo)
+    {
+        Debug.Log("Shot effect");
+        obj.GetComponent<LineRenderer>().SetPosition(0, targetOne);
+        obj.GetComponent<LineRenderer>().SetPosition(1, targetTwo);
+        Destroy(obj, 0.5f);
 
-        for (float i = 1; i > 0; i -= 1 * Time.deltaTime)
+        Color tempStartColor = obj.GetComponent<LineRenderer>().startColor;
+        Color tempEndColor = obj.GetComponent<LineRenderer>().endColor;
+
+        for (float i = 1; i > 0; i -= 2 * Time.deltaTime)
         {
-            tempEffect.GetComponent<LineRenderer>().startColor = new Color(tempStartColor.r, tempStartColor.g, tempStartColor.b, i);
-            tempEffect.GetComponent<LineRenderer>().endColor = new Color(tempEndColor.r, tempEndColor.g, tempEndColor.b, i);
+            obj.GetComponent<LineRenderer>().startColor = new Color(tempStartColor.r, tempStartColor.g, tempStartColor.b, i);
+            obj.GetComponent<LineRenderer>().endColor = new Color(tempEndColor.r, tempEndColor.g, tempEndColor.b, i);
             yield return null;
         }
 
-        Destroy(tempEffect);
+        Destroy(obj);
 
         OnEnd();
     }

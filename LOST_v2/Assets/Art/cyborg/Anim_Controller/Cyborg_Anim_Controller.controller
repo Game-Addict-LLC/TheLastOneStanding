@@ -391,7 +391,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -957614055161296875, guid: 154c6e91a6313dc42b7a177d8bd51a05,
+  m_Motion: {fileID: -957614055161296875, guid: ed0ee3d822a1a904fa0813aa51e621d8,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -1062,7 +1062,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -1585649964282318493, guid: dae1b795d963c814b96d0dd5553e0afb,
+  m_Motion: {fileID: 2611343302940147498, guid: abbf121753c70ac47b6bd21b8fa3efe1,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -1478,7 +1478,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Melee 2
-  m_Speed: 1.5
+  m_Speed: 2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -4460310708690342140}
@@ -1943,7 +1943,7 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -3115,7 +3115,7 @@ AnimatorStateMachine:
     m_Position: {x: 60, y: -60, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1968246489169468455}
-    m_Position: {x: 520, y: -170, z: 0}
+    m_Position: {x: 540, y: -140, z: 0}
   m_ChildStateMachines:
   - serializedVersion: 1
     m_StateMachine: {fileID: -5820258898734589898}
@@ -3768,7 +3768,7 @@ AnimatorStateTransition:
   m_TransitionDuration: 0.25
   m_TransitionOffset: 0
   m_ExitTime: 0.80769235
-  m_HasExitTime: 1
+  m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
@@ -4163,7 +4163,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Melee 1
-  m_Speed: 1.5
+  m_Speed: 2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -1377911695257156830}

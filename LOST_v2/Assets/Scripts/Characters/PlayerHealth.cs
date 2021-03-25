@@ -22,7 +22,7 @@ public class PlayerHealth : Health
     {
         if (gameObject.GetComponent<Animator>())
         {
-            StartCoroutine(HitStun(0.75f));
+            StartCoroutine(HitStun(1f));
         }
 
         base.TakeDamage(amount);
