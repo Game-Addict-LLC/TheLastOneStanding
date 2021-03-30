@@ -344,7 +344,7 @@ public class Pawn : MonoBehaviour {
         }
     }
 
-    void KickstarterDismembered() //DELETE THIS CODE BEFORE FULL RELEASE
+    private void KickstarterDismembered() //DELETE THIS CODE BEFORE FULL RELEASE
     {
         StartCoroutine(DeactivateGun(1.5f));
     }

@@ -32,9 +32,17 @@ public class CainSpecial : SpecialAttack
     public override void OnEnd()
     {
         Debug.Log("Run End");
-        Destroy(hookObject);
+        DespawnHook();
         parentPawn.controller.immobile = false;
         base.OnEnd();
+    }
+
+    public void DespawnHook()
+    {
+        if (hookObject != null)
+        {
+            Destroy(hookObject);
+        }
     }
 
     public IEnumerator specialAttack()
@@ -43,5 +51,15 @@ public class CainSpecial : SpecialAttack
         hookObject = Instantiate(hookPrefab, spawnLocation.transform.position, gameObject.transform.rotation);
         hookObject.GetComponent<GrappleCode>().parentAttack = this;
         yield return null;
+    }
+
+    public IEnumerator SpecialMelee()
+    {
+        DespawnHook();
+
+        yield return new WaitForSeconds(1f);
+
+        parentPawn.meleeWepScript.gameObject.SetActive(false);
+        OnEnd();
     }
 }
