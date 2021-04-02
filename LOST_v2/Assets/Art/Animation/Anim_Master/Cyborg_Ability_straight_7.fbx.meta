@@ -1,17 +1,11 @@
 fileFormatVersion: 2
-guid: 3b8bda8757c74f241b78f1f31c90e791
+guid: 6cdc8464811bb8a4497cc17144220e1e
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable:
   - first:
-      74: -3710337279552046473
-    second: root|mp_Reference|Take 001|Base Layer
-  - first:
-      74: 4264463596430870145
-    second: root|mp_Reference|Take 001|Base Layer.001
-  - first:
       74: -1585649964282318493
-    second: Idle_Top
+    second: Cyborg_Ability
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -25,17 +19,26 @@ ModelImporter:
     optimizeGameObjects: 0
     motionNodeName: 
     rigImportErrors: 
-    rigImportWarnings: 
+    rigImportWarnings: "Copied Avatar Rig Configuration mis-match. Bone length in
+      copied configuration does not match position in animation file:\n\t'thigh_stretch.l'
+      : position error = 14.531302 mm\n\t'leg_stretch.l' : position error = 4.649074
+      mm\n\t'foot.l' : position error = 16.500624 mm\n\t'toes_01.l' : position error
+      = 14.544384 mm\n\t'thigh_stretch.r' : position error = 14.531374 mm\n\t'leg_stretch.r'
+      : position error = 4.649045 mm\n\t'foot.r' : position error = 16.500566 mm\n\t'toes_01.r'
+      : position error = 14.544419 mm\n"
     animationImportErrors: 
     animationImportWarnings: "\nClip 'root|mp_rigAction' has import animation warnings
       that might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'arm_stretch.r' has scale animation that
-      will be discarded.\n\t'hand.r' has scale animation that will be discarded.\n"
+      to improve retargeting quality.\n\t'head.x' has translation animation that
+      will be discarded.\n\t'arm_stretch.l' has scale animation that will be discarded.\n\t'forearm_stretch.l'
+      has scale animation that will be discarded.\n\t'hand.l' has scale animation
+      that will be discarded.\n\t'forearm_stretch.r' has scale animation that will
+      be discarded.\n\t'hand.r' has scale animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 3
+    animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -44,28 +47,28 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Idle_Top
+      name: Cyborg_Ability
       takeName: root|mp_rigAction
       internalID: 0
-      firstFrame: 30
-      lastFrame: 69
+      firstFrame: 0
+      lastFrame: 84
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
-      loopBlendOrientation: 1
+      loopBlendOrientation: 0
       loopBlendPositionY: 1
-      loopBlendPositionXZ: 1
+      loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0
       heightFromFeet: 0
       mirror: 0
-      bodyMask: 01000000010000000100000000000000000000000100000001000000010000000100000000000000000000000100000001000000
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events: []
       transformMask: []

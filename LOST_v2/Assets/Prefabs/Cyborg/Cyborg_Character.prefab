@@ -264,7 +264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dc66aa59ebe2fd4dbaa23183f908f6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerID: P1
+  playerID: P2
   pawn: {fileID: 694472497}
   health: {fileID: 0}
   rotateSpeed: 10

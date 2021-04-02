@@ -1,17 +1,11 @@
 fileFormatVersion: 2
-guid: 3b8bda8757c74f241b78f1f31c90e791
+guid: 322e3cbd5d95fe14c9a452cf6f35e189
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable:
   - first:
-      74: -3710337279552046473
-    second: root|mp_Reference|Take 001|Base Layer
-  - first:
-      74: 4264463596430870145
-    second: root|mp_Reference|Take 001|Base Layer.001
-  - first:
-      74: -1585649964282318493
-    second: Idle_Top
+      74: -8254674527830644798
+    second: Cain_Hit3_2
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -27,15 +21,19 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'root|mp_rigAction' has import animation warnings
-      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'arm_stretch.r' has scale animation that
-      will be discarded.\n\t'hand.r' has scale animation that will be discarded.\n"
+    animationImportWarnings: "\nClip 'root|mp_rigAction.001' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'spine_02.x' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'head.x'
+      has translation animation that will be discarded.\n\t'thigh_stretch.l' has
+      scale animation that will be discarded.\n\t'foot.l' has scale animation that
+      will be discarded.\n\t'thigh_stretch.r' has scale animation that will be discarded.\n\t'foot.r'
+      has scale animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 3
+    animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -44,22 +42,22 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Idle_Top
-      takeName: root|mp_rigAction
+      name: Cain_Hit3_2
+      takeName: root|mp_rigAction.001
       internalID: 0
-      firstFrame: 30
-      lastFrame: 69
+      firstFrame: 0
+      lastFrame: 54
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
-      loopBlendOrientation: 1
+      loopBlendOrientation: 0
       loopBlendPositionY: 1
-      loopBlendPositionXZ: 1
+      loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0

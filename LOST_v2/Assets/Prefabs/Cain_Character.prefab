@@ -23,13 +23,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 35675079}
-  m_LocalRotation: {x: -0.45022914, y: -0.5446354, z: -0.48274156, w: 0.5173265}
-  m_LocalPosition: {x: -0.044636857, y: 0.06687181, z: -0.02431405}
+  m_LocalRotation: {x: -0.42600808, y: -0.5002661, z: -0.49697822, w: 0.56680125}
+  m_LocalPosition: {x: -0.04178362, y: 0.064424366, z: -0.03365107}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 482417783467754631}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: -82.59801, y: -89.408005, z: -4.0280004}
+  m_LocalEulerAnglesHint: {x: -78.57001, y: -46.465004, z: -43.79}
 --- !u!136 &65756014959693088
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -199,7 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dc66aa59ebe2fd4dbaa23183f908f6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerID: P1
+  playerID: P2
   pawn: {fileID: 5631192129362259998}
   health: {fileID: 0}
   rotateSpeed: 10
