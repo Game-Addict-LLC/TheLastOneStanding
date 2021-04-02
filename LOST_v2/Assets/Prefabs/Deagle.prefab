@@ -40,6 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8951509903217726550}
   - component: {fileID: 8510563218506823476}
+  - component: {fileID: -7876397539743286375}
   m_Layer: 0
   m_Name: Deagle
   m_TagString: Untagged
@@ -96,9 +97,19 @@ MonoBehaviour:
   ammoCount: 0
   rateOfFire: 60
   range: 10
-  recoilSpeed: 90
-  recoilAngle: 15
-  recoilResetSpeed: 30
+--- !u!65 &-7876397539743286375
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4975510985499460117}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.04676994, y: 0.16505285, z: 0.278494}
+  m_Center: {x: 0, y: 0.017473578, z: 0.0698944}
 --- !u!1 &5838082640646162021
 GameObject:
   m_ObjectHideFlags: 0

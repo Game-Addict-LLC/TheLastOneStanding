@@ -3258,6 +3258,7 @@ GameObject:
   - component: {fileID: 1261628636414946}
   - component: {fileID: 1261628636414944}
   - component: {fileID: 1209058959}
+  - component: {fileID: -6639083243999966542}
   m_Layer: 10
   m_Name: Barbarian_Character
   m_TagString: Untagged
@@ -3366,7 +3367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dc66aa59ebe2fd4dbaa23183f908f6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerID: P1
+  playerID: P2
   pawn: {fileID: 1261628636414946}
   health: {fileID: 0}
   rotateSpeed: 10
@@ -3452,6 +3453,24 @@ MonoBehaviour:
   rageEffect: {fileID: 2127124472902696111, guid: b3d35c1a066a3454981fab4760aac338,
     type: 3}
   runSpeed: 5
+--- !u!114 &-6639083243999966542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3360646963012080937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 0, b: 0, a: 1}
+  outlineWidth: 5
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &3360649376177830625
 GameObject:
   m_ObjectHideFlags: 0

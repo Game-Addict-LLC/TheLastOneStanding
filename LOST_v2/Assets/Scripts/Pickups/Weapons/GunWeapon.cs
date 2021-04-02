@@ -37,17 +37,29 @@ public class GunWeapon : WeaponBase
 
     }
 
+    private void OnEnable()
+    {
+        if (parentPawn != null)
+        {
+            parentPawn.anim.SetFloat("WeaponType", (int)weaponType);
+        }
+    }
+
     public override void OnEquip(Pawn pawn)
     {
         if (equipped == false)
         {
+            if (GetComponent<Collider>())
+            {
+                GetComponent<Collider>().enabled = false;
+            }
+
             parentPawn = pawn;
 
             if (parentPawn.baseWepScript == null)
             {
                 Debug.Log("Setting" + gameObject.name + "as base weapon");
                 parentPawn.baseWepScript = this;
-
                 if (useRightHand)
                 {
                     parentPawn.rightTarget[0] = rightHandTf;
@@ -83,6 +95,7 @@ public class GunWeapon : WeaponBase
                 UpdateAmmoText(parentPawn);
             }
 
+            parentPawn.anim.SetFloat("WeaponType", (int)weaponType);
             base.OnEquip(pawn);
         }
     }

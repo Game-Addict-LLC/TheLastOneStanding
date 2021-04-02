@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2727222389909248678}
   - component: {fileID: 2019487142}
   - component: {fileID: 7190594802128944794}
+  - component: {fileID: -4492156531707598058}
   m_Layer: 0
   m_Name: GSD_Launcher
   m_TagString: Weapon
@@ -152,9 +153,24 @@ MonoBehaviour:
   ammoCount: 1
   rateOfFire: 30
   range: 0
-  recoilSpeed: 360
-  recoilAngle: 30
-  recoilResetSpeed: 60
+--- !u!114 &-4492156531707598058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2727222389918738790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0.07219166, g: 0.7830189, b: 0, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &3944091399398474626
 GameObject:
   m_ObjectHideFlags: 0
@@ -209,7 +225,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6150950182700441490}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.063, z: 0.153}
+  m_LocalPosition: {x: 0.006, y: -0.103, z: 0.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2727222389919102278}
@@ -238,13 +254,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6622146050719542272}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.018, z: 0.31}
+  m_LocalRotation: {x: 0.040598307, y: -0.023178007, z: 0.757598, w: 0.65104514}
+  m_LocalPosition: {x: -0.043, y: -0.09, z: 0.057}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2727222389919102278}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 5.0480003, y: 1.8030001, z: 98.731}
 --- !u!1001 &2727222389443518429
 PrefabInstance:
   m_ObjectHideFlags: 0

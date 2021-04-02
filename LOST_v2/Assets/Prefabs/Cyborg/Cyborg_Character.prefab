@@ -181,6 +181,7 @@ GameObject:
   - component: {fileID: 694472497}
   - component: {fileID: 694472495}
   - component: {fileID: 51502770}
+  - component: {fileID: 2276184191571558698}
   m_Layer: 10
   m_Name: Cyborg_Character
   m_TagString: Untagged
@@ -349,6 +350,24 @@ MonoBehaviour:
   parentPawn: {fileID: 694472497}
   meshToDisable: {fileID: 1341140960813024139}
   weaponScript: {fileID: 1985077675}
+--- !u!114 &2276184191571558698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3360858862309901641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0, g: 1, b: 0.9806142, a: 1}
+  outlineWidth: 5
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!136 &1981954027947557369
 CapsuleCollider:
   m_ObjectHideFlags: 0
