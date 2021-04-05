@@ -135,9 +135,19 @@ public class GunWeapon : WeaponBase
                     {
                         if (raycastData.distance <= range)
                         {
-                            if (raycastData.collider.GetComponent<Health>())
+                            List<IDamageable<float>> interfaceList = new List<IDamageable<float>>();
+                            MonoBehaviour[] list = raycastData.collider.gameObject.GetComponents<MonoBehaviour>();
+                            foreach (MonoBehaviour mb in list)
                             {
-                                raycastData.collider.GetComponent<Health>().TakeDamage(damage);
+                                if (mb is IDamageable<float>)
+                                {
+                                    interfaceList.Add((IDamageable<float>)mb);
+                                }
+                            }
+
+                            if (interfaceList.Count > 0)
+                            {
+                                interfaceList[0].TakeDamage(damage);
                             }
 
                             if (shotEffect != null)
