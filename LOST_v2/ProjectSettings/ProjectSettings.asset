@@ -5,10 +5,14 @@ PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 20
 <<<<<<< HEAD
+<<<<<<< HEAD
   productGUID: 57141672da6188d45993acb2de58b43d
 =======
   productGUID: 02ed00c965d8fc24dbdcf3326370c7de
 >>>>>>> parent of afa4202 (Colosseum Detail Update)
+=======
+  productGUID: 00000000000000000000000000000000
+>>>>>>> parent of 01347ad (Some Coloseeum Cleanup)
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -571,10 +575,14 @@ PlayerSettings:
   webGLWasmStreaming: 0
   scriptingDefineSymbols:
 <<<<<<< HEAD
+<<<<<<< HEAD
     1: UNITY_POST_PROCESSING_STACK_V2;AMPLIFY_SHADER_EDITOR;MOREMOUNTAINS_FEEDBACKS;MOREMOUNTAINS_TOOLS
 =======
     1: UNITY_POST_PROCESSING_STACK_V2;MOREMOUNTAINS_FEEDBACKS;MOREMOUNTAINS_TOOLS;MOREMOUNTAINS_INTERFACE;MOREMOUNTAINS_INVENTORYENGINE
 >>>>>>> parent of afa4202 (Colosseum Detail Update)
+=======
+    1: UNITY_POST_PROCESSING_STACK_V2;AMPLIFY_SHADER_EDITOR
+>>>>>>> parent of 01347ad (Some Coloseeum Cleanup)
     7: UNITY_POST_PROCESSING_STACK_V2
     13: UNITY_POST_PROCESSING_STACK_V2
     19: UNITY_POST_PROCESSING_STACK_V2
@@ -582,7 +590,6 @@ PlayerSettings:
     25: UNITY_POST_PROCESSING_STACK_V2
     27: UNITY_POST_PROCESSING_STACK_V2
     28: UNITY_POST_PROCESSING_STACK_V2
-    29: UNITY_POST_PROCESSING_STACK_V2
   platformArchitecture: {}
   scriptingBackend: {}
   il2cppCompilerConfiguration: {}
