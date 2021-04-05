@@ -51,7 +51,7 @@ MonoBehaviour:
   useLeftHand: 0
   leftHandTf: {fileID: 0}
   equipped: 0
-  damage: 10
+  damage: 3
   usesLifetime: 0
   lifetime: 0
 --- !u!65 &4226956295984050945

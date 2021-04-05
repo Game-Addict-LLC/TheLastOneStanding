@@ -81,7 +81,7 @@ MonoBehaviour:
   useLeftHand: 1
   leftHandTf: {fileID: 5783276676374511191}
   equipped: 0
-  damage: 10
+  damage: 5
   usesLifetime: 0
   lifetime: 0
   weaponType: 1

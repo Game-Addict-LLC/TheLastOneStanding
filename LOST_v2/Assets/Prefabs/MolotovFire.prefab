@@ -14336,7 +14336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31e0978061d926642b3355eb04fa3e9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageToDeal: 10
+  damageToDeal: 1
   tickRate: 0.5
   usesLifetime: 1
   lifetime: 5
