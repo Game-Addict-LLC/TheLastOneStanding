@@ -23,13 +23,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 35675079}
-  m_LocalRotation: {x: -0.42600808, y: -0.5002661, z: -0.49697822, w: 0.56680125}
-  m_LocalPosition: {x: -0.04178362, y: 0.064424366, z: -0.03365107}
+  m_LocalRotation: {x: -0.575749, y: -0.4206765, z: -0.57706857, w: 0.39816624}
+  m_LocalPosition: {x: -0.06580071, y: 0.075852685, z: -0.03986026}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 482417783467754631}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: -78.57001, y: -46.465004, z: -43.79}
+  m_LocalEulerAnglesHint: {x: -70.736, y: 92.938, z: -184.323}
 --- !u!136 &65756014959693088
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -386,7 +386,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 0
-  outlineColor: {r: 1, g: 0.8227807, b: 0, a: 1}
+  outlineColor: {r: 0, g: 1, b: 0.98039216, a: 1}
   outlineWidth: 5
   precomputeOutline: 0
   bakeKeys: []

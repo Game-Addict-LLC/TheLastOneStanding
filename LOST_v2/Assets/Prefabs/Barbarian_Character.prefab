@@ -3316,7 +3316,7 @@ Animator:
   m_GameObject: {fileID: 3360646963012080937}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 5d3a4d7e09b44414eb131bf09a6ed74d, type: 3}
-  m_Controller: {fileID: 9100000, guid: 2a9721cbc01605b4683cd36d168a2a00, type: 2}
+  m_Controller: {fileID: 9100000, guid: 06be5ebec29a2ac428d71f6472f0c77c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -3367,7 +3367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dc66aa59ebe2fd4dbaa23183f908f6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerID: P1
+  playerID: P2
   pawn: {fileID: 1261628636414946}
   health: {fileID: 0}
   rotateSpeed: 10
@@ -3466,7 +3466,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 0
-  outlineColor: {r: 1, g: 0, b: 0, a: 1}
+  outlineColor: {r: 0.29411766, g: 1, b: 0, a: 1}
   outlineWidth: 5
   precomputeOutline: 0
   bakeKeys: []

@@ -1,0 +1,564 @@
+fileFormatVersion: 2
+guid: 17708390a4ef88f4eb805e10e0063b69
+ModelImporter:
+  serializedVersion: 19300
+  internalIDToNameTable:
+  - first:
+      74: 4108232450943349594
+    second: TeslaPistol_dispGlass|TeslaPistol_arrow|Take 001|BaseLayer
+  - first:
+      74: -6343181729938377995
+    second: TeslaPistol_dispGlass|TeslaPistol_arrow|Take 001|BaseLayer.001
+  - first:
+      74: 7735355660691415943
+    second: TeslaPistol_dispGlass|TeslaPistol_base|Take 001|BaseLayer
+  - first:
+      74: 4854739759450284655
+    second: TeslaPistol_dispGlass|TeslaPistol_base|Take 001|BaseLayer.001
+  - first:
+      74: 8608855660460600623
+    second: TeslaPistol_dispGlass|TeslaPistol_battery_low|Take 001|BaseLayer
+  - first:
+      74: -7756760022884010506
+    second: TeslaPistol_dispGlass|TeslaPistol_battery_low|Take 001|BaseLayer.001
+  - first:
+      74: 6744006077793206408
+    second: TeslaPistol_dispGlass|TeslaPistol_batteryCap_low|Take 001|BaseLayer
+  - first:
+      74: -5091227609762148044
+    second: TeslaPistol_dispGlass|TeslaPistol_batteryCap_low|Take 001|BaseLayer.001
+  - first:
+      74: 465739235590132417
+    second: TeslaPistol_dispGlass|TeslaPistol_body_low|Take 001|BaseLayer
+  - first:
+      74: 2671927866068314880
+    second: TeslaPistol_dispGlass|TeslaPistol_body_low|Take 001|BaseLayer.001
+  - first:
+      74: -5377752437527787430
+    second: TeslaPistol_dispGlass|TeslaPistol_buttons1|Take 001|BaseLayer
+  - first:
+      74: 2020727458090145054
+    second: TeslaPistol_dispGlass|TeslaPistol_buttons1|Take 001|BaseLayer.001
+  - first:
+      74: 1014825102746002275
+    second: TeslaPistol_dispGlass|TeslaPistol_dispGlass|Take 001|BaseLayer
+  - first:
+      74: 8026102274449888248
+    second: TeslaPistol_dispGlass|TeslaPistol_dispGlass|Take 001|BaseLayer.001
+  - first:
+      74: -4004868937852256146
+    second: TeslaPistol_dispGlass|TeslaPistol_display_low|Take 001|BaseLayer
+  - first:
+      74: -1362654421000596671
+    second: TeslaPistol_dispGlass|TeslaPistol_display_low|Take 001|BaseLayer.001
+  - first:
+      74: 58126562411900671
+    second: TeslaPistol_dispGlass|TeslaPistol_display|Take 001|BaseLayer
+  - first:
+      74: 5893872263732736812
+    second: TeslaPistol_dispGlass|TeslaPistol_display|Take 001|BaseLayer.001
+  - first:
+      74: 1686746810045278765
+    second: TeslaPistol_dispGlass|TeslaPistol_glass|Take 001|BaseLayer
+  - first:
+      74: 2691180563315488724
+    second: TeslaPistol_dispGlass|TeslaPistol_glass|Take 001|BaseLayer.001
+  - first:
+      74: -8738644829155559106
+    second: TeslaPistol_dispGlass|TeslaPistol_handle_low|Take 001|BaseLayer
+  - first:
+      74: 9222428960078190290
+    second: TeslaPistol_dispGlass|TeslaPistol_handle_low|Take 001|BaseLayer.001
+  - first:
+      74: 3265645648610475887
+    second: TeslaPistol_dispGlass|TeslaPistol_ring_high001|Take 001|BaseLayer
+  - first:
+      74: 1167066337365470063
+    second: TeslaPistol_dispGlass|TeslaPistol_ring_high001|Take 001|BaseLayer.001
+  - first:
+      74: 2550284628601616057
+    second: TeslaPistol_dispGlass|TeslaPistol_trigger_low|Take 001|BaseLayer
+  - first:
+      74: -8740713793074346976
+    second: TeslaPistol_dispGlass|TeslaPistol_trigger_low|Take 001|BaseLayer.001
+  - first:
+      74: 1920980264537182258
+    second: TeslaPistol_display|TeslaPistol_arrow|Take 001|BaseLayer
+  - first:
+      74: 1583380602752686615
+    second: TeslaPistol_display|TeslaPistol_arrow|Take 001|BaseLayer.001
+  - first:
+      74: 1130975156975007748
+    second: TeslaPistol_display|TeslaPistol_base|Take 001|BaseLayer
+  - first:
+      74: 6889901694692198768
+    second: TeslaPistol_display|TeslaPistol_base|Take 001|BaseLayer.001
+  - first:
+      74: -4309172194727199766
+    second: TeslaPistol_display|TeslaPistol_battery_low|Take 001|BaseLayer
+  - first:
+      74: 4079219276130228021
+    second: TeslaPistol_display|TeslaPistol_battery_low|Take 001|BaseLayer.001
+  - first:
+      74: 6420634916317765066
+    second: TeslaPistol_display|TeslaPistol_batteryCap_low|Take 001|BaseLayer
+  - first:
+      74: -8786188765868457569
+    second: TeslaPistol_display|TeslaPistol_batteryCap_low|Take 001|BaseLayer.001
+  - first:
+      74: -8060713315991437014
+    second: TeslaPistol_display|TeslaPistol_body_low|Take 001|BaseLayer
+  - first:
+      74: -1127826566279515468
+    second: TeslaPistol_display|TeslaPistol_body_low|Take 001|BaseLayer.001
+  - first:
+      74: 8773627083607826091
+    second: TeslaPistol_display|TeslaPistol_buttons1|Take 001|BaseLayer
+  - first:
+      74: 8731380055557956378
+    second: TeslaPistol_display|TeslaPistol_buttons1|Take 001|BaseLayer.001
+  - first:
+      74: -464610622760560824
+    second: TeslaPistol_display|TeslaPistol_dispGlass|Take 001|BaseLayer
+  - first:
+      74: -3135124958122117053
+    second: TeslaPistol_display|TeslaPistol_dispGlass|Take 001|BaseLayer.001
+  - first:
+      74: 8982190012908653995
+    second: TeslaPistol_display|TeslaPistol_display_low|Take 001|BaseLayer
+  - first:
+      74: 1319865671967449694
+    second: TeslaPistol_display|TeslaPistol_display_low|Take 001|BaseLayer.001
+  - first:
+      74: 3081005920967342761
+    second: TeslaPistol_display|TeslaPistol_display|Take 001|BaseLayer
+  - first:
+      74: 6880512709401741363
+    second: TeslaPistol_display|TeslaPistol_display|Take 001|BaseLayer.001
+  - first:
+      74: 6621746793393113158
+    second: TeslaPistol_display|TeslaPistol_glass|Take 001|BaseLayer
+  - first:
+      74: 9115452809123461859
+    second: TeslaPistol_display|TeslaPistol_glass|Take 001|BaseLayer.001
+  - first:
+      74: 4762913201676861501
+    second: TeslaPistol_display|TeslaPistol_handle_low|Take 001|BaseLayer
+  - first:
+      74: -9077123884723293369
+    second: TeslaPistol_display|TeslaPistol_handle_low|Take 001|BaseLayer.001
+  - first:
+      74: 3870253286854751012
+    second: TeslaPistol_display|TeslaPistol_ring_high001|Take 001|BaseLayer
+  - first:
+      74: -2662739382448162755
+    second: TeslaPistol_display|TeslaPistol_ring_high001|Take 001|BaseLayer.001
+  - first:
+      74: -4239609995268933815
+    second: TeslaPistol_display|TeslaPistol_trigger_low|Take 001|BaseLayer
+  - first:
+      74: 6228170706858723975
+    second: TeslaPistol_display|TeslaPistol_trigger_low|Take 001|BaseLayer.001
+  - first:
+      74: 1993003703713273156
+    second: WaterGun Grip|TeslaPistol_arrow|Take 001|BaseLayer
+  - first:
+      74: -3290749120639181778
+    second: WaterGun Grip|TeslaPistol_arrow|Take 001|BaseLayer.001
+  - first:
+      74: -3411094732731763247
+    second: WaterGun Grip|TeslaPistol_base|Take 001|BaseLayer
+  - first:
+      74: -4182651106847465440
+    second: WaterGun Grip|TeslaPistol_base|Take 001|BaseLayer.001
+  - first:
+      74: -2127493986844308772
+    second: WaterGun Grip|TeslaPistol_battery_low|Take 001|BaseLayer
+  - first:
+      74: 8215934382786393673
+    second: WaterGun Grip|TeslaPistol_battery_low|Take 001|BaseLayer.001
+  - first:
+      74: -5966120320120077839
+    second: WaterGun Grip|TeslaPistol_batteryCap_low|Take 001|BaseLayer
+  - first:
+      74: 4619268528403400823
+    second: WaterGun Grip|TeslaPistol_batteryCap_low|Take 001|BaseLayer.001
+  - first:
+      74: -5534011505696766875
+    second: WaterGun Grip|TeslaPistol_body_low|Take 001|BaseLayer
+  - first:
+      74: 6845773224945677505
+    second: WaterGun Grip|TeslaPistol_body_low|Take 001|BaseLayer.001
+  - first:
+      74: -1893015144887934746
+    second: WaterGun Grip|TeslaPistol_buttons1|Take 001|BaseLayer
+  - first:
+      74: 5056104871723645245
+    second: WaterGun Grip|TeslaPistol_buttons1|Take 001|BaseLayer.001
+  - first:
+      74: -2126216751464874204
+    second: WaterGun Grip|TeslaPistol_dispGlass|Take 001|BaseLayer
+  - first:
+      74: 3038762371542113614
+    second: WaterGun Grip|TeslaPistol_dispGlass|Take 001|BaseLayer.001
+  - first:
+      74: -1629790740816318311
+    second: WaterGun Grip|TeslaPistol_display_low|Take 001|BaseLayer
+  - first:
+      74: -8128118280561964779
+    second: WaterGun Grip|TeslaPistol_display_low|Take 001|BaseLayer.001
+  - first:
+      74: 8043523492969096612
+    second: WaterGun Grip|TeslaPistol_display|Take 001|BaseLayer
+  - first:
+      74: 1496496133101265803
+    second: WaterGun Grip|TeslaPistol_display|Take 001|BaseLayer.001
+  - first:
+      74: 8244619628170046021
+    second: WaterGun Grip|TeslaPistol_glass|Take 001|BaseLayer
+  - first:
+      74: -1946503234581434179
+    second: WaterGun Grip|TeslaPistol_glass|Take 001|BaseLayer.001
+  - first:
+      74: -8773023117235435813
+    second: WaterGun Grip|TeslaPistol_handle_low|Take 001|BaseLayer
+  - first:
+      74: -974245714177926396
+    second: WaterGun Grip|TeslaPistol_handle_low|Take 001|BaseLayer.001
+  - first:
+      74: 8641759381721093182
+    second: WaterGun Grip|TeslaPistol_ring_high001|Take 001|BaseLayer
+  - first:
+      74: 8987722971994594464
+    second: WaterGun Grip|TeslaPistol_ring_high001|Take 001|BaseLayer.001
+  - first:
+      74: -8117010918066503103
+    second: WaterGun Grip|TeslaPistol_trigger_low|Take 001|BaseLayer
+  - first:
+      74: -5538501815540644770
+    second: WaterGun Grip|TeslaPistol_trigger_low|Take 001|BaseLayer.001
+  - first:
+      74: -5689118673795599923
+    second: TeslaPistol_buttons1|TeslaPistol_arrow|Take 001|BaseLayer
+  - first:
+      74: -6936252451645337400
+    second: TeslaPistol_buttons1|TeslaPistol_arrow|Take 001|BaseLayer.001
+  - first:
+      74: -6034221563862652452
+    second: TeslaPistol_buttons1|TeslaPistol_base|Take 001|BaseLayer
+  - first:
+      74: 8027534979224061673
+    second: TeslaPistol_buttons1|TeslaPistol_base|Take 001|BaseLayer.001
+  - first:
+      74: -7157431091116359081
+    second: TeslaPistol_buttons1|TeslaPistol_battery_low|Take 001|BaseLayer
+  - first:
+      74: -4856127495807618193
+    second: TeslaPistol_buttons1|TeslaPistol_battery_low|Take 001|BaseLayer.001
+  - first:
+      74: -7041943279378580783
+    second: TeslaPistol_buttons1|TeslaPistol_batteryCap_low|Take 001|BaseLayer
+  - first:
+      74: -6545072337271571289
+    second: TeslaPistol_buttons1|TeslaPistol_batteryCap_low|Take 001|BaseLayer.001
+  - first:
+      74: 3891778752265739237
+    second: TeslaPistol_buttons1|TeslaPistol_body_low|Take 001|BaseLayer
+  - first:
+      74: 7842193343982459934
+    second: TeslaPistol_buttons1|TeslaPistol_body_low|Take 001|BaseLayer.001
+  - first:
+      74: -5742207308885835988
+    second: TeslaPistol_buttons1|TeslaPistol_buttons1|Take 001|BaseLayer
+  - first:
+      74: 5859565235506438227
+    second: TeslaPistol_buttons1|TeslaPistol_buttons1|Take 001|BaseLayer.001
+  - first:
+      74: -1788453898980368437
+    second: TeslaPistol_buttons1|TeslaPistol_dispGlass|Take 001|BaseLayer
+  - first:
+      74: 3808825745828441229
+    second: TeslaPistol_buttons1|TeslaPistol_dispGlass|Take 001|BaseLayer.001
+  - first:
+      74: -6666557167515630805
+    second: TeslaPistol_buttons1|TeslaPistol_display_low|Take 001|BaseLayer
+  - first:
+      74: 5277156508675030085
+    second: TeslaPistol_buttons1|TeslaPistol_display_low|Take 001|BaseLayer.001
+  - first:
+      74: -4395009927868866208
+    second: TeslaPistol_buttons1|TeslaPistol_display|Take 001|BaseLayer
+  - first:
+      74: 4942585762243641230
+    second: TeslaPistol_buttons1|TeslaPistol_display|Take 001|BaseLayer.001
+  - first:
+      74: 1104058307967583308
+    second: TeslaPistol_buttons1|TeslaPistol_glass|Take 001|BaseLayer
+  - first:
+      74: -8373841170762565376
+    second: TeslaPistol_buttons1|TeslaPistol_glass|Take 001|BaseLayer.001
+  - first:
+      74: 4563910895242885511
+    second: TeslaPistol_buttons1|TeslaPistol_handle_low|Take 001|BaseLayer
+  - first:
+      74: -4826080677309488955
+    second: TeslaPistol_buttons1|TeslaPistol_handle_low|Take 001|BaseLayer.001
+  - first:
+      74: -7379028119499530023
+    second: TeslaPistol_buttons1|TeslaPistol_ring_high001|Take 001|BaseLayer
+  - first:
+      74: 1318473850013087912
+    second: TeslaPistol_buttons1|TeslaPistol_ring_high001|Take 001|BaseLayer.001
+  - first:
+      74: -625917193973962730
+    second: TeslaPistol_buttons1|TeslaPistol_trigger_low|Take 001|BaseLayer
+  - first:
+      74: 1359215433222744696
+    second: TeslaPistol_buttons1|TeslaPistol_trigger_low|Take 001|BaseLayer.001
+  - first:
+      74: 9196783535068108484
+    second: WaterGun|TeslaPistol_arrow|Take 001|BaseLayer
+  - first:
+      74: -2435876248477479168
+    second: WaterGun|TeslaPistol_arrow|Take 001|BaseLayer.001
+  - first:
+      74: -3958647165434539173
+    second: WaterGun|TeslaPistol_base|Take 001|BaseLayer
+  - first:
+      74: -8554879547120852830
+    second: WaterGun|TeslaPistol_base|Take 001|BaseLayer.001
+  - first:
+      74: -8830482976624505872
+    second: WaterGun|TeslaPistol_battery_low|Take 001|BaseLayer
+  - first:
+      74: -4897282737696805344
+    second: WaterGun|TeslaPistol_battery_low|Take 001|BaseLayer.001
+  - first:
+      74: 6614684737584237446
+    second: WaterGun|TeslaPistol_batteryCap_low|Take 001|BaseLayer
+  - first:
+      74: 5538484419059415863
+    second: WaterGun|TeslaPistol_batteryCap_low|Take 001|BaseLayer.001
+  - first:
+      74: 3709046267548304091
+    second: WaterGun|TeslaPistol_body_low|Take 001|BaseLayer
+  - first:
+      74: 6740518826145860903
+    second: WaterGun|TeslaPistol_body_low|Take 001|BaseLayer.001
+  - first:
+      74: 2787679974729214714
+    second: WaterGun|TeslaPistol_buttons1|Take 001|BaseLayer
+  - first:
+      74: 7550169696267545713
+    second: WaterGun|TeslaPistol_buttons1|Take 001|BaseLayer.001
+  - first:
+      74: -4641984006238181836
+    second: WaterGun|TeslaPistol_dispGlass|Take 001|BaseLayer
+  - first:
+      74: 3468151265660343630
+    second: WaterGun|TeslaPistol_dispGlass|Take 001|BaseLayer.001
+  - first:
+      74: -6512043431176561202
+    second: WaterGun|TeslaPistol_display_low|Take 001|BaseLayer
+  - first:
+      74: 5394867912431691953
+    second: WaterGun|TeslaPistol_display_low|Take 001|BaseLayer.001
+  - first:
+      74: 5260328430098538528
+    second: WaterGun|TeslaPistol_display|Take 001|BaseLayer
+  - first:
+      74: -8778713648691013117
+    second: WaterGun|TeslaPistol_display|Take 001|BaseLayer.001
+  - first:
+      74: -1317715053147230364
+    second: WaterGun|TeslaPistol_glass|Take 001|BaseLayer
+  - first:
+      74: 3812208284597387675
+    second: WaterGun|TeslaPistol_glass|Take 001|BaseLayer.001
+  - first:
+      74: -8387017773956134045
+    second: WaterGun|TeslaPistol_handle_low|Take 001|BaseLayer
+  - first:
+      74: 2742735307490699497
+    second: WaterGun|TeslaPistol_handle_low|Take 001|BaseLayer.001
+  - first:
+      74: -7643841015945259767
+    second: WaterGun|TeslaPistol_ring_high001|Take 001|BaseLayer
+  - first:
+      74: -1291803287251718928
+    second: WaterGun|TeslaPistol_ring_high001|Take 001|BaseLayer.001
+  - first:
+      74: 7703020144535749483
+    second: WaterGun|TeslaPistol_trigger_low|Take 001|BaseLayer
+  - first:
+      74: -4790143638607994548
+    second: WaterGun|TeslaPistol_trigger_low|Take 001|BaseLayer.001
+  - first:
+      74: -5474671711883965944
+    second: WaterGun Barrell|TeslaPistol_arrow|Take 001|BaseLayer
+  - first:
+      74: -4938441400455914829
+    second: WaterGun Barrell|TeslaPistol_arrow|Take 001|BaseLayer.001
+  - first:
+      74: -4128321327658445290
+    second: WaterGun Barrell|TeslaPistol_base|Take 001|BaseLayer
+  - first:
+      74: 8815211865341798311
+    second: WaterGun Barrell|TeslaPistol_base|Take 001|BaseLayer.001
+  - first:
+      74: 136420085513889018
+    second: WaterGun Barrell|TeslaPistol_battery_low|Take 001|BaseLayer
+  - first:
+      74: 8289567356658353249
+    second: WaterGun Barrell|TeslaPistol_battery_low|Take 001|BaseLayer.001
+  - first:
+      74: -5066073322680111844
+    second: WaterGun Barrell|TeslaPistol_batteryCap_low|Take 001|BaseLayer
+  - first:
+      74: -3844012660391643211
+    second: WaterGun Barrell|TeslaPistol_batteryCap_low|Take 001|BaseLayer.001
+  - first:
+      74: 6194004762500589361
+    second: WaterGun Barrell|TeslaPistol_body_low|Take 001|BaseLayer
+  - first:
+      74: -2522299530045656411
+    second: WaterGun Barrell|TeslaPistol_body_low|Take 001|BaseLayer.001
+  - first:
+      74: 8396872232767781671
+    second: WaterGun Barrell|TeslaPistol_buttons1|Take 001|BaseLayer
+  - first:
+      74: -2696562604314975413
+    second: WaterGun Barrell|TeslaPistol_buttons1|Take 001|BaseLayer.001
+  - first:
+      74: 1578578496528701638
+    second: WaterGun Barrell|TeslaPistol_dispGlass|Take 001|BaseLayer
+  - first:
+      74: 7773975471289328748
+    second: WaterGun Barrell|TeslaPistol_dispGlass|Take 001|BaseLayer.001
+  - first:
+      74: 1744877934493522128
+    second: WaterGun Barrell|TeslaPistol_display_low|Take 001|BaseLayer
+  - first:
+      74: -8328963867420126579
+    second: WaterGun Barrell|TeslaPistol_display_low|Take 001|BaseLayer.001
+  - first:
+      74: 712557977509331849
+    second: WaterGun Barrell|TeslaPistol_display|Take 001|BaseLayer
+  - first:
+      74: -3020313790804576223
+    second: WaterGun Barrell|TeslaPistol_display|Take 001|BaseLayer.001
+  - first:
+      74: -661974651730129153
+    second: WaterGun Barrell|TeslaPistol_glass|Take 001|BaseLayer
+  - first:
+      74: -93165814852367898
+    second: WaterGun Barrell|TeslaPistol_glass|Take 001|BaseLayer.001
+  - first:
+      74: 4114441481313884730
+    second: WaterGun Barrell|TeslaPistol_handle_low|Take 001|BaseLayer
+  - first:
+      74: -5625153914705351880
+    second: WaterGun Barrell|TeslaPistol_handle_low|Take 001|BaseLayer.001
+  - first:
+      74: -1864939512269503177
+    second: WaterGun Barrell|TeslaPistol_ring_high001|Take 001|BaseLayer
+  - first:
+      74: -6277382849135699133
+    second: WaterGun Barrell|TeslaPistol_ring_high001|Take 001|BaseLayer.001
+  - first:
+      74: -3877361789915046857
+    second: WaterGun Barrell|TeslaPistol_trigger_low|Take 001|BaseLayer
+  - first:
+      74: -8847888091415426914
+    second: WaterGun Barrell|TeslaPistol_trigger_low|Take 001|BaseLayer.001
+  externalObjects: {}
+  materials:
+    materialImportMode: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 0
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
