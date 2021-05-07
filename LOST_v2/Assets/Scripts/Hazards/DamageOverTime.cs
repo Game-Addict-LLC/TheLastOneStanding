@@ -42,7 +42,7 @@ public class DamageOverTime : Hazard
         }
     }
 
-    private void OnTriggerEnter(Collider collision)
+    private void OnTriggerEnter(Collider collision) //Adds colliders to a list when they enter if they are damageable
     {
         List<IDamageable<float>> interfaceList = new List<IDamageable<float>>();
         MonoBehaviour[] list = collision.GetComponents<MonoBehaviour>();
@@ -65,7 +65,7 @@ public class DamageOverTime : Hazard
         }
     }
 
-    private void OnTriggerExit(Collider collision)
+    private void OnTriggerExit(Collider collision) //Removes colliders from a list when they leave
     {
         List<IDamageable<float>> interfaceList = new List<IDamageable<float>>();
         MonoBehaviour[] list = collision.GetComponents<MonoBehaviour>();

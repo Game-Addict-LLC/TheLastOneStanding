@@ -33,7 +33,7 @@ public class MolotovThrower : MonoBehaviour
         
     }
 
-    private void FixedUpdate()
+    private void FixedUpdate() //Adds limited random force to spawned object
     {
         if (timer > 0)
         {

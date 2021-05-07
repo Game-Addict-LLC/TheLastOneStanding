@@ -20,12 +20,12 @@ public class Molotov : Hazard
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (LayerMask.LayerToName(collision.gameObject.layer).Contains("Player") == false)
+        if (LayerMask.LayerToName(collision.gameObject.layer).Contains("Player") == false) //Spawns object when bottle hits a nonplayer object
         {
             Instantiate(damageField, transform.position, Quaternion.LookRotation(collision.GetContact(0).normal));
             gameObject.GetComponent<Renderer>().enabled = false;
             gameObject.GetComponent<Collider>().enabled = false;
-            Destroy(gameObject, 1);
+            Destroy(gameObject, 1); //Delays destruction to allow particle system to naturally end
         }
     }
 }

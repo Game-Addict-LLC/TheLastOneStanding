@@ -42,19 +42,19 @@ public class LimbHealth : Health
 
     public override void OnDeath()
     {
-        //StartCoroutine(RemovalState());
+        
     }
 
     public void OnDismember()
     {
-        if (meshBased)
+        if (meshBased) //Disables mesh objects on limb removal
         {
             foreach (SkinnedMeshRenderer mesh in parentMeshes)
             {
                 mesh.enabled = false;
             }
         }
-        else
+        else //Sets textures to invisible on limb removal
         {
             Material[] matArray;
 
@@ -67,7 +67,7 @@ public class LimbHealth : Health
         }
 
         GetComponent<Collider>().enabled = false;
-        foreach (IDamageable<float> child in listOfChildScripts)
+        foreach (IDamageable<float> child in listOfChildScripts) //Disables colliders on limb removal to avoid false collisions or blockages
         {
             if ((child as Component).gameObject.GetComponent<Collider>() != null)
             {
@@ -76,31 +76,5 @@ public class LimbHealth : Health
         }
 
         dismembered = true;
-    }
-
-    IEnumerator RemovalState()
-    {
-        //parentScript.gameObject.GetComponent<Animator>().SetBool("Stunned", true);
-        StartCoroutine(parentScript.HitStun(3));
-
-        Material tempMaterial = null;
-        Material[] matArray = null;
-
-        foreach (SkinnedMeshRenderer mesh in parentMeshes)
-        {
-            matArray = mesh.materials;
-            tempMaterial = matArray[materialIndex];
-            matArray[materialIndex] = removableMaterial;
-            mesh.materials = matArray;
-        }
-
-        yield return new WaitForSeconds(3);
-
-        foreach (SkinnedMeshRenderer mesh in parentMeshes)
-        {
-            matArray[materialIndex] = tempMaterial;
-            mesh.materials = matArray;
-        }
-        //parentScript.gameObject.GetComponent<Animator>().SetBool("Stunned", false);
     }
 }
